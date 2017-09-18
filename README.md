@@ -1,6 +1,4 @@
-# inventory-server
-
-> 
+# ibc-server
 
 ## About
 

@@ -1,0 +1,48 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "buildPath": "dist",
+  "rootSrc": "src",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "authentication": {
+    "secret": "3cb29390219b09f63094842f4750ab42721bac6d3df17ef39108d3ddd8186c7beda2c15a67b153d84b6d54edfb47b67e00812e0c3e2f6faa241093ba3ae184b95e79e0e4b11019d6f825f309757b17b2b3d6f0f3de31c9b5876f8315a59ace47358ecd42a467ea98fbfa0be9294c2ae57a2b383bc1eb061c4c04d42360951e46efaf6639b4ebc66bc38ba43b54b7fb7cd9ac168fa120b489f939f4eaebfddf3e4488f31fe4eaa2e2266e1e48177b557b5a3d5ba83729572eb656ab57e89465c0b8013764aa30c0be53aa13f215c9fc0fe827230e169ea46592004fee11db7c1d6490e006341414b9d5a875c5fc8acea4c7c190877e95b4fb0284a25f44c2d476",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "type": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  },
+  "db": {
+    "dialect": "mysql",
+    "connectionString": "mysql://root:@localhost:3306/inventory_server",
+    "logging": true,
+    "define": {
+      "freezeTableName": true
+    }
+  },
+  "logger": {
+    "fileLevel": "debug",
+    "consoleLevel": "debug",
+    "directory": "logs"
+  }
+}

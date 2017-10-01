@@ -3,7 +3,7 @@ import LoggerHook from './hooks/logger';
 
 const loggerHook = new LoggerHook();
 
-const appHooks: any = {
+export default {
 	before: {
 		all: [],
 		find: [],
@@ -34,5 +34,3 @@ const appHooks: any = {
 		remove: []
 	}
 };
-
-export default appHooks;

@@ -2,7 +2,7 @@
   "rules": {
     "class-name": true,
     "comment-format": [true, "check-space"],
-    "indent": [true, "tabs"],
+    "indent": [true, "space"],
     "no-duplicate-variable": true,
     "no-eval": true,
     "no-internal-module": true,
@@ -19,6 +19,8 @@
       "property-declaration": "nospace",
       "variable-declaration": "nospace"
     }],
+    "only-arrow-functions": true,
+    "no-var-requires": false,
     "variable-name": [true, "ban-keywords"],
     "whitespace": [true,
       "check-branch",

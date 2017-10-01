@@ -1,17 +1,16 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "removeComments": true,
-    "noImplicitAny": true,
-    "skipLibCheck": true,
-    "suppressImplicitAnyIndexErrors": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"target": "es6",
+		"module": "commonjs",
+		"sourceMap": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"moduleResolution": "node",
+		"removeComments": true,
+		"noImplicitAny": true,
+		"suppressImplicitAnyIndexErrors": true
+	},
+	"exclude": [
+		"node_modules"
+	]
 }

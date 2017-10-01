@@ -1,7 +1,7 @@
 // See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
 const Sequelize = require('sequelize');
-import BaseModel from './BaseModel';
+import BaseModel from '../../core/models/BaseModel';
 
 const fields: Object = {
 	email: {

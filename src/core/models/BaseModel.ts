@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-export default class BaseModel {
+export default abstract class BaseModel {
 	private sequelizeClient: any;
 	constructor(app: any) {
 		this.sequelizeClient = app.get('sequelizeClient');

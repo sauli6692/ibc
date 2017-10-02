@@ -1,6 +1,10 @@
+import * as lodash from 'lodash';
+import IModelDefinition from './IModelDefinition';
 const Sequelize = require('sequelize');
 
 export default abstract class BaseModel {
+    private _instance: BaseModel;
+	private _module: string;
 	private _name: string;
 	private _sequelizeClient: any;
 	private _fields: any;
@@ -10,15 +14,23 @@ export default abstract class BaseModel {
 	private _app: any;
 
 	constructor(app: any) {
+        let definition = this.define();
+
 		this._app = app;
-		this.sequelizeClient = this._app.get('sequelizeClient');
-		this.fields = this.setFields();
+		this._module = definition.module;
+		this._name = definition.name;
+		this._fields = definition.fields;
 		this.options = this.setOptions();
-		this.associations = this.setAssociations();
+		this._associations = this.setAssociations();
+		this._sequelizeClient = this._app.get('sequelizeClient');
+
 		this.createModel();
 	}
 
-	get name(): any {
+	get module(): string {
+		return this._module;
+	}
+	get name(): string {
 		return this._name;
 	}
 	get sequelizeClient(): any {
@@ -33,36 +45,34 @@ export default abstract class BaseModel {
 	get associations(): any {
 		return this._associations;
 	}
+	get identity(): string {
+		return this.module.toUpperCase() + '_' + this.name.toUpperCase();
+	}
 
-	set name(name: string) {
-		this._name = name;
-	}
-	set sequelizeClient(sequelizeClient: any) {
-		this._sequelizeClient = sequelizeClient;
-	}
-	set fields(): any {
-		this._fields = fields;
-	}
-	set options(): any {
+	set options(options: any) {
+		options.freezeTableName = lodash.isNil(options.freezeTableName) || options.freezeTableName;
+		options.tableName = options.tableName || this.identity;
 		this._options = options;
 	}
-	set associations(): any {
-		this._associations = associations;
-	}
 
-	public createModel() {
-		this._model = this.sequelizeClient.define(this.name, this.definition, this.options);
+	private createModel() {
+		this._model = this.sequelizeClient
+			.define(this.name, this.fields, this.options);
 
-		this._model.associate = this.associations || ((models: any[]) => {});
+		this._model.associate = this.associations;
 	}
 
 	public getSequelizeModel(): any {
 		return this._model;
 	}
 
-	private abstract setFields(): any;
-	private abstract setOptions(): any;
-	private abstract setAssociations(): Function {
+	protected abstract define(): IModelDefinition;
+
+	protected setOptions(): any {
+		return {};
+	}
+
+	protected setAssociations(): Function {
 		return (models: any[]) => { // eslint-disable-line no-unused-vars
 			// Define associations here
 			// See http://docs.sequelizejs.com/en/latest/docs/associations/

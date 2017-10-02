@@ -17,7 +17,7 @@ export default (app: any): void => {
 
 		// Set up data relationships
 		const models = sequelize.models;
-		lodash.forOwn(models, (name) => {
+		lodash.forOwn(models, (name: string) => {
 			if ('associate' in models[name]) {
 				models[name].associate(models);
 			}

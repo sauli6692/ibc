@@ -1,5 +1,5 @@
 import BaseModel from '../models/BaseModel';
-import ServiceOptionals from './ServiceOptionals';
+import IServiceOptionals from './IServiceOptionals';
 import * as lodash from 'lodash';
 const sequelizeService = require('feathers-sequelize');
 
@@ -10,7 +10,7 @@ export default class BaseService {
   private _model: BaseModel;
   private _app: any;
 
-  constructor(name: string, model: BaseModel, app: any, optionals?: ServiceOptionals) {
+  constructor(name: string, model: BaseModel, app: any, optionals?: IServiceOptionals) {
     this._name = name;
     this._model = model;
     this._app = app;
@@ -60,7 +60,7 @@ export default class BaseService {
   public config(): void {
     let options: any = {
       name: this.name,
-      Model: this.model, // .getSequelizeDefinition(),
+      Model: this.model.getSequelizeModel(),
       paginate: this.app.get('paginate')
     };
 

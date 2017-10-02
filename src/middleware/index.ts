@@ -1,5 +1,5 @@
-import Request from '../domain/Request';
-import Response from '../domain/Response';
+import Request from '../core/domain/Request';
+import Response from '../core/domain/Response';
 
 export default (app: any): void => {
 	app.use((req: Request, res: Response, next: Function) => {

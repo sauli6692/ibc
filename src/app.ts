@@ -1,6 +1,6 @@
-import authentication from './authentication';
+import authentication from './core/services/authentication';
 import middleware from './middleware';
-import sequelize from './sequelize';
+import sequelize from './core/services/sequelize';
 import appHooks from './app.hooks';
 
 const path = require('path');

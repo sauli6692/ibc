@@ -1,6 +1,6 @@
 // A hook that logs service method before, after and error
-import logger from '../utils/logger';
-import Hook from '../domain/Hook';
+import logger from '../core/utils/logger';
+import Hook from '../core/domain/Hook';
 
 export default class LoggerHook implements Hook {
 	set(): Function {

@@ -1,9 +1,7 @@
 import * as lodash from 'lodash';
-// import authentication from './core/services/authentication';
 import configurations from './core/configurations';
 import middleware from './middleware';
 import appHooks from './app.hooks';
-// import sequelize from './core/services/sequelize';
 
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -20,16 +18,6 @@ const socketio = require('feathers-socketio');
 
 const handler = require('feathers-errors/handler');
 const notFound = require('feathers-errors/not-found');
-
-// const middleware = require('./middleware');
-// const services = require('./services');
-// const appHooks = require('./app.hooks');
-
-// const authentication = new Authentication();
-// const middleware = new Middleware();
-// const sequelize = new Sequelize();
-
-// const sequelize = require('./sequelize');
 
 const app = feathers();
 
@@ -50,7 +38,6 @@ app.configure(hooks());
 app.configure(rest());
 app.configure(socketio());
 
-// Configure other middleware (see `middleware/index.js`)
 lodash.forEach(configurations, configuration => app.configure(configuration));
 // Configure a middleware for 404s and the error handler
 app.use(notFound());

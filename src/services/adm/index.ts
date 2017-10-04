@@ -1,8 +1,8 @@
-import UserService from './users';
+import UserService from './user/user.service';
 
 export default {
-	services: [{
-		name: 'user',
-		service: ''
-	}]
+    name: 'adm',
+    services: {
+        user: UserService
+    }
 };

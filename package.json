@@ -57,10 +57,13 @@
     "@types/underscore.string": "~0.0.30",
     "eslint": "^4.3.0",
     "gulp": "^3.9.1",
+    "gulp-tslint": "^8.1.2",
     "gulp-typescript": "^3.2.1",
+    "gulp-util": "^3.0.8",
     "mocha": "^3.4.2",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
+    "tslint": "^5.7.0",
     "typescript": "^2.4.2"
   }
 }

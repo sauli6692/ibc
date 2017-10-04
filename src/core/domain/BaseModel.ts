@@ -1,10 +1,8 @@
 import * as lodash from 'lodash';
-import IModelDefinition from './IModelDefinition';
 const Sequelize = require('sequelize');
 
 export default abstract class BaseModel {
-    private _instance: BaseModel;
-	private _module: string;
+	private _component: string;
 	private _name: string;
 	private _sequelizeClient: any;
 	private _fields: any;
@@ -13,11 +11,11 @@ export default abstract class BaseModel {
 	private _model: any;
 	private _app: any;
 
-	constructor(app: any) {
+	constructor(component: string, app: any) {
         let definition = this.define();
 
 		this._app = app;
-		this._module = definition.module;
+		this._component = component;
 		this._name = definition.name;
 		this._fields = definition.fields;
 		this.options = this.setOptions();
@@ -27,8 +25,8 @@ export default abstract class BaseModel {
 		this.createModel();
 	}
 
-	get module(): string {
-		return this._module;
+	get component(): string {
+		return this._component;
 	}
 	get name(): string {
 		return this._name;
@@ -46,13 +44,17 @@ export default abstract class BaseModel {
 		return this._associations;
 	}
 	get identity(): string {
-		return this.module.toUpperCase() + '_' + this.name.toUpperCase();
+		return this.component.toUpperCase() + '_' + this.name.toUpperCase();
 	}
 
 	set options(options: any) {
 		options.freezeTableName = lodash.isNil(options.freezeTableName) || options.freezeTableName;
 		options.tableName = options.tableName || this.identity;
 		this._options = options;
+	}
+
+    public getSequelizeModel(): any {
+		return this._model;
 	}
 
 	private createModel() {
@@ -62,11 +64,7 @@ export default abstract class BaseModel {
 		this._model.associate = this.associations;
 	}
 
-	public getSequelizeModel(): any {
-		return this._model;
-	}
-
-	protected abstract define(): IModelDefinition;
+	protected abstract define(): { name: string, fields: any };
 
 	protected setOptions(): any {
 		return {};

@@ -1,13 +1,11 @@
 // See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
 const Sequelize = require('sequelize');
-import BaseModel from '../../../core/models/BaseModel';
-import IModelDefinition from '../../../core/models/IModelDefinition';
+import BaseModel from '../../../core/domain/BaseModel';
 
 export default class User extends BaseModel {
-	protected define(): IModelDefinition {
+	protected define() {
 		return {
-			module: 'adm',
 			name: 'user',
 			fields: {
 				email: {

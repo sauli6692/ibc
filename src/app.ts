@@ -1,7 +1,9 @@
-import authentication from './core/services/authentication';
+import * as lodash from 'lodash';
+// import authentication from './core/services/authentication';
+import configurations from './core/configurations';
 import middleware from './middleware';
-import sequelize from './core/services/sequelize';
 import appHooks from './app.hooks';
+// import sequelize from './core/services/sequelize';
 
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -20,7 +22,7 @@ const handler = require('feathers-errors/handler');
 const notFound = require('feathers-errors/not-found');
 
 // const middleware = require('./middleware');
-const services = require('./services');
+// const services = require('./services');
 // const appHooks = require('./app.hooks');
 
 // const authentication = new Authentication();
@@ -40,23 +42,16 @@ app.use(compress());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
-// Host the public folder
+
 app.use('/', feathers.static(app.get('public')));
 
 // Set up Plugins and providers
 app.configure(hooks());
-app.configure(sequelize);
 app.configure(rest());
 app.configure(socketio());
 
 // Configure other middleware (see `middleware/index.js`)
-app.configure(middleware);
-app.configure(authentication);
-// sequelize(app);
-// middleware(app);
-// authentication(app);
-// Set up our services (see `services/index.js`)
-app.configure(services);
+lodash.forEach(configurations, (configuration) => configuration(app));
 // Configure a middleware for 404s and the error handler
 app.use(notFound());
 app.use(handler());

@@ -1,11 +1,13 @@
 import * as lodash from 'lodash';
+import logger from '../utils/logger';
 const Sequelize = require('sequelize');
 
-export default (app: any): void => {
+export default function() {
+    const app = this;
 	const db = app.get('db');
 	const sequelize = new Sequelize(db.connectionString, {
 		dialect: db.dialect,
-		logging: db.logging,
+		logging: db.logging ? console.log : false,
 		define: db.define
 	});
 	const oldSetup = app.setup;
@@ -17,9 +19,9 @@ export default (app: any): void => {
 
 		// Set up data relationships
 		const models = sequelize.models;
-		lodash.forOwn(models, (name: string) => {
-			if ('associate' in models[name]) {
-				models[name].associate(models);
+		lodash.forOwn(models, (model) => {
+			if ('associate' in model) {
+				model.associate(models);
 			}
 		});
 
@@ -28,4 +30,4 @@ export default (app: any): void => {
 
 		return result;
 	};
-};
+}

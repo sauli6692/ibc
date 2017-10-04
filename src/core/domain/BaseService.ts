@@ -16,6 +16,10 @@ export default abstract class BaseService {
 		this._app = app;
 
 		let definition = this.define();
+        if (typeof definition.model !== 'function')  {
+            throw 'Needs to be a clasee';
+        }
+
 		this._component = component;
 		this._name = definition.name;
 		this._model = new definition.model(component, this.app);

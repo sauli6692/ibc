@@ -1,8 +1,8 @@
-import UserService from './user/user.service';
+import RoleService from './role/role.service';
 
 export default {
     name: 'adm',
     services: {
-        user: UserService
+        role: RoleService
     }
 };

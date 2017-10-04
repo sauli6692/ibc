@@ -2,7 +2,8 @@ const authentication = require('feathers-authentication');
 const jwt = require('feathers-authentication-jwt');
 const local = require('feathers-authentication-local');
 
-export default (app: any): void => {
+export default function() {
+    const app = this;
 	const config = app.get('authentication');
 
 	// Set up authentication with the secret
@@ -23,4 +24,4 @@ export default (app: any): void => {
 			]
 		}
 	});
-};
+}

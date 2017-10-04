@@ -1,5 +1,5 @@
 const winston = require('winston');
-const config = require('../../config').logger;
+const config = require('../../../config').logger;
 const tsFormat = () => (new Date()).toLocaleTimeString();
 
 const Logger = new (winston.Logger)({

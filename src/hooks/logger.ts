@@ -1,8 +1,7 @@
 // A hook that logs service method before, after and error
 import logger from '../core/utils/logger';
-import Hook from '../core/domain/Hook';
 
-export default class LoggerHook implements Hook {
+export default class LoggerHook {
 	set(): Function {
 		return (hook: any) => {
 			let message = `${hook.type}: ${hook.path} - Method: ${hook.method}`;

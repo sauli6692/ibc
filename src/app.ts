@@ -51,11 +51,11 @@ app.configure(rest());
 app.configure(socketio());
 
 // Configure other middleware (see `middleware/index.js`)
-lodash.forEach(configurations, (configuration) => configuration(app));
+lodash.forEach(configurations, configuration => app.configure(configuration));
 // Configure a middleware for 404s and the error handler
 app.use(notFound());
 app.use(handler());
 
 app.hooks(appHooks);
 
-export default app;
+export = app;

@@ -1,5 +1,5 @@
 import * as lodash from 'lodash';
-import logger from '../utils/logger';
+import { logger } from '../utils/logger';
 const Sequelize = require('sequelize');
 
 export default function() {

@@ -3,24 +3,29 @@
 const Sequelize = require('sequelize');
 import { BaseModel } from '../../../core/domain/BaseModel';
 
-export class Role extends BaseModel {
+export class User extends BaseModel {
 	protected define() {
 		return {
-			name: 'role',
+			name: 'user',
 			fields: {
                 id: {
                     type: Sequelize.INTEGER,
                     autoIncrement: true,
 					primaryKey: true
                 },
-				name: {
-					type: Sequelize.STRING(25),
+				username: {
+					type: Sequelize.STRING(50),
+					allowNull: false,
+                    unique: true
+				},
+				password: {
+					type: Sequelize.STRING(64),
 					allowNull: false
 				},
-				description: {
-					type: Sequelize.STRING(255),
-					allowNull: true
-				}
+                salt: {
+                    type: Sequelize.STRING(64),
+					allowNull: false
+                }
 			}
 		};
 	}

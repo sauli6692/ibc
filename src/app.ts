@@ -39,6 +39,7 @@ app.configure(rest());
 app.configure(socketio());
 
 lodash.forEach(configurations, configuration => app.configure(configuration));
+app.use(middleware);
 // Configure a middleware for 404s and the error handler
 app.use(notFound());
 app.use(handler());

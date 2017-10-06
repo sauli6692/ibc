@@ -1,10 +1,10 @@
-import BaseService from '../../../core/domain/BaseService';
-import Role from './role.model';
+import { BaseService } from '../../../core/domain/BaseService';
+import { Role } from './role.model';
 
-export default class RoleService extends BaseService {
+export class RoleService extends BaseService {
     protected define() {
         return {
-            name: 'role',
+            name: 'roles',
             model: Role
         };
     }

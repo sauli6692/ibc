@@ -2,7 +2,7 @@ const winston = require('winston');
 const config = require('../../../config').logger;
 const tsFormat = () => (new Date()).toLocaleTimeString();
 
-const Logger = new (winston.Logger)({
+export const logger = new (winston.Logger)({
 	transports: [
 		new (winston.transports.Console)({
 			timestamp: tsFormat,
@@ -23,5 +23,3 @@ const Logger = new (winston.Logger)({
 	],
 	exitOnError: false
 });
-
-export default Logger;

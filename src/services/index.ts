@@ -1,5 +1,5 @@
-import adm from './adm';
+import { adm } from './adm';
 
-export default {
+export const services = {
 	adm
 };

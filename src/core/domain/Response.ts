@@ -1,4 +1,4 @@
-export default interface Response extends Express.Response {
+export interface Response extends Express.Response {
 	redirect(url: string): this;
 	writeHead(status: any, type: any): this;
 	send(data: any): this;

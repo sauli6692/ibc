@@ -1,8 +1,10 @@
-import RoleService from './role/role.service';
+import { RoleService } from './role/role.service';
+import { UserService } from './user/user.service';
 
-export default {
+export const adm = {
     name: 'adm',
     services: {
-        role: RoleService
+        role: RoleService,
+        user: UserService
     }
 };

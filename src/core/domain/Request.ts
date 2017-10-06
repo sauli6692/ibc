@@ -1,4 +1,4 @@
-export default interface Request extends Express.Request {
+export interface Request extends Express.Request {
 	body: any;
 	params: any;
 	query: any;

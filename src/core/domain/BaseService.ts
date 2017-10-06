@@ -1,10 +1,9 @@
-import BaseModel from './BaseModel';
-import IServiceHooks from './IServiceHooks';
-import IHook from './IHook';
+import { BaseModel } from './BaseModel';
+import { IServiceHooks, IHook } from './IServiceHooks';
 import * as lodash from 'lodash';
 const sequelizeService = require('feathers-sequelize');
 
-export default abstract class BaseService {
+export abstract class BaseService {
 	private _component: string;
 	private _name: string;
 	private _hooks: IServiceHooks;

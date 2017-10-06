@@ -1,7 +1,7 @@
 import * as lodash from 'lodash';
 const Sequelize = require('sequelize');
 
-export default abstract class BaseModel {
+export abstract class BaseModel {
 	private _component: string;
 	private _name: string;
 	private _sequelizeClient: any;

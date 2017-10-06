@@ -1,5 +1,5 @@
 import * as lodash from 'lodash';
-import services from '../../services';
+import { services } from '../../services';
 
 export default function() {
     const app = this;

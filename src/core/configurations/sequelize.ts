@@ -7,7 +7,7 @@ export default function() {
 	const db = app.get('db');
 	const sequelize = new Sequelize(db.connectionString, {
 		dialect: db.dialect,
-		logging: db.logging ? console.log : false,
+		logging: db.logging ? logger.info : false,
 		define: db.define
 	});
 	const oldSetup = app.setup;
@@ -19,7 +19,7 @@ export default function() {
 
 		// Set up data relationships
 		const models = sequelize.models;
-		lodash.forOwn(models, (model) => {
+		lodash.forOwn(models, (model: any) => {
 			if ('associate' in model) {
 				model.associate(models);
 			}

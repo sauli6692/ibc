@@ -3,7 +3,7 @@
 const Sequelize = require('sequelize');
 import { BaseModel } from '../../../core/domain/models/BaseModel';
 
-export class Role extends BaseModel {
+export class Model extends BaseModel {
 	protected define() {
 		return {
 			name: 'role',
@@ -16,10 +16,6 @@ export class Role extends BaseModel {
 				name: {
 					type: Sequelize.STRING(25),
 					allowNull: false
-				},
-				description: {
-					type: Sequelize.STRING(255),
-					allowNull: true
 				}
 			}
 		};

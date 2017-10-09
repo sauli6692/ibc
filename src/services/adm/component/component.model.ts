@@ -3,10 +3,10 @@
 const Sequelize = require('sequelize');
 import { BaseModel } from '../../../core/domain/models/BaseModel';
 
-export class Role extends BaseModel {
+export class Component extends BaseModel {
 	protected define() {
 		return {
-			name: 'role',
+			name: 'component',
 			fields: {
                 id: {
                     type: Sequelize.INTEGER,

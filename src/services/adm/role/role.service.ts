@@ -1,7 +1,7 @@
-import { BaseService } from '../../../core/domain/BaseService';
+import { BaseCRUDService } from '../../../core/domain/services/BaseCRUDService';
 import { Role } from './role.model';
 
-export class RoleService extends BaseService {
+export class RoleService extends BaseCRUDService {
     protected define() {
         return {
             name: 'roles',

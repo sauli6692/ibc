@@ -1,7 +1,7 @@
 import * as lodash from 'lodash';
 import configurations from './core/configurations';
 import middleware from './middleware';
-import appHooks from './app.hooks';
+import { appHooks } from './hooks';
 
 const path = require('path');
 const favicon = require('serve-favicon');

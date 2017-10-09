@@ -15,7 +15,7 @@
       "local"
     ],
     "path": "/authentication",
-    "service": "users",
+    "service": "adm/users",
     "jwt": {
       "header": {
         "type": "access"

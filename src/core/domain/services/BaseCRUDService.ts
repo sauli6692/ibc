@@ -1,3 +1,4 @@
+import { logger } from '../../utils/logger';
 import { BaseService } from './BaseService';
 import { BaseModel } from '../models/BaseModel';
 import { IServiceHooks, IHook } from './IServiceHooks';
@@ -16,7 +17,7 @@ export abstract class BaseCRUDService extends BaseService {
             throw 'Needs to be a class';
         }
 
-        this._model = model;
+        this._model = new model(component, app);
     }
 
     get model(): BaseModel {
@@ -29,16 +30,23 @@ export abstract class BaseCRUDService extends BaseService {
             Model: this.model.getSequelizeModel(),
             paginate: this.app.get('paginate')
         };
-        let nameService = `/${this.component}/${this.name}`;
+        let servicePath = `/${this.component}/${this.name}`;
 
-        this.app.use(nameService, sequelizeService(options));
-        const service = this.app.service(nameService);
+        this.app.use(servicePath, sequelizeService(options));
+        logger.debug('Sequelize Service Created: ', servicePath);
+
+        const service = this.app.service(servicePath);
 
         service.hooks(this.hooks);
-
         if (!lodash.isNil(service.filter) && !lodash.isNil(this.filters)) {
             service.filter(this.filters);
         }
+    }
+
+    protected defineName(): { name: string } {
+        return {
+            name: this.define().name
+        };
     }
 
     protected abstract define(): { name: string, model: any };

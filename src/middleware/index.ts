@@ -1,5 +1,5 @@
-import { Request } from '../core/domain/Request';
-import { Response } from '../core/domain/Response';
+import { Request } from '../core/domain/http/Request';
+import { Response } from '../core/domain/http/Response';
 
 export default function() {
     const app = this;

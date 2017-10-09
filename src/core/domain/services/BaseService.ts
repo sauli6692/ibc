@@ -14,19 +14,15 @@ export abstract class BaseService {
 
 		let { name } = this.define();
 
-		//if (typeof model !== 'function')  {
-        //    throw 'Needs to be a class';
-        //}
 
 		this._component = component;
 		this._name = name;
-		// this._model = new model(component, this.app);
 		this._hooks = this.defineHooks();
 		this._filters = this.defineFilters();
 	}
 
 	get component(): string {
-        return this._name;
+        return this._component;
     }
     get name(): string {
 		return this._name;
@@ -34,9 +30,6 @@ export abstract class BaseService {
 	get app(): any {
 		return this._app;
 	}
-	//get model(): BaseModel {
-	//	return this._model;
-	//}
 	get hooks(): any {
 		return this._hooks;
 	}

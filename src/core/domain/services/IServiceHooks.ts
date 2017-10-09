@@ -1,7 +1,7 @@
 export interface IServiceHooks {
-	before: any;
-	after: any;
-	error: any;
+	before: IHook;
+	after: IHook;
+	error: IHook;
 }
 
 export interface IHook {

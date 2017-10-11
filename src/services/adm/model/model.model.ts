@@ -6,7 +6,7 @@ import { BaseModel } from '../../../core/domain/models/BaseModel';
 export class Model extends BaseModel {
 	protected define() {
 		return {
-			name: 'role',
+			name: 'Codel',
 			fields: {
                 id: {
                     type: Sequelize.INTEGER,

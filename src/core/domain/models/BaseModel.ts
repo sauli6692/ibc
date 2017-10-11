@@ -1,4 +1,5 @@
 import * as lodash from 'lodash';
+import { StringParsers } from '../../utils/parsers';
 const Sequelize = require('sequelize');
 
 export abstract class BaseModel {
@@ -16,7 +17,7 @@ export abstract class BaseModel {
 
 		this._app = app;
 		this._component = component;
-		this._name = definition.name;
+		this._name = StringParsers.capitalizeFirstLetter(definition.name);
 		this._fields = definition.fields;
 		this.options = this.setOptions();
 		this._associations = this.setAssociations();
@@ -71,7 +72,7 @@ export abstract class BaseModel {
 	}
 
 	protected setAssociations(): Function {
-		return (models: any[]) => { // eslint-disable-line no-unused-vars
+		return (models: any) => { // eslint-disable-line no-unused-vars
 			// Define associations here
 			// See http://docs.sequelizejs.com/en/latest/docs/associations/
 		};

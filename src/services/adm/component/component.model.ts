@@ -6,7 +6,7 @@ import { BaseModel } from '../../../core/domain/models/BaseModel';
 export class Component extends BaseModel {
 	protected define() {
 		return {
-			name: 'component',
+			name: 'Component',
 			fields: {
                 id: {
                     type: Sequelize.INTEGER,
@@ -22,6 +22,14 @@ export class Component extends BaseModel {
 					allowNull: true
 				}
 			}
+		};
+	}
+
+    protected setAssociations(): Function {
+		return (models: any) => {
+            // let Component: any = this.getSequelizeModel();
+            // Component.belongsToMany(models.Model, { as: 'Models', through: 'ADM_COMPONENT_MODEL', foreignKey: 'componentId' });
+            // Component.belongsToMany(models.Role, { as: 'Roles', through: 'ADM_ROLE_COMPONENT', foreignKey: 'componentId' });
 		};
 	}
 }

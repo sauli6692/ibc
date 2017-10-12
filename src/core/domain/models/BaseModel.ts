@@ -1,5 +1,4 @@
 import * as lodash from 'lodash';
-import { StringParsers } from '../../utils/parsers';
 const Sequelize = require('sequelize');
 
 export abstract class BaseModel {
@@ -17,7 +16,7 @@ export abstract class BaseModel {
 
 		this._app = app;
 		this._component = component;
-		this._name = StringParsers.capitalizeFirstLetter(definition.name);
+		this._name = lodash.upperFirst(lodash.camelCase(definition.name));
 		this._fields = definition.fields;
 		this.options = this.setOptions();
 		this._associations = this.setAssociations();

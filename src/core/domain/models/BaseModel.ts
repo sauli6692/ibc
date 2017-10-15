@@ -1,13 +1,16 @@
 import * as lodash from 'lodash';
 const Sequelize = require('sequelize');
 
+import { IAssociation, IAssociationOption } from './IAssociation';
+import { logger } from '../../utils/logger';
+
 export abstract class BaseModel {
 	private _component: string;
 	private _name: string;
 	private _sequelizeClient: any;
 	private _fields: any;
 	private _options: any;
-	private _associations: Function;
+	private _associations: IAssociation;
 	private _model: any;
 	private _app: any;
 
@@ -57,23 +60,55 @@ export abstract class BaseModel {
 		return this._model;
 	}
 
-	private createModel() {
-		this._model = this.sequelizeClient
-			.define(this.name, this.fields, this.options);
-
-		this._model.associate = this.associations;
-	}
-
 	protected abstract define(): { name: string, fields: any };
 
 	protected setOptions(): any {
 		return {};
 	}
 
-	protected setAssociations(): Function {
-		return (models: any) => { // eslint-disable-line no-unused-vars
-			// Define associations here
-			// See http://docs.sequelizejs.com/en/latest/docs/associations/
+	protected setAssociations(): IAssociation {
+		return {};
+	}
+
+    private createModel() {
+        this._model = this.sequelizeClient
+        .define(this.name, this.fields, this.options);
+
+        this._model.associate = this.getAssosiationsSetup();
+    }
+
+	private getAssosiationsSetup(): Function {
+        let setupOneToAssociations = (functionName: string, models: any) => {
+            return (options: IAssociationOption) => {
+                let model = options.model;
+                let isSource = lodash.isNil(options.source) ? false : options.source;
+                delete options.model;
+                delete options.source;
+
+				if (isSource) {
+					this._model[functionName](models[model], options);
+				} else {
+					this._model.belongsTo(models[model], options);
+				}
+            };
+        };
+
+		return (models: any) => {
+			if (!lodash.isNil(this.associations.oneToOne)) {
+				lodash.forEach(this.associations.oneToOne, setupOneToAssociations('hasOne', models));
+			}
+
+			if (!lodash.isNil(this.associations.oneToMany)) {
+				lodash.forEach(this.associations.oneToMany, setupOneToAssociations('hasMany', models));
+			}
+
+			if (!lodash.isNil(this.associations.manyToMany)) {
+				lodash.forEach(this.associations.manyToMany, (options: IAssociationOption) => {
+					let model = options.model;
+                    delete options.model;
+					this._model.belongsToMany(models[model], options);
+				});
+			}
 		};
 	}
 }

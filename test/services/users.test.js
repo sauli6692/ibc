@@ -1,8 +1,8 @@
 const assert = require('assert');
-const app = require('../../src/app');
+const app = require('../../dist/app');
 
 describe('\'users\' service', () => {
-  it('registered the service', () => {
+  it('should be registered', () => {
     const service = app.service('users');
 
     assert.ok(service, 'Registered the service');

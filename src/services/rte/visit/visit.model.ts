@@ -17,7 +17,7 @@ export class Visit extends BaseModel {
                     primaryKey: true
                 },
                 date: {
-                    type: Sequelize.Date,
+                    type: Sequelize.DATE,
                     allowNull: false
                 }
             }

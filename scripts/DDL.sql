@@ -81,7 +81,7 @@ CREATE TABLE MIN_MINISTRY_TEAM(
 CREATE TABLE RTE_HARVEST(
 	person_id INT NOT NULL,
 	route_id INT NOT NULL,
-	discarded BIT(1),
+	discarded TINYINT(1),
 	discarded_reason VARCHAR(100),
 	CONSTRAINT RTE_HARVEST_PK PRIMARY KEY (person_id)
 );

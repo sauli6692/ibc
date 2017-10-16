@@ -17,12 +17,12 @@ export class Harvest extends BaseModel {
                     allowNull: false
                 },
                 discarded: {
-                    type: Sequelize.Bit(1),
+                    type: Sequelize.BOOLEAN,
                     allowNull: true,
                     default: 0
                 },
                 discardedReason: {
-                    type: Sequelize.String(100),
+                    type: Sequelize.STRING(100),
                     allowNull: true
                 }
             }

@@ -14,23 +14,23 @@ export class Route extends BaseModel {
                     primaryKey: true
                 },
                 name: {
-                    type: Sequelize.String(150),
+                    type: Sequelize.STRING(150),
                     allowNull: false
                 },
                 direction1: {
-                    type: Sequelize.String(150),
+                    type: Sequelize.STRING(150),
                     allowNull: false
                 },
                 direction2: {
-                    type: Sequelize.String(150),
+                    type: Sequelize.STRING(150),
                     allowNull: true
                 },
                 zoneMap: {
-                    type: Sequelize.Blob,
+                    type: Sequelize.BLOB,
                     allowNull: true
                 },
                 leaderId: {
-                    type: Sequelize.String(150),
+                    type: Sequelize.STRING(150),
                     allowNull: false
                 }
             }

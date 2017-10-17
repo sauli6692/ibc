@@ -26,7 +26,7 @@ export abstract class BaseExpressService extends BaseService {
         logger.debug('Express Service Created: ', this.servicePath);
     }
 
-    protected abstract define(): { name: string };
+    protected abstract define(): { route: string };
 
     protected find(): (params: any) => Promise<any> {
         return null;

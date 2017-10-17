@@ -4,7 +4,7 @@ import { Model } from './model.model';
 export class ModelService extends BaseSequelizeService {
     protected define() {
         return {
-            name: 'models',
+            route: 'models',
             model: Model
         };
     }

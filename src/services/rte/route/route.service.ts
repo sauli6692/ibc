@@ -4,7 +4,7 @@ import { Route } from './route.model';
 export class RouteService extends BaseSequelizeService {
     protected define() {
         return {
-            name: 'routes',
+            route: 'routes',
             model: Route
         };
     }

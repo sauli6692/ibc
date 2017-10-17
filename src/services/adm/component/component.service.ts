@@ -4,7 +4,7 @@ import { Component } from './component.model';
 export class ComponentService extends BaseSequelizeService {
     protected define() {
         return {
-            name: 'components',
+            route: 'components',
             model: Component
         };
     }

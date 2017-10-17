@@ -4,7 +4,7 @@ import { Harvest } from './harvest.model';
 export class HarvestService extends BaseSequelizeService {
     protected define() {
         return {
-            name: 'harvests',
+            route: 'harvests',
             model: Harvest
         };
     }

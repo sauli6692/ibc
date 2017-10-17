@@ -4,7 +4,7 @@ import * as lodash from 'lodash';
 
 export abstract class BaseService {
 	private _component: string;
-	private _name: string;
+	private _route: string;
 	private _servicePath: any;
 	private _hooks: IServiceHooks;
 	private _filters: Function;
@@ -14,12 +14,12 @@ export abstract class BaseService {
 	constructor(component: string, app: any) {
 		this._app = app;
 
-		let { name } = this.define();
+		let { route } = this.define();
 
 
 		this._component = component;
-		this._name = name;
-		this._servicePath = `/${this.component}/${this.name}`;
+		this._route = route;
+		this._servicePath = `/${this.component}/${this.route}`;
 		this._hooks = this.defineHooks();
 		this._filters = this.defineFilters();
 	}
@@ -27,8 +27,8 @@ export abstract class BaseService {
 	get component(): string {
         return this._component;
     }
-    get name(): string {
-		return this._name;
+    get route(): string {
+		return this._route;
 	}
     get servicePath(): string {
         return this._servicePath;
@@ -43,8 +43,8 @@ export abstract class BaseService {
 		return this._filters;
 	}
 
-	set name(name: string) {
-        this._name = name;
+	set route(route: string) {
+        this._route = route;
     }
 	set isFeathersService(isFeathersService: boolean) {
 		this._isFeathersService = isFeathersService;
@@ -65,7 +65,7 @@ export abstract class BaseService {
 
     protected abstract defineService(): void;
 
-	protected abstract define(): { name: string };
+	protected abstract define(): { route: string };
 
 	protected defineHooks(): IServiceHooks {
 		let hook: IHook = {

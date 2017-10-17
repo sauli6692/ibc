@@ -6,7 +6,7 @@ import { filters } from './user.filters';
 export class UserService extends BaseSequelizeService {
     protected define() {
         return {
-            name: 'users',
+            route: 'users',
             model: User
         };
     }

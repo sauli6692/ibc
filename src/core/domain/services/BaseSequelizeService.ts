@@ -26,7 +26,7 @@ export abstract class BaseSequelizeService extends BaseService {
 
     protected defineService(): void {
         let options: any = {
-            name: this.name,
+            name: this.route,
             Model: this.model.getSequelizeModel(),
             paginate: this.app.get('paginate')
         };
@@ -35,5 +35,5 @@ export abstract class BaseSequelizeService extends BaseService {
         logger.debug('Sequelize Service Created: ', this.servicePath);
     }
 
-    protected abstract define(): { name: string, model: any };
+    protected abstract define(): { route: string, model: any };
 }

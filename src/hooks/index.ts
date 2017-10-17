@@ -1,6 +1,6 @@
 // Application hooks that run for every service
 import { loggerHook } from './logger';
-import { IServiceHooks } from '../core/domain/services/IServiceHooks';
+import { IServiceHooks } from '../core/domain/services/IService';
 
 export const appHooks: IServiceHooks = {
 	before: {

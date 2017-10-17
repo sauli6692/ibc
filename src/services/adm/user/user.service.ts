@@ -1,9 +1,9 @@
-import { BaseCRUDService } from '../../../core/domain/services/BaseCRUDService';
+import { BaseSequelizeService } from '../../../core/domain/services/BaseSequelizeService';
 import { User } from './user.model';
 import { hooks } from './user.hooks';
 import { filters } from './user.filters';
 
-export class UserService extends BaseCRUDService {
+export class UserService extends BaseSequelizeService {
     protected define() {
         return {
             name: 'users',

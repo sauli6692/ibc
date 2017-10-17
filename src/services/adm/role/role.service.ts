@@ -1,7 +1,7 @@
-import { BaseCRUDService } from '../../../core/domain/services/BaseCRUDService';
+import { BaseSequelizeService } from '../../../core/domain/services/BaseSequelizeService';
 import { Role } from './role.model';
 
-export class RoleService extends BaseCRUDService {
+export class RoleService extends BaseSequelizeService {
     protected define() {
         return {
             name: 'roles',

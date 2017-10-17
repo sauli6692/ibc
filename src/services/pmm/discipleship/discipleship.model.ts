@@ -12,8 +12,7 @@ export class Discipleship extends BaseModel {
 										primaryKey: true
 									},
 								value: {
-										type: Sequelize.STRING(50),
-										allowNull: false
+										type: Sequelize.STRING(50)
 									}
 				}
 		};

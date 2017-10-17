@@ -12,8 +12,7 @@ export class Lesson extends BaseModel {
 										primaryKey: true
 									},
 								name: {
-										type: Sequelize.STRING(25),
-										allowNull: false
+										type: Sequelize.STRING(25)
 									},
 								description: {
 										type: Sequelize.STRING(50),

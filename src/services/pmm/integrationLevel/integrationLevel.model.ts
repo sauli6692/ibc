@@ -12,8 +12,7 @@ export class IntegrationLevel extends BaseModel {
 										primaryKey: true
 									},
 								value: {
-										type: Sequelize.STRING(20),
-										allowNull: false
+										type: Sequelize.STRING(20)
 									}
 				}
 		};

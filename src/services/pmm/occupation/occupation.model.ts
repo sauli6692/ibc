@@ -9,13 +9,12 @@ export class Occupation extends BaseModel {
                 id: {
                     type: Sequelize.INTEGER,
                     autoIncrement: true,
-					primaryKey: true
+										primaryKey: true
                 },
-				value: {
-					type: Sequelize.STRING(50),
-					allowNull: false
-				}
-			}
+								value: {
+									type: Sequelize.STRING(50)
+								}
+							}
 		};
 	}
 }

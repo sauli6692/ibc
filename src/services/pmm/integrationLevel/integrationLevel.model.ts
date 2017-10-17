@@ -1,28 +1,21 @@
 const Sequelize = require('sequelize');
 import { BaseModel } from '../../../core/domain/models/BaseModel';
 
-export class Lesson extends BaseModel {
+export class IntegrationLevel extends BaseModel {
 	protected define() {
 		return {
-			name: 'Lesson',
+			name: 'IntegrationLevel',
 			fields: {
                 id: {
                     type: Sequelize.INTEGER,
                     autoIncrement: true,
 										primaryKey: true
 									},
-								name: {
-										type: Sequelize.STRING(25),
-										allowNull: false
-									},
-								description: {
-										type: Sequelize.STRING(50),
-									},
-								discipleship_id : {
-										type: Sequelize.INTEGER,
+								value: {
+										type: Sequelize.STRING(20),
 										allowNull: false
 									}
-								}
+				}
 		};
 	}
 }

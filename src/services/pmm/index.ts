@@ -2,6 +2,7 @@ import { OccupationService } from './occupation/occupation.service';
 import { LessonService } from './lesson/lesson.service';
 import { CivilStatusService } from './civilStatus/civilStatus.service';
 import { DiscipleshipService } from './discipleship/discipleship.service';
+import { IntegrationLevelService } from './integrationLevel/integrationLevel.service';
 
 export const pmm = {
     name: 'pmm',
@@ -9,6 +10,7 @@ export const pmm = {
         occupation: OccupationService,
         lesson: LessonService,
         civilStatus: CivilStatusService,
-        discipleship: DiscipleshipService
+        discipleship: DiscipleshipService,
+        integrationLevels : IntegrationLevelService
     }
 };

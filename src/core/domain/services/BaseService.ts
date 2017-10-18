@@ -9,7 +9,6 @@ export abstract class BaseService {
 	private _hooks: IServiceHooks;
 	private _filters: Function;
 	private _app: any;
-    private _isFeathersService: boolean = true;
 
 	constructor(component: string, app: any) {
 		this._app = app;
@@ -46,20 +45,15 @@ export abstract class BaseService {
 	set route(route: string) {
         this._route = route;
     }
-	set isFeathersService(isFeathersService: boolean) {
-		this._isFeathersService = isFeathersService;
-	}
 
 	public createService(): void {
         this.defineService();
-        if (this._isFeathersService) {
-            const service = this.app.service(this.servicePath);
+        const service = this.app.service(this.servicePath);
 
-            service.hooks(this.hooks);
+        service.hooks(this.hooks);
 
-            if (!lodash.isNil(service.filter) && !lodash.isNil(this.filters)) {
-                service.filter(this.filters);
-            }
+        if (!lodash.isNil(service.filter) && !lodash.isNil(this.filters)) {
+            service.filter(this.filters);
         }
     }
 

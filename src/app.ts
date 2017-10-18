@@ -2,6 +2,7 @@ import * as lodash from 'lodash';
 import configurations from './core/configurations';
 import middleware from './middleware';
 import { appHooks } from './hooks';
+import { ServiceUtils } from './core/utils/globals';
 
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -38,9 +39,12 @@ app.configure(hooks());
 app.configure(rest());
 app.configure(socketio());
 
+// Other Configurations
 lodash.forEach(configurations, configuration => app.configure(configuration));
-app.use(middleware);
+app.getService = ServiceUtils.getService(app);
+
 // Configure a middleware for 404s and the error handler
+app.use(middleware);
 app.use(notFound());
 app.use(handler());
 

@@ -1,20 +1,20 @@
 const Sequelize = require('sequelize');
 import { BaseModel } from '../../../core/domain/models/BaseModel';
 
-export class Occupation extends BaseModel {
+export class CivilStatus extends BaseModel {
 	protected define() {
 		return {
-			name: 'Occupation',
+			name: 'CivilStatus',
 			fields: {
                 id: {
                     type: Sequelize.INTEGER,
                     autoIncrement: true,
 										primaryKey: true
-                },
+									},
 								value: {
-									type: Sequelize.STRING(50)
-								}
-							}
+										type: Sequelize.STRING(50)
+									}
+				}
 		};
 	}
 }

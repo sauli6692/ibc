@@ -28,6 +28,9 @@ export abstract class BaseModel {
 		this.createModel();
 	}
 
+    get app(): any {
+        return this._app;
+    }
 	get component(): string {
 		return this._component;
 	}
@@ -47,7 +50,7 @@ export abstract class BaseModel {
 		return this._associations;
 	}
 	get identity(): string {
-		return this.component.toUpperCase() + '_' + this.name.toUpperCase();
+		return this.component.toUpperCase() + '_' + lodash.snakeCase(this.name).toUpperCase();
 	}
 
 	set options(options: any) {
@@ -71,8 +74,12 @@ export abstract class BaseModel {
 	}
 
     private createModel() {
+        lodash.forOwn(this.fields, (fieldDefinition: any, key: string) => {
+            fieldDefinition.field = lodash.snakeCase(key);
+        });
+
         this._model = this.sequelizeClient
-        .define(this.name, this.fields, this.options);
+            .define(this.name, this.fields, this.options);
 
         this._model.associate = this.getAssosiationsSetup();
     }

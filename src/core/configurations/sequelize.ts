@@ -8,7 +8,8 @@ export default function() {
 	const sequelize = new Sequelize(db.connectionString, {
 		dialect: db.dialect,
 		logging: db.logging ? console.log : false,
-		define: db.define
+		define: db.define,
+        underscored: true
 	});
 	const oldSetup = app.setup;
 

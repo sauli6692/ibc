@@ -2,6 +2,7 @@ import { RoleService } from './role/role.service';
 import { UserService } from './user/user.service';
 import { ComponentService } from './component/component.service';
 import { ModelService } from './model/model.service';
+import { ComponentModelService } from './componentModel/componentModel.service';
 
 export const adm = {
     name: 'adm',
@@ -9,6 +10,7 @@ export const adm = {
         role: RoleService,
         user: UserService,
         component: ComponentService,
-        model: ModelService
+        model: ModelService,
+        componentModel: ComponentModelService
     }
 };

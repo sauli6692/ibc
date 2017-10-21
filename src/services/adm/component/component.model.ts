@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
 import { BaseModel } from '../../../core/domain/models/BaseModel';
 import { IAssociation } from '../../../core/domain/models/IAssociation';
 import { logger } from '../../../core/utils/logger';
+import { ComponentModel } from '../componentModel/componentModel.model';
 
 export class Component extends BaseModel {
 	protected define() {
@@ -31,14 +32,12 @@ export class Component extends BaseModel {
 		return {
 			manyToMany: [{
 				model: 'Model',
-				as: 'Models',
-                through: 'ADM_COMPONENT_MODEL',
-                foreignKey: 'componentId'
-			}, {
-                model: 'Role',
-                as: 'Roles',
-                through: 'ADM_ROLE_COMPONENT',
-                foreignKey: 'componentId'
+				as: 'models',
+                through: 'ComponentModel'
+			// }, {
+            //     model: 'Role',
+            //     as: 'Roles',
+            //     through: 'ADM_ROLE_COMPONENT'
             }]
 		};
 	}

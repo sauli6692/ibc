@@ -46,7 +46,7 @@ CREATE TABLE ADM_ROLE_COMPONENT(
 CREATE TABLE ADM_COMPONENT_MODEL(
     component_id INT NOT NULL,
     model_id INT NOT NULL,
-    privilege VARCHAR(4) NOT NULL,
+    privileges VARCHAR(4) NOT NULL,
     CONSTRAINT ADM_COMPONENT_MODEL_PK PRIMARY KEY (component_id, model_id)
 );
 

@@ -85,34 +85,36 @@ export abstract class BaseModel {
     }
 
 	private getAssosiationsSetup(): Function {
-        let setupOneToAssociations = (functionName: string, models: any) => {
+        let setupHasAssociations = (functionName: string, models: any) => {
             return (options: IAssociationOption) => {
-                let model = options.model;
-                let isSource = lodash.isNil(options.source) ? false : options.source;
+                let modelName = options.model;
+                let isSource = !lodash.isNil(options.source) && options.source;
+				let model = models[modelName] || modelName;
                 delete options.model;
                 delete options.source;
 
 				if (isSource) {
-					this._model[functionName](models[model], options);
+					this._model[functionName](model, options);
 				} else {
-					this._model.belongsTo(models[model], options);
+					this._model.belongsTo(model, options);
 				}
             };
         };
 
 		return (models: any) => {
 			if (!lodash.isNil(this.associations.oneToOne)) {
-				lodash.forEach(this.associations.oneToOne, setupOneToAssociations('hasOne', models));
+				lodash.forEach(this.associations.oneToOne, setupHasAssociations('hasOne', models));
 			}
 
 			if (!lodash.isNil(this.associations.oneToMany)) {
-				lodash.forEach(this.associations.oneToMany, setupOneToAssociations('hasMany', models));
+				lodash.forEach(this.associations.oneToMany, setupHasAssociations('hasMany', models));
 			}
 
 			if (!lodash.isNil(this.associations.manyToMany)) {
 				lodash.forEach(this.associations.manyToMany, (options: IAssociationOption) => {
 					let model = options.model;
                     delete options.model;
+					options.foreignKey = options.foreignKey || lodash.camelCase(this.name) + 'Id';
 					this._model.belongsToMany(models[model], options);
 				});
 			}

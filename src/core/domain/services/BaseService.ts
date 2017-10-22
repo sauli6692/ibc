@@ -1,14 +1,15 @@
 import { BaseModel } from '../models/BaseModel';
-import { IServiceHooks, IHook } from './IService';
+import { IServiceHooks, IHook, ISchema } from './IService';
 import * as lodash from 'lodash';
 
 export abstract class BaseService {
+	private _app: any;
 	private _component: string;
 	private _route: string;
 	private _servicePath: any;
 	private _hooks: IServiceHooks;
 	private _filters: Function;
-	private _app: any;
+	private _schemas: { create: ISchema, update: ISchema };
 
 	constructor(component: string, app: any) {
 		this._app = app;
@@ -24,14 +25,14 @@ export abstract class BaseService {
 	}
 
 	get component(): string {
-        return this._component;
-    }
-    get route(): string {
+		return this._component;
+	}
+	get route(): string {
 		return this._route;
 	}
-    get servicePath(): string {
-        return this._servicePath;
-    }
+	get servicePath(): string {
+		return this._servicePath;
+	}
 	get app(): any {
 		return this._app;
 	}
@@ -41,25 +42,32 @@ export abstract class BaseService {
 	get filters(): Function {
 		return this._filters;
 	}
+	get schemas(): { create: ISchema, update: ISchema } {
+		return this._schemas;
+	}
 
 	set route(route: string) {
-        this._route = route;
-    }
+		this._route = route;
+	}
 
 	public createService(): void {
-        this.defineService();
-        const service = this.app.service(this.servicePath);
+		this.defineService();
+		const service = this.app.service(this.servicePath);
 
-        service.hooks(this.hooks);
+		service.hooks(this.hooks);
 
-        if (!lodash.isNil(service.filter) && !lodash.isNil(this.filters)) {
-            service.filter(this.filters);
-        }
-    }
+		if (!lodash.isNil(service.filter) && !lodash.isNil(this.filters)) {
+			service.filter(this.filters);
+		}
+	}
 
-    protected abstract defineService(): void;
+	protected abstract defineService(): void;
 
 	protected abstract define(): { route: string };
+
+	protected abstract defineCreateSchema(): ISchema;
+
+	protected abstract defineUpdateSchema(): ISchema;
 
 	protected defineHooks(): IServiceHooks {
 		let hook: IHook = {

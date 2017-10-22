@@ -23,3 +23,17 @@ export interface IHook {
     patch: Array<any>;
     remove: Array<any>;
 }
+
+export interface ISchema {
+    id?: string;
+    title?: string;
+    description?: string;
+    type?: string; // 'object', 'array'
+    constant?: string;
+    contains?: any; // for type 'array'
+    items?: Array<any>; // for type 'array'
+    additionalItems?: any; // for type 'array'
+    uniqueItems?: boolean; // for type 'array'
+    properties?: any; // for type 'object'
+    additionalProperties?: any; // for type 'object'
+}

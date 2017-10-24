@@ -1,4 +1,4 @@
-import { BaseSequelizeService } from '../../../core/domain/services/BaseSequelizeService';
+import { BaseSequelizeService, ISchema } from '../../../core/domain/services';
 import { Harvest } from './harvest.model';
 
 export class HarvestService extends BaseSequelizeService {
@@ -7,5 +7,13 @@ export class HarvestService extends BaseSequelizeService {
             route: 'harvests',
             model: Harvest
         };
+    }
+
+    protected defineCreateSchema(): ISchema {
+        return {};
+    }
+
+    protected defineUpdateSchema(): ISchema {
+        return {};
     }
 }

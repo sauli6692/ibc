@@ -1,5 +1,6 @@
 import { BaseModel } from '../models/BaseModel';
 import { IServiceHooks, IHook, ISchema } from './IService';
+import { PredefinedHooks } from './PredefinedHooks';
 import * as lodash from 'lodash';
 
 export abstract class BaseService {
@@ -13,15 +14,17 @@ export abstract class BaseService {
 
 	constructor(component: string, app: any) {
 		this._app = app;
-
 		let { route } = this.define();
-
 
 		this._component = component;
 		this._route = route;
 		this._servicePath = `/${this.component}/${this.route}`;
-		this._hooks = this.defineHooks();
-		this._filters = this.defineFilters();
+        this._schemas = {
+            create: this.defineCreateSchema(),
+            update: this.defineUpdateSchema()
+        };
+		this._hooks = this.getHooks();
+        this._filters = this.defineFilters();
 	}
 
 	get component(): string {
@@ -60,6 +63,13 @@ export abstract class BaseService {
 			service.filter(this.filters);
 		}
 	}
+
+    private getHooks(): IServiceHooks {
+		let predefinedHooks = new PredefinedHooks(this).hooks;
+        let serviceHooks = this.defineHooks();
+
+        return lodash.assign(predefinedHooks, serviceHooks);
+    }
 
 	protected abstract defineService(): void;
 

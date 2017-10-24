@@ -1,9 +1,8 @@
 import * as lodash from 'lodash';
 import * as Errors from 'feathers-errors';
 
-import { BaseCustomService } from '../../../core/domain/services/BaseCustomService';
+import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models/BaseModel';
-import { IService } from '../../../core/domain/services/IService';
 import { ComponentModel } from './componentModel.model';
 import { Component } from '../component/component.model';
 import { hooks } from './componentModel.hooks';
@@ -90,6 +89,14 @@ export class ComponentModelService extends BaseCustomService implements IService
         }
 
         return this.SequelizeModel.destroy({ where });
+    }
+
+    protected defineCreateSchema(): ISchema {
+        return {};
+    }
+
+    protected defineUpdateSchema(): ISchema {
+        return {};
     }
 
     protected defineHooks() {

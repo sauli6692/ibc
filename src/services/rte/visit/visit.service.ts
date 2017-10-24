@@ -1,4 +1,4 @@
-import { BaseSequelizeService } from '../../../core/domain/services/BaseSequelizeService';
+import { BaseSequelizeService, ISchema } from '../../../core/domain/services';
 import { Visit } from './visit.model';
 
 export class VisitService extends BaseSequelizeService {
@@ -7,5 +7,13 @@ export class VisitService extends BaseSequelizeService {
             route: 'visits',
             model: Visit
         };
+    }
+
+    protected defineCreateSchema(): ISchema {
+        return {};
+    }
+
+    protected defineUpdateSchema(): ISchema {
+        return {};
     }
 }

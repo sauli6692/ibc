@@ -92,11 +92,15 @@ export class ComponentModelService extends BaseCustomService implements IService
     }
 
     protected defineCreateSchema(): ISchema {
-        return {};
+        return {
+            type: 'object'
+        };
     }
 
     protected defineUpdateSchema(): ISchema {
-        return {};
+        return {
+            type: 'object'
+        };
     }
 
     protected defineHooks() {

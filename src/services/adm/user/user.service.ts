@@ -20,10 +20,14 @@ export class UserService extends BaseSequelizeService {
     }
 
     protected defineCreateSchema(): ISchema {
-        return {};
+        return {
+            type: 'object'
+        };
     }
 
     protected defineUpdateSchema(): ISchema {
-        return {};
+        return {
+            type: 'object'
+        };
     }
 }

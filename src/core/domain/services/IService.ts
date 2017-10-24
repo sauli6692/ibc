@@ -28,7 +28,7 @@ export interface ISchema {
     id?: string;
     title?: string;
     description?: string;
-    type?: string; // 'object', 'array'
+    type: string; // 'object', 'array'
     constant?: string;
     contains?: any; // for type 'array'
     items?: Array<any>; // for type 'array'
@@ -36,4 +36,5 @@ export interface ISchema {
     uniqueItems?: boolean; // for type 'array'
     properties?: any; // for type 'object'
     additionalProperties?: any; // for type 'object'
+    required?: Array<string>;
 }

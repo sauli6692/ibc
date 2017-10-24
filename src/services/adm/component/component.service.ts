@@ -10,10 +10,36 @@ export class ComponentService extends BaseSequelizeService {
     }
 
     protected defineCreateSchema(): ISchema {
-        return {};
+        return {
+            type: 'object',
+            properties: {
+                name: {
+                    type: 'string',
+                    maxLenght: 25
+                },
+                description: {
+                    type: 'string',
+                    maxLenght: 255
+                }
+            },
+            additionalProperties: false,
+            required: ['name']
+        };
     }
 
     protected defineUpdateSchema(): ISchema {
-        return {};
+        return {
+            type: 'object',
+            properties: {
+                name: {
+                    type: 'string',
+                    maxLenght: 25
+                },
+                description: {
+                    type: 'string',
+                    maxLenght: 255
+                }
+            }
+        };
     }
 }

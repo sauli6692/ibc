@@ -1,4 +1,4 @@
-// A hook that logs service method before, after and error
+import * as lodash from 'lodash';
 import { logger } from '../core/utils/logger';
 
 export const loggerHook = (hook: any) => {
@@ -13,6 +13,8 @@ export const loggerHook = (hook: any) => {
     logger.debug('hook.params', hook.params);
 
     if (hook.error) {
-        logger.error(hook.error);
+        let error = lodash.cloneDeep(hook.error);
+        delete error.hook;
+        logger.error(error);
     }
 };

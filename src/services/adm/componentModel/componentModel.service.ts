@@ -2,19 +2,19 @@ import * as lodash from 'lodash';
 import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
-import { BaseModel } from '../../../core/domain/models/BaseModel';
+import { BaseModel } from '../../../core/domain/models';
 import { ComponentModel } from './componentModel.model';
-import { Component } from '../component/component.model';
-import { hooks } from './componentModel.hooks';
 
+// TODO Refactor to remove this.model and this.SequelizeModel
 export class ComponentModelService extends BaseCustomService implements IService {
-    private model: BaseModel;
+    private SequelizeComponent: any;
     private SequelizeModel: any;
 
     constructor(component: string, app: any) {
         super(component, app);
-        this.model = new ComponentModel(this.component, this.app);
-        this.SequelizeModel = this.model.getSequelizeModel();
+        let model = new ComponentModel(this.component, this.app);
+        this.SequelizeModel = model.getSequelizeModel();
+        this.SequelizeComponent = this.app.getModel('Component');
     }
 
     protected define() {
@@ -24,7 +24,7 @@ export class ComponentModelService extends BaseCustomService implements IService
     }
 
     public find(params: any): Promise<any> {
-        return this.app.getModel('Component').findAll({
+        return this.SequelizeComponent.findAll({
             where: { id: params.componentId },
             include: [{
                 model: this.app.getModel('Model'),
@@ -36,14 +36,14 @@ export class ComponentModelService extends BaseCustomService implements IService
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
-                throw new Errors.NotFound('Component does not exist');
+                throw new Errors.NotFound('Component not found.');
             }
             return results[0].models;
         });
     }
 
     public get(id: number, params: any): Promise<any> {
-        return this.app.getModel('Component').findAll({
+        return this.SequelizeComponent.findAll({
             where: { id: params.componentId },
             include: [{
                 model: this.app.getModel('Model'),
@@ -56,7 +56,7 @@ export class ComponentModelService extends BaseCustomService implements IService
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
-                throw new Errors.NotFound('Component does not exist');
+                throw new Errors.NotFound('Component not found.');
             }
             return results[0].models[0];
         });
@@ -101,9 +101,5 @@ export class ComponentModelService extends BaseCustomService implements IService
         return {
             type: 'object'
         };
-    }
-
-    protected defineHooks() {
-        return hooks;
     }
 }

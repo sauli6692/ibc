@@ -123,8 +123,8 @@ CREATE TABLE PMM_PERSON(
 	civil_status INT,
 	last_visit DATE,
 	invited_by_id INT,
-	direction1 VARCHAR(150),
-	direction2 VARCHAR(150),
+	direction_main VARCHAR(150),
+	direction_extra VARCHAR(150),
 	CONSTRAINT PMM_PERSON_PK PRIMARY KEY (id)
 );
 

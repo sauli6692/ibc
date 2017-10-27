@@ -43,6 +43,11 @@ export class Route extends BaseModel {
                 as: 'collaborators',
                 foreignKey: 'routeId',
                 source: true
+            }, {
+                model: 'Harvest',
+                as: 'harvests',
+                foreignKey: 'routeId',
+                source: true
             }]
         };
     }

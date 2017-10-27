@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
-import { BaseModel } from '../../../core/domain/models/BaseModel';
-import { IAssociation } from '../../../core/domain/models/IAssociation';
+import { BaseModel, IAssociation } from '../../../core/domain/models/';
 import { logger } from '../../../core/utils/logger';
 
 export class Harvest extends BaseModel {
@@ -28,4 +27,14 @@ export class Harvest extends BaseModel {
             }
         };
     }
+
+    protected setAssociations(): IAssociation {
+		return {
+			oneToMany: [{
+				model: 'Route',
+				as: 'route',
+				foreignKey: 'routeId'
+			}]
+		};
+	}
 }

@@ -3,6 +3,7 @@ import { LessonService } from './lesson/lesson.service';
 import { CivilStatusService } from './civilStatus/civilStatus.service';
 import { DiscipleshipService } from './discipleship/discipleship.service';
 import { IntegrationLevelService } from './integrationLevel/integrationLevel.service';
+import { PersonService } from './person/person.service';
 import { PersonDiscipleshipService } from './personDiscipleship/personDiscipleship.service';
 
 export const pmm = {
@@ -13,6 +14,7 @@ export const pmm = {
         civilStatus: CivilStatusService,
         discipleship: DiscipleshipService,
         integrationLevels : IntegrationLevelService,
-        personDiscipleships : PersonDiscipleshipService
+        person : PersonService,
+        personDiscipleship : PersonDiscipleshipService
     }
 };

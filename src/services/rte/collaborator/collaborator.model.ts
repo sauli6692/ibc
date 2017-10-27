@@ -1,22 +1,32 @@
 const Sequelize = require('sequelize');
-import { BaseModel } from '../../../core/domain/models/BaseModel';
+import { BaseModel, IAssociation } from '../../../core/domain/models/';
 
 export class Collaborator extends BaseModel {
 	protected define() {
 		return {
 			name: 'Collaborator',
 			fields: {
-                member_id: {
-                    type: Sequelize.INTEGER,
-										primaryKey: true
-									},
-								route_id: {
-										type: Sequelize.INTEGER
-									},
-								ministry_id: {
-										type: Sequelize.INTEGER
-									}
-						}
+				memberId: {
+					type: Sequelize.INTEGER,
+					primaryKey: true
+				},
+				routeId: {
+					type: Sequelize.INTEGER
+				},
+				ministryId: {
+					type: Sequelize.INTEGER
+				}
+			}
+		};
+	}
+
+	protected setAssociations(): IAssociation {
+		return {
+			oneToMany: [{
+				model: 'Route',
+				as: 'route',
+				foreignKey: 'routeId'
+			}]
 		};
 	}
 }

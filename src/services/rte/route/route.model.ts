@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
-import { BaseModel } from '../../../core/domain/models/BaseModel';
-import { IAssociation } from '../../../core/domain/models/IAssociation';
+import { BaseModel, IAssociation } from '../../../core/domain/models';
 import { logger } from '../../../core/utils/logger';
 
 export class Route extends BaseModel {
@@ -17,11 +16,11 @@ export class Route extends BaseModel {
                     type: Sequelize.STRING(150),
                     allowNull: false
                 },
-                direction1: {
+                directionMain: {
                     type: Sequelize.STRING(150),
                     allowNull: false
                 },
-                direction2: {
+                directionExtra: {
                     type: Sequelize.STRING(150),
                     allowNull: true
                 },
@@ -34,6 +33,17 @@ export class Route extends BaseModel {
                     allowNull: false
                 }
             }
+        };
+    }
+
+    protected setAssociations(): IAssociation {
+        return {
+            oneToMany: [{
+                model: 'Collaborator',
+                as: 'collaborators',
+                foreignKey: 'routeId',
+                source: true
+            }]
         };
     }
 }

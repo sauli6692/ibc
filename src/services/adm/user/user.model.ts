@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-import { BaseModel } from '../../../core/domain/models/BaseModel';
+import { BaseModel, IAssociation } from '../../../core/domain/models';
 
 export class User extends BaseModel {
 	protected define() {
@@ -23,8 +23,21 @@ export class User extends BaseModel {
                 salt: {
                     type: Sequelize.STRING(64),
 					allowNull: false
+                },
+                memberId: {
+                    type: Sequelize.INTEGER,
+                    allowNull: true
                 }
 			}
+		};
+	}
+
+    protected setAssociations(): IAssociation {
+		return {
+			oneToOne: [{
+				model: 'Member',
+				as: 'owner'
+			}]
 		};
 	}
 }

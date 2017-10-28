@@ -26,8 +26,7 @@ export class Discipleship extends BaseModel {
 			oneToMany: [{
                 model: 'Lesson',
 				as: 'lessons',
-                source: true,
-                foreignKey: 'discipleshipId'
+                source: true
 			}]
 		};
 	}

@@ -27,10 +27,6 @@ export class Route extends BaseModel {
                 zoneMap: {
                     type: Sequelize.BLOB,
                     allowNull: true
-                },
-                leaderId: {
-                    type: Sequelize.STRING(150),
-                    allowNull: false
                 }
             }
         };

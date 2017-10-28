@@ -94,8 +94,10 @@ export abstract class BaseModel {
                 delete options.source;
 
 				if (isSource) {
+                    options.foreignKey = options.foreignKey || lodash.camelCase(this.name) + 'Id';
 					this._model[functionName](model, options);
 				} else {
+                    options.foreignKey = options.foreignKey || lodash.camelCase(modelName) + 'Id';
 					this._model.belongsTo(model, options);
 				}
             };

@@ -27,8 +27,7 @@ export class MinistryObjective extends BaseModel {
         return {
 			oneToMany: [{
 				model: 'Ministry',
-				as: 'ministry',
-				foreignKey: 'ministryId'
+				as: 'ministry'
 			}]
 		};
     }

@@ -11,10 +11,16 @@ export class Collaborator extends BaseModel {
 					primaryKey: true
 				},
 				routeId: {
-					type: Sequelize.INTEGER
+					type: Sequelize.INTEGER,
+                    allowNull: false
 				},
 				ministryId: {
 					type: Sequelize.INTEGER
+				},
+				routeLeader: {
+					type: Sequelize.BOOLEAN,
+                    allowNull: false,
+					defaultValue: 0
 				}
 			}
 		};
@@ -22,10 +28,16 @@ export class Collaborator extends BaseModel {
 
 	protected setAssociations(): IAssociation {
 		return {
+            oneToOne: [{
+                model: 'Member',
+                as: 'memberInformation'
+            }, {
+				model: 'Ministry',
+				as: 'ministry'
+			}],
 			oneToMany: [{
 				model: 'Route',
-				as: 'route',
-				foreignKey: 'routeId'
+				as: 'route'
 			}]
 		};
 	}

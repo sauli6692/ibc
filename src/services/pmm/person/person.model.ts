@@ -58,6 +58,15 @@ export class Person extends BaseModel {
 
     protected setAssociations(): IAssociation {
         return {
+            oneToOne: [{
+                model: 'Member',
+                as: 'member',
+                source: true
+            }, {
+                model: 'Harvest',
+                as: 'harvest',
+                source: true
+            }],
             oneToMany: [{
                 model: 'Person',
                 as: 'inviter',

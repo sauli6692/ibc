@@ -30,10 +30,13 @@ export class Harvest extends BaseModel {
 
     protected setAssociations(): IAssociation {
 		return {
+            oneToOne: [{
+                model: 'Person',
+                as: 'personInformation'
+            }],
 			oneToMany: [{
 				model: 'Route',
-				as: 'route',
-				foreignKey: 'routeId'
+				as: 'route'
 			}]
 		};
 	}

@@ -25,10 +25,14 @@ export class Ministry extends BaseModel {
 
     protected setAssociations(): IAssociation {
         return {
+            oneToOne: [{
+                model: 'Collaborator',
+                as: 'representative',
+                source: true
+            }],
 			oneToMany: [{
 				model: 'MinistryObjective',
 				as: 'objectives',
-				foreignKey: 'ministryId',
                 source: true
 			}]
 		};

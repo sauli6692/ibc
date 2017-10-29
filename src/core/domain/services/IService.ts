@@ -9,19 +9,19 @@ export interface IService {
 }
 
 export interface IServiceHooks {
-	before: IHook;
-	after: IHook;
-	error: IHook;
+	before?: IHook;
+	after?: IHook;
+	error?: IHook;
 }
 
 export interface IHook {
-    all: Array<any>;
-    find: Array<any>;
-    get: Array<any>;
-    create: Array<any>;
-    update: Array<any>;
-    patch: Array<any>;
-    remove: Array<any>;
+    all?: Array<any>;
+    find?: Array<any>;
+    get?: Array<any>;
+    create?: Array<any>;
+    update?: Array<any>;
+    patch?: Array<any>;
+    remove?: Array<any>;
 }
 
 export interface ISchema {

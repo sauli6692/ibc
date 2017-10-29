@@ -70,7 +70,10 @@ export abstract class BaseService {
 
 		lodash.forOwn(predefinedHooks, (hook, type) => {
 			lodash.forOwn(hook, (value, key) => {
-				hook[key] = lodash.concat(value, serviceHooks[type][key]);
+                if (lodash.isNil(serviceHooks[type])) {
+                    serviceHooks[type] = {};
+                }
+				hook[key] = lodash.concat(value, serviceHooks[type][key] || []);
 			});
 		});
 

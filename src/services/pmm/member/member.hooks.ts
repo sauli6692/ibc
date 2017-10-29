@@ -1,20 +1,6 @@
 import * as lodash from 'lodash';
 
-import { IServiceHooks, IHook } from '../../../core/domain/services';
-
-let hook: IHook = {
-	all: [],
-	find: [],
-	get: [],
-	create: [],
-	update: [],
-	patch: [],
-	remove: []
-};
-
-let before = lodash.cloneDeep(hook);
-let after = lodash.cloneDeep(hook);
-let error = lodash.cloneDeep(hook);
+import { IServiceHooks } from '../../../core/domain/services';
 
 let includePersonInformation = (hook: any) => {
     hook.params.sequelize = {
@@ -28,11 +14,9 @@ let includePersonInformation = (hook: any) => {
     };
 };
 
-before.find.push(includePersonInformation);
-before.get.push(includePersonInformation);
-
 export const hooks: IServiceHooks = {
-	before,
-	after,
-	error
+	before: {
+        find: [includePersonInformation],
+        get: [includePersonInformation]
+    }
 };

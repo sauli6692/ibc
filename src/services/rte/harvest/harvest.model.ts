@@ -32,7 +32,7 @@ export class Harvest extends BaseModel {
 		return {
             oneToOne: [{
                 model: 'Person',
-                as: 'personInformation'
+                as: 'information'
             }],
 			oneToMany: [{
 				model: 'Route',

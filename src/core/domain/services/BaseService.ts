@@ -68,7 +68,13 @@ export abstract class BaseService {
 		let predefinedHooks = new PredefinedHooks(this).hooks;
         let serviceHooks = this.defineHooks();
 
-        return lodash.assign(serviceHooks, predefinedHooks);
+		lodash.forOwn(predefinedHooks, (hook, type) => {
+			lodash.forOwn(hook, (value, key) => {
+				hook[key] = lodash.concat(value, serviceHooks[type][key]);
+			});
+		});
+
+        return predefinedHooks;
     }
 
 	protected abstract defineService(): void;

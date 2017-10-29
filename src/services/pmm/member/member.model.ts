@@ -18,7 +18,7 @@ export class Member extends BaseModel {
 		return {
 			oneToOne: [{
 				model: 'Person',
-				as: 'personInformation',
+				as: 'information',
 				foreignKey: 'personId'
 			}, {
 				model: 'User',

@@ -4,22 +4,18 @@ const Sequelize = require('sequelize');
 import { BaseModel, IAssociation } from '../../../core/domain/models';
 import { logger } from '../../../core/utils/logger';
 
-export class ComponentModel extends BaseModel {
+export class RoleComponent extends BaseModel {
 	protected define() {
 		return {
-			name: 'ComponentModel',
+			name: 'RoleComponent',
 			fields: {
-				componentId: {
+				roleId: {
 					type: Sequelize.INTEGER,
 					primaryKey: true
 				},
-				modelId: {
+				componentId: {
                     type: Sequelize.INTEGER,
 					primaryKey: true
-				},
-				privileges: {
-					type: Sequelize.STRING(4),
-					allowNull: false
 				}
 			}
 		};

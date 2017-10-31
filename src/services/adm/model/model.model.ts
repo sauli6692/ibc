@@ -25,10 +25,6 @@ export class Model extends BaseModel {
 				model: 'Component',
 				as: 'components',
                 through: 'ComponentModel'
-			// }, {
-            //     model: 'Role',
-            //     as: 'Roles',
-            //     through: 'ADM_ROLE_COMPONENT'
             }]
 		};
 	}

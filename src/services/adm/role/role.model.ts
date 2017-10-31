@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-import { BaseModel } from '../../../core/domain/models/BaseModel';
+import { BaseModel, IAssociation } from '../../../core/domain/models/';
 
 export class Role extends BaseModel {
 	protected define() {
@@ -20,6 +20,16 @@ export class Role extends BaseModel {
 					allowNull: true
 				}
 			}
+		};
+	}
+
+    protected setAssociations(): IAssociation {
+		return {
+			manyToMany: [{
+                model: 'Component',
+                as: 'components',
+                through: 'RoleComponent'
+            }]
 		};
 	}
 }

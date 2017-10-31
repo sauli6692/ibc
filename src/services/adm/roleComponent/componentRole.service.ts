@@ -3,24 +3,24 @@ import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
-import { ComponentModel } from './componentModel.model';
+import { RoleComponent } from './roleComponent.model';
 
-export class ComponentModelService extends BaseCustomService implements IService {
-    private ComponentModel: any;
+export class ComponentRoleService extends BaseCustomService implements IService {
+    private RoleComponent: any;
     private Component: any;
-    private Model: any;
+    private Role: any;
 
     constructor(component: string, app: any) {
         super(component, app);
-        let model = new ComponentModel(this.component, this.app);
-        this.ComponentModel = model.getSequelizeModel();
+        let model = new RoleComponent(this.component, this.app);
+        this.RoleComponent = model.getSequelizeModel();
         this.Component = this.app.getModel('Component');
-        this.Model = this.app.getModel('Model');
+        this.Role = this.app.getModel('Role');
     }
 
     protected define() {
         return {
-            route: 'components/:componentId/models'
+            route: 'components/:componentId/roles'
         };
     }
 
@@ -28,18 +28,14 @@ export class ComponentModelService extends BaseCustomService implements IService
         return this.Component.findAll({
             where: { id: params.componentId },
             include: [{
-                model: this.Model,
-                as: 'models',
-                through: {
-                    as: 'privileges',
-                    attributes: ['privileges']
-                }
+                model: this.Role,
+                as: 'roles'
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Component not found.');
             }
-            return results[0].models;
+            return results[0].roles;
         });
     }
 
@@ -47,37 +43,22 @@ export class ComponentModelService extends BaseCustomService implements IService
         return this.Component.findAll({
             where: { id: params.componentId },
             include: [{
-                model: this.Model,
-                as: 'models',
-                through: {
-                    as: 'privileges',
-                    attributes: ['privileges']
-                },
+                model: this.Role,
+                as: 'roles',
                 where: { id }
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Component not found.');
             }
-            return results[0].models[0];
+            return results[0].roles[0];
         });
     }
 
     public create(data: any, params: any): Promise<any> {
         data.componentId = lodash.parseInt(params.componentId);
 
-        return this.ComponentModel.build(data).save();
-    }
-
-    public patch(id: number, data: any, params: any): Promise<any> {
-        let where = {
-            componentId: params.componentId,
-            modelId: id
-        };
-
-        return this.ComponentModel.update({
-            privileges: data.privileges
-        }, { where });
+        return this.RoleComponent.build(data).save();
     }
 
     public remove(id: number, params: any): Promise<any> {
@@ -86,10 +67,10 @@ export class ComponentModelService extends BaseCustomService implements IService
         };
 
         if (!lodash.isNil(id)) {
-            where.modelId = id;
+            where.roleId = id;
         }
 
-        return this.ComponentModel.destroy({ where });
+        return this.RoleComponent.destroy({ where });
     }
 
     protected defineCreateSchema(): ISchema {

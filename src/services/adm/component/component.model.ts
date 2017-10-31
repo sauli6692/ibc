@@ -34,10 +34,10 @@ export class Component extends BaseModel {
 				model: 'Model',
 				as: 'models',
                 through: 'ComponentModel'
-			// }, {
-            //     model: 'Role',
-            //     as: 'Roles',
-            //     through: 'ADM_ROLE_COMPONENT'
+			}, {
+                model: 'Role',
+                as: 'roles',
+                through: 'RoleComponent'
             }]
 		};
 	}

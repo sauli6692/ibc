@@ -29,6 +29,10 @@ export class Role extends BaseModel {
                 model: 'Component',
                 as: 'components',
                 through: 'RoleComponent'
+            }, {
+                model: 'User',
+                as: 'users',
+                through: 'UserRole'
             }]
 		};
 	}

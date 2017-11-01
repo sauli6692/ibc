@@ -16,9 +16,6 @@ const hooks = require('feathers-hooks');
 const rest = require('feathers-rest');
 const socketio = require('feathers-socketio');
 
-const handler = require('feathers-errors/handler');
-const notFound = require('feathers-errors/not-found');
-
 const app = feathers();
 
 // Load app configuration
@@ -40,11 +37,7 @@ app.configure(socketio());
 
 // Other Configurations
 lodash.forEach(configurations, configuration => app.configure(configuration));
-
-// Configure a middleware for 404s and the error handler
-app.use(middleware);
-app.use(notFound());
-app.use(handler());
+app.configure(middleware);
 
 app.hooks(appHooks);
 

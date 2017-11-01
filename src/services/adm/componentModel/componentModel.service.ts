@@ -57,7 +57,7 @@ export class ComponentModelService extends BaseCustomService implements IService
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
-                throw new Errors.NotFound('Component not found.');
+                throw new Errors.NotFound('Not found.');
             }
             return results[0].models[0];
         });

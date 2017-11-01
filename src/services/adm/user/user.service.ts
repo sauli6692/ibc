@@ -11,9 +11,9 @@ export class UserService extends BaseSequelizeService {
         };
     }
 
-    protected defineHooks() {
-        return hooks;
-    }
+    // protected defineHooks() {
+    //     return hooks;
+    // }
 
     protected defineFilters() {
         return filters;

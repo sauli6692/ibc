@@ -1,17 +1,17 @@
 const Sequelize = require('sequelize');
 import { BaseModel, IAssociation } from '../../../core/domain/models';
 
-export class RoleComponent extends BaseModel {
+export class UserRole extends BaseModel {
 	protected define() {
 		return {
-			name: 'RoleComponent',
+			name: 'UserRole',
 			fields: {
-				roleId: {
-					type: Sequelize.INTEGER,
+                userId: {
+                    type: Sequelize.INTEGER,
 					primaryKey: true
 				},
-				componentId: {
-                    type: Sequelize.INTEGER,
+                roleId: {
+					type: Sequelize.INTEGER,
 					primaryKey: true
 				}
 			}

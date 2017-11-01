@@ -3,45 +3,45 @@ import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
-import { RoleComponent } from './roleComponent.model';
+import { UserRole } from './userRole.model';
 
-export class ComponentRoleService extends BaseCustomService implements IService {
-    private RoleComponent: any;
-    private Component: any;
+export class UserRoleService extends BaseCustomService implements IService {
+    private UserRole: any;
+    private User: any;
     private Role: any;
 
     constructor(component: string, app: any) {
         super(component, app);
-        let model = new RoleComponent(this.component, this.app);
-        this.RoleComponent = model.getSequelizeModel();
-        this.Component = this.app.getModel('Component');
+        let model = new UserRole(this.component, this.app);
+        this.UserRole = model.getSequelizeModel();
+        this.User = this.app.getModel('User');
         this.Role = this.app.getModel('Role');
     }
 
     protected define() {
         return {
-            route: 'components/:componentId/roles'
+            route: 'users/:userId/roles'
         };
     }
 
     public find(params: any): Promise<any> {
-        return this.Component.findAll({
-            where: { id: params.componentId },
+        return this.User.findAll({
+            where: { id: params.userId },
             include: [{
                 model: this.Role,
                 as: 'roles'
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
-                throw new Errors.NotFound('Component not found.');
+                throw new Errors.NotFound('User not found.');
             }
             return results[0].roles;
         });
     }
 
     public get(id: number, params: any): Promise<any> {
-        return this.Component.findAll({
-            where: { id: params.componentId },
+        return this.User.findAll({
+            where: { id: params.userId },
             include: [{
                 model: this.Role,
                 as: 'roles',
@@ -49,28 +49,28 @@ export class ComponentRoleService extends BaseCustomService implements IService 
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
-                throw new Errors.NotFound('Not found.');
+                throw new Errors.NotFound('Not foud.');
             }
             return results[0].roles[0];
         });
     }
 
     public create(data: any, params: any): Promise<any> {
-        data.componentId = lodash.parseInt(params.componentId);
+        data.userId = lodash.parseInt(params.userId);
 
-        return this.RoleComponent.build(data).save();
+        return this.UserRole.build(data).save();
     }
 
     public remove(id: number, params: any): Promise<any> {
         let where: any = {
-            componentId: params.componentId
+            userId: params.userId
         };
 
         if (!lodash.isNil(id)) {
-            where.roleId = id;
+            where.componentId = id;
         }
 
-        return this.RoleComponent.destroy({ where });
+        return this.UserRole.destroy({ where });
     }
 
     protected defineCreateSchema(): ISchema {

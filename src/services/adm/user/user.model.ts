@@ -26,7 +26,8 @@ export class User extends BaseModel {
                 },
                 memberId: {
                     type: Sequelize.INTEGER,
-                    allowNull: true
+                    allowNull: false,
+                    unique: true
                 }
 			}
 		};
@@ -37,7 +38,12 @@ export class User extends BaseModel {
 			oneToOne: [{
 				model: 'Member',
 				as: 'owner'
-			}]
+			}],
+            manyToMany: [{
+                model: 'Role',
+                as: 'roles',
+                through: 'UserRole'
+            }]
 		};
 	}
 }

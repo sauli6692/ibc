@@ -34,7 +34,13 @@ export class Ministry extends BaseModel {
 				model: 'MinistryObjective',
 				as: 'objectives',
                 source: true
-			}]
+			}],
+            manyToMany: [{
+                model: 'Member',
+                as: 'leaders',
+                through: 'MinistryLeader',
+                foreignKey: 'ministryId'
+            }]
 		};
     }
 }

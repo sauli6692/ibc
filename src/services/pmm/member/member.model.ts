@@ -28,6 +28,12 @@ export class Member extends BaseModel {
                 model: 'Collaborator',
                 as: 'collaborator',
                 source: true
+            }],
+            manyToMany: [{
+                model: 'Ministry',
+                as: 'ministries',
+                through: 'MinistryLeader',
+                foreignKey: 'leaderId'
             }]
 		};
 	}

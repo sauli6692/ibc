@@ -14,6 +14,9 @@ export class ComponentModelService extends BaseCustomService implements IService
         super(component, app);
         let model = new ComponentModel(this.component, this.app);
         this.ComponentModel = model.getSequelizeModel();
+    }
+
+    public afterInit(): void {
         this.Component = this.app.getModel('Component');
         this.Model = this.app.getModel('Model');
     }

@@ -13,6 +13,9 @@ export class FamilyService extends BaseCustomService implements IService {
         super(component, app);
         let model = new Family(this.component, this.app);
         this.Family = model.getSequelizeModel();
+    }
+
+    public afterInit(): void {
         this.Person = this.app.getModel('Person');
     }
 

@@ -14,6 +14,9 @@ export class UserRoleService extends BaseCustomService implements IService {
         super(component, app);
         let model = new UserRole(this.component, this.app);
         this.UserRole = model.getSequelizeModel();
+    }
+
+    public afterInit(): void {
         this.User = this.app.getModel('User');
         this.Role = this.app.getModel('Role');
     }

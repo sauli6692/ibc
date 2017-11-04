@@ -14,6 +14,9 @@ export class RoleComponentService extends BaseCustomService implements IService 
         super(component, app);
         let model = new RoleComponent(this.component, this.app);
         this.RoleComponent = model.getSequelizeModel();
+    }
+
+    public afterInit(): void {
         this.Role = this.app.getModel('Role');
         this.Component = this.app.getModel('Component');
     }

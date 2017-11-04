@@ -15,6 +15,9 @@ export class MinistryMemberService extends BaseCustomService implements IService
         super(component, app);
         let model = new MinistryMember(this.component, this.app);
         this.MinistryMember = model.getSequelizeModel();
+    }
+
+    public afterInit(): void {
         this.Ministry = this.app.getModel('Ministry');
         this.Member = this.app.getModel('Member');
         this.Person = this.app.getModel('Person');

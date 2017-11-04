@@ -34,6 +34,11 @@ export class Member extends BaseModel {
                 as: 'ministries',
                 through: 'MinistryLeader',
                 foreignKey: 'leaderId'
+            }, {
+                model: 'Ministry',
+                as: 'memberMinistries',
+                through: 'MinistryMember',
+                foreignKey: 'memberId'
             }]
 		};
 	}

@@ -2,6 +2,8 @@ import { MinistryService } from './ministry/ministry.service';
 import { MinistryObjectiveService } from './ministryObjective/ministryObjective.service';
 import { MinistryLeaderService } from './ministryLeader/ministryLeader.service';
 import { LeaderMinistryService } from './ministryLeader/leaderMinistry.service';
+import { MinistryMemberService } from './ministryMember/ministryMember.service';
+import { MemberMinistryService } from './ministryMember/memberMinistry.service';
 
 export const min = {
     name: 'min',
@@ -9,6 +11,8 @@ export const min = {
         ministry: MinistryService,
         ministryObjective: MinistryObjectiveService,
         ministryLeader: MinistryLeaderService,
-        leaderMinistry: LeaderMinistryService
+        leaderMinistry: LeaderMinistryService,
+        ministryMember: MinistryMemberService,
+        memberMinistry: MemberMinistryService
     }
 };

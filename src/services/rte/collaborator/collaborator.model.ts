@@ -38,7 +38,12 @@ export class Collaborator extends BaseModel {
 			oneToMany: [{
 				model: 'Route',
 				as: 'route'
-			}]
+			}],
+            manyToMany: [{
+                model: 'Harvest',
+                as: 'visits',
+                through: 'Visit'
+            }]
 		};
 	}
 }

@@ -64,6 +64,8 @@ export abstract class BaseService {
 		}
 	}
 
+	public afterInit(): void { }
+
     private getHooks(): IServiceHooks {
 		let predefinedHooks = new PredefinedHooks(this).hooks;
         let serviceHooks = this.defineHooks();

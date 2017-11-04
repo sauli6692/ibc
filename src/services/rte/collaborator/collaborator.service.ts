@@ -5,7 +5,8 @@ export class CollaboratorService extends BaseSequelizeService {
     protected define() {
         return {
             route: 'collaborators',
-            model: Collaborator
+            model: Collaborator,
+            id: 'memberId'
         };
     }
 

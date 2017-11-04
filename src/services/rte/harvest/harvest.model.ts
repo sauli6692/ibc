@@ -37,7 +37,12 @@ export class Harvest extends BaseModel {
 			oneToMany: [{
 				model: 'Route',
 				as: 'route'
-			}]
+			}],
+            manyToMany: [{
+                model: 'Collaborator',
+                as: 'visits',
+                through: 'Visit'
+            }]
 		};
 	}
 }

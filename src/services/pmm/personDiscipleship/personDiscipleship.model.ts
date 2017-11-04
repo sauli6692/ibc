@@ -6,28 +6,28 @@ export class PersonDiscipleship extends BaseModel {
 		return {
 			name: 'PersonDiscipleship',
 			fields: {
-                disciple_id: {
-                    type: Sequelize.INTEGER,
-										primaryKey: true
-									},
-								discipleship_id: {
-										type: Sequelize.INTEGER,
-										primaryKey: true
-									},
-								teacher_id: {
-									type: Sequelize.INTEGER,
-									allowNull: false
-								},
-								last_lesson_id: {
-									type: Sequelize.INTEGER
-								},
-								start_date: {
-									type: Sequelize.DATE
-								},
-								end_date: {
-									type: Sequelize.DATE
-								}
+				discipleId: {
+					type: Sequelize.INTEGER,
+					primaryKey: true
+				},
+				discipleshipId: {
+					type: Sequelize.INTEGER,
+					primaryKey: true
+				},
+				teacherId: {
+					type: Sequelize.INTEGER,
+					allowNull: false
+				},
+				lastLessonId: {
+					type: Sequelize.INTEGER
+				},
+				startDate: {
+					type: Sequelize.DATE
+				},
+				endDate: {
+					type: Sequelize.DATE
 				}
+			}
 		};
 	}
 }

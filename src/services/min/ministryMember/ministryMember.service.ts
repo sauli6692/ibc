@@ -42,7 +42,7 @@ export class MinistryMemberService extends BaseCustomService implements IService
                 throw new Errors.NotFound('Ministry not found.');
             }
 
-            return lodash.map(results[0].members, (leader: any) => leader.information);
+            return lodash.map(results[0].members, (member: any) => member.information);
         });
     }
 

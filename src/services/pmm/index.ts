@@ -6,6 +6,7 @@ import { IntegrationLevelService } from './integrationLevel/integrationLevel.ser
 import { PersonService } from './person/person.service';
 import { PersonDiscipleshipService } from './personDiscipleship/personDiscipleship.service';
 import { MemberService } from './member/member.service';
+import { FamilyService } from './family/family.service';
 
 export const pmm = {
     name: 'pmm',
@@ -17,6 +18,7 @@ export const pmm = {
         integrationLevels: IntegrationLevelService,
         person: PersonService,
         personDiscipleship: PersonDiscipleshipService,
-        member: MemberService
+        member: MemberService,
+        family: FamilyService
     }
 };

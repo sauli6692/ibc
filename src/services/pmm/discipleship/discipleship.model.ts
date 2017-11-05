@@ -12,7 +12,8 @@ export class Discipleship extends BaseModel {
 					primaryKey: true
 				},
                 name: {
-					type: Sequelize.STRING(150)
+					type: Sequelize.STRING(150),
+                    allowNull: false
 				},
 				description: {
 					type: Sequelize.STRING(150),
@@ -27,7 +28,11 @@ export class Discipleship extends BaseModel {
                 model: 'Lesson',
 				as: 'lessons',
                 source: true
-			}]
+			}, {
+                model: 'PersonDiscipleship',
+                as: 'personDiscipleship',
+                source: true
+            }]
 		};
 	}
 }

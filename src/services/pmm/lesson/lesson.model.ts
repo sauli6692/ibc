@@ -29,8 +29,12 @@ export class Lesson extends BaseModel {
 		return {
 			oneToMany: [{
 				model: 'Discipleship',
-				as: 'discipleship',
-				foreignKey: 'discipleshipId'
+				as: 'discipleship'
+			}, {
+				model: 'PersonDiscipleship',
+				as: 'discipleships',
+                source: true,
+				foreignKey: 'lastLessonId'
 			}]
 		};
 	}

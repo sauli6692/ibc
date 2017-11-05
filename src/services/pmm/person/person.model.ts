@@ -76,7 +76,17 @@ export class Person extends BaseModel {
                 as: 'invited',
                 foreignKey: 'invitedById',
                 source: true
-            }],
+            }, {
+                model: 'PersonDiscipleship',
+				as: 'discipleshipsReceived',
+                source: true,
+                foreignKey: 'discipleId'
+			}, {
+                model: 'PersonDiscipleship',
+				as: 'discipleshipsTaught',
+                source: true,
+                foreignKey: 'teacherId'
+			}],
             manyToMany: [{
                 model: 'Person',
                 as: 'relative',

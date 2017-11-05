@@ -7,6 +7,7 @@ import { PersonService } from './person/person.service';
 import { PersonDiscipleshipService } from './personDiscipleship/personDiscipleship.service';
 import { MemberService } from './member/member.service';
 import { FamilyService } from './family/family.service';
+import { FamilyRelationshipService } from './familyRelationship/familyRelationship.service';
 
 export const pmm = {
     name: 'pmm',
@@ -19,6 +20,7 @@ export const pmm = {
         person: PersonService,
         personDiscipleship: PersonDiscipleshipService,
         member: MemberService,
-        family: FamilyService
+        family: FamilyService,
+        familyRelationship: FamilyRelationshipService
     }
 };

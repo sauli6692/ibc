@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-import { BaseModel } from '../../../core/domain/models';
+import { BaseModel, IAssociation } from '../../../core/domain/models';
 
 export class Family extends BaseModel {
 	protected define() {
@@ -21,4 +21,22 @@ export class Family extends BaseModel {
 			}
 		};
 	}
+
+    protected setAssociations() {
+        return {
+            oneToMany: [{
+                model: 'FamilyRelationship',
+                as: 'familyRelationship',
+                foreignKey: 'relationship'
+            }, {
+                model: 'Person',
+                as: 'personFamily',
+                foreignKey: 'personId'
+            }, {
+                model: 'Person',
+                as: 'familyPerson',
+                foreignKey: 'familyId'
+            }]
+        };
+    }
 }

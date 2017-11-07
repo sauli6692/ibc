@@ -8,6 +8,7 @@ import { Family } from './family.model';
 export class FamilyService extends BaseCustomService implements IService {
     private Family: any;
     private Person: any;
+    private FamilyRelationship: any;
 
     constructor(component: string, app: any) {
         super(component, app);
@@ -17,6 +18,7 @@ export class FamilyService extends BaseCustomService implements IService {
 
     public afterInit(): void {
         this.Person = this.app.getModel('Person');
+        this.FamilyRelationship = this.app.getModel('FamilyRelationship');
     }
 
     protected define() {
@@ -26,18 +28,21 @@ export class FamilyService extends BaseCustomService implements IService {
     }
 
     public find(params: any): Promise<any> {
-        return this.Person.findAll({
-            where: { id: params.personId },
+        return this.Family.findAll({
+            where: { personId: params.personId },
             include: [{
                 model: this.Person,
-                as: 'family'
+                as: 'familyPerson'
+            }, {
+                model: this.FamilyRelationship,
+                as: 'familyRelationship'
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Person not found.');
             }
 
-            return results[0].family;
+            return results; // [0].family;
         });
     }
 

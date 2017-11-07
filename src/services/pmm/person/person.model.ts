@@ -87,6 +87,16 @@ export class Person extends BaseModel {
                 source: true,
                 foreignKey: 'teacherId'
 			}, {
+                model: 'Family',
+				as: 'personFamily',
+                source: true,
+                foreignKey: 'personId'
+			}, {
+                model: 'Family',
+				as: 'familyPerson',
+                source: true,
+                foreignKey: 'familyId'
+			}, {
                 model: 'IntegrationLevel',
                 as: 'personIntegrationLevel',
                 foreignKey: 'integrationLevel'

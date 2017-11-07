@@ -6,8 +6,13 @@ let includeJoins = (hook: any) => {
         hook.params.sequelize = {
             include: [{
                 model: hook.app.getModel('IntegrationLevel'),
-                as: 'personIntegrationLevel',
-                attributes: { exclude: ['id'] }
+                as: 'personIntegrationLevel'
+            }, {
+                model: hook.app.getModel('Occupation'),
+                as: 'personOccupation'
+            }, {
+                model: hook.app.getModel('CivilStatus'),
+                as: 'personCivilStatus'
             }],
     		raw: false
         };

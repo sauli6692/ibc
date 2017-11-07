@@ -90,6 +90,14 @@ export class Person extends BaseModel {
                 model: 'IntegrationLevel',
                 as: 'personIntegrationLevel',
                 foreignKey: 'integrationLevel'
+            }, {
+                model: 'Occupation',
+                as: 'personOccupation',
+                foreignKey: 'occupation'
+            }, {
+                model: 'CivilStatus',
+                as: 'personCivilStatus',
+                foreignKey: 'civilStatus'
             }],
             manyToMany: [{
                 model: 'Person',

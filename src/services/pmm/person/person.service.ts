@@ -1,5 +1,6 @@
 import { BaseSequelizeService, ISchema } from '../../../core/domain/services';
 import { Person } from './person.model';
+import { hooks } from './person.hooks';
 
 export class PersonService extends BaseSequelizeService {
     protected define() {
@@ -7,6 +8,10 @@ export class PersonService extends BaseSequelizeService {
             route: 'people',
             model: Person
         };
+    }
+
+    protected defineHooks() {
+        return hooks;
     }
 
     protected defineCreateSchema(): ISchema {

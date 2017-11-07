@@ -86,7 +86,11 @@ export class Person extends BaseModel {
 				as: 'discipleshipsTaught',
                 source: true,
                 foreignKey: 'teacherId'
-			}],
+			}, {
+                model: 'IntegrationLevel',
+                as: 'personIntegrationLevel',
+                foreignKey: 'integrationLevel'
+            }],
             manyToMany: [{
                 model: 'Person',
                 as: 'relative',

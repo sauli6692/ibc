@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-import { BaseModel } from '../../../core/domain/models/BaseModel';
+import { BaseModel, IAssociation } from '../../../core/domain/models';
 
 export class IntegrationLevel extends BaseModel {
 	protected define() {
@@ -9,12 +9,23 @@ export class IntegrationLevel extends BaseModel {
                 id: {
                     type: Sequelize.INTEGER,
                     autoIncrement: true,
-										primaryKey: true
-									},
-								value: {
-										type: Sequelize.STRING(20)
-									}
+					primaryKey: true
+				},
+				value: {
+					type: Sequelize.STRING(20)
 				}
+			}
 		};
 	}
+
+    protected setAssociations(): IAssociation {
+        return {
+            oneToMany: [{
+                model: 'Person',
+                as: 'personIntegrationLevel',
+                source: true,
+                foreignKey: 'integrationLevel'
+            }]
+        };
+    }
 }

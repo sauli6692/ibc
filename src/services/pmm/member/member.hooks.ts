@@ -1,5 +1,3 @@
-import * as lodash from 'lodash';
-
 import { IServiceHooks } from '../../../core/domain/services';
 
 let includePersonInformation = (hook: any) => {

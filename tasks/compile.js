@@ -4,7 +4,7 @@ let ts = require('gulp-typescript');
 let tsProject = ts.createProject('tsconfig.json');
 
 module.exports = (gulp, properties) => {
-    gulp.task('compile', () => {
+    gulp.task('compile', ['tslint:src'], () => {
         let result = gulp.src(properties.src + '/**/*.ts')
             .pipe(tsProject());
 

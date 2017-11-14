@@ -24,7 +24,7 @@
   "scripts": {
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
-    "start": "gulp compile && node index",
+    "start": "gulp run",
     "mocha": "mocha test/ --recursive"
   },
   "dependencies": {
@@ -57,6 +57,7 @@
     "@types/lodash": "~4.14.45",
     "@types/node": "^6.0.85",
     "@types/underscore.string": "~0.0.30",
+    "child_process": "^1.0.2",
     "eslint": "^4.3.0",
     "gulp": "^3.9.1",
     "gulp-tslint": "^8.1.2",

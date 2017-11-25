@@ -3,7 +3,9 @@
   "port": 3030,
   "public": "../public/",
   "buildPath": "dist",
+  "buildPathTest": "dist_test",
   "rootSrc": "src",
+  "testSrc": "test",
   "paginate": {
     "default": 10,
     "max": 50

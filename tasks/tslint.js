@@ -1,20 +1,21 @@
 'use strict';
-let tslint = require('gulp-tslint');
+const tslint = require('gulp-tslint');
+const pump = require('pump');
 
 module.exports = (gulp, properties) => {
-    const lint = source => {
-        return gulp.src(source)
-            .pipe(tslint({
-                configuration: 'tslint.json'
-            }))
-            .pipe(tslint.report());
+    const lint = (source, done) => {
+        pump([
+            gulp.src(source),
+            tslint({ configuration: 'tslint.json' }),
+            tslint.report()
+        ], done);
     };
 
-    gulp.task('tslint:src', function() {
-        return lint(properties.src + '/**/*.ts');
+    gulp.task('tslint:src', function(done) {
+        lint(properties.src + '/**/*.ts', done);
     });
 
-    gulp.task('tslint:test', function() {
-        return lint('test/**/*.ts');
+    gulp.task('tslint:test', function(done) {
+        lint('test/**/*.ts', done);
     });
 };

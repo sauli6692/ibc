@@ -1,8 +1,9 @@
-import { BaseModel } from '../../../../src/core/domain/models/index';
 import * as lodash from 'lodash';
 const Sequelize = require('sequelize');
 
+import { BaseModel } from '../../../../src/core/domain/models';
 const app = require('../../../../src/app');
+
 const component = 'test';
 
 describe('BaseModel', () => {

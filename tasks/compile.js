@@ -17,14 +17,14 @@ module.exports = (gulp, properties) => {
     });
 };
 
-function defineCompileTask(gulp, buildPath, src, done, isTest){
+function defineCompileTask(gulp, buildPath, src, done, isTest) {
     rimraf(buildPath, () => {
         let result = gulp.src(src + '/**/*.ts')
             .pipe(tsProject());
         let pipes = [result.js];
 
-        if(isTest) {
-            pipes.push(replace('../../../../src', '../../../../dist'));
+        if (isTest) {
+            pipes.push(replace('/src', '/dist'));
         }
 
         pipes.push(gulp.dest(buildPath));

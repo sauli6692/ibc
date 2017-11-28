@@ -3,62 +3,62 @@ const Sequelize = require('sequelize');
 
 import helpers from '../helpers';
 const app = require('../../../src/app');
-const serviceRoute = '/adm/components';
+const serviceRoute = '/adm/roles';
 
-describe('Component Service', () => {
-    let componentService: any;
-    let components = [{
+describe('Role Service', () => {
+    let roleService: any;
+    let roles = [{
         id: 1,
-        name: 'ADM',
-        description: 'Administration'
+        name: 'Root',
+        description: 'Allmigth'
     }, {
         id: 2,
-        name: 'PMM',
-        description: 'People management'
+        name: 'Admin',
+        description: 'Administrator'
     }, {
         id: 3,
-        name: 'MIN',
-        description: 'Ministries'
+        name: 'Guest',
+        description: 'Guest user'
     }];
-    const componentModel = app.getModel('Component');
+    const roleModel = app.getModel('Role');
 
     beforeAll(() => {
-        componentService = app.service(serviceRoute);
-        helpers.setCRUDSpies(componentModel, components);
+        roleService = app.service(serviceRoute);
+        helpers.setCRUDSpies(roleModel, roles);
     });
 
     it('should be defined', () => {
-        expect(componentService).toBeDefined();
-        expect(componentService).not.toBeNull();
+        expect(roleService).toBeDefined();
+        expect(roleService).not.toBeNull();
     });
 
     it('should return values when find is called', (done) => {
-        componentService.find()
+        roleService.find()
             .then((result: any) => {
                 expect(result).toBeDefined();
-                expect(result.total).toBe(components.length);
-                expect(result.data).toEqual(components);
+                expect(result.total).toBe(roles.length);
+                expect(result.data).toEqual(roles);
                 done();
             });
     });
 
     it('should return a value when get is called', (done) => {
         let id = 3;
-        componentService.get(id)
+        roleService.get(id)
             .then((result: any) => {
                 expect(result).toBeDefined();
-                expect(result).toEqual(helpers.getById(components, id));
+                expect(result).toEqual(helpers.getById(roles, id));
                 done();
             });
     });
 
     it('should return a new instance when create is called', (done) => {
-        let prevLength = components.length;
+        let prevLength = roles.length;
         let newValues = {
-            name: 'RTE',
-            description: 'Route Ministry'
+            name: 'Leader',
+            description: 'Ministry Leader'
         };
-        componentService.create(newValues).then((result: any) => {
+        roleService.create(newValues).then((result: any) => {
                 expect(result).toBeDefined();
                 expect(result.id).toBeDefined();
                 expect(result.id).toBe(prevLength + 1);
@@ -66,7 +66,7 @@ describe('Component Service', () => {
                 expect(result.name).toBe(newValues.name);
                 expect(result.description).toBeDefined();
                 expect(result.description).toBe(newValues.description);
-                expect(components.length).toBe(prevLength + 1);
+                expect(roles.length).toBe(prevLength + 1);
                 done();
             });
     });
@@ -74,10 +74,10 @@ describe('Component Service', () => {
     it('should return an updated instance (not just the properties) when update is called', (done) => {
         let id = 2;
         let newValues = {
-            name: 'PMM2'
+            name: 'Leader 2'
         };
-        componentService.update(id, newValues).then((result: any) => {
-                let updatedRow = helpers.getById(components, id);
+        roleService.update(id, newValues).then((result: any) => {
+                let updatedRow = helpers.getById(roles, id);
 
                 expect(result).toBeDefined();
                 expect(result.id).toBeDefined();
@@ -92,10 +92,10 @@ describe('Component Service', () => {
     it('should return an updated an instance with its updated properties when patch is called', (done) => {
         let id = 2;
         let newValues = {
-            description: 'People management module'
+            description: 'Leader'
         };
-        componentService.patch(id, newValues).then((result: any) => {
-                let updatedRow = helpers.getById(components, id);
+        roleService.patch(id, newValues).then((result: any) => {
+                let updatedRow = helpers.getById(roles, id);
 
                 expect(result).toBeDefined();
                 expect(result.id).toBeDefined();
@@ -110,12 +110,12 @@ describe('Component Service', () => {
 
     it('should return the removed instance by id when remove is called', (done) => {
         let id = 2;
-        let item = helpers.getById(components, id);
+        let item = helpers.getById(roles, id);
 
-        componentService.remove(id).then((result: any) => {
+        roleService.remove(id).then((result: any) => {
                 expect(result).toBeDefined();
                 expect(result).toEqual(item);
-                expect(helpers.getById(components, id)).toBeUndefined();
+                expect(helpers.getById(roles, id)).toBeUndefined();
 
                 done();
             });

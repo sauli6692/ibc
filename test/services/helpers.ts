@@ -1,8 +1,8 @@
 import * as lodash from 'lodash';
 
 export default {
-    getById(mockData: Array<any>, id: number) {
-        return lodash.find(mockData, (o: any) => o.id === id);
+    getById(mockData: Array<any>, id: number, idField?: string) {
+        return lodash.find(mockData, (o: any) => o[idField || 'id'] === id);
     },
     setCRUDSpies(Model: any, mockData: Array<any>) {
         spyOn(Model, 'count').and.returnValue(Promise.resolve(mockData.length));

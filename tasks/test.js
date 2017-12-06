@@ -5,10 +5,14 @@ const pump = require('pump');
 module.exports = (gulp, properties) => {
     gulp.task('test', (done) => {
         runSequence('compile:src', 'compile:test', () => {
-            pump([
+            let jasmineStream = pump([
                 gulp.src(properties.buildPathTest + '/**/*.js'),
                 jasmine()
-            ], done);
+            ]);
+
+            jasmineStream
+                .on('data', () => {})
+                .on('end', done);
         });
     });
 };

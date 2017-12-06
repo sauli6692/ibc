@@ -1,4 +1,4 @@
-import { BaseSequelizeService, ISchema } from '../../../core/domain/services';
+import { BaseSequelizeService } from '../../../core/domain/services';
 import { Collaborator } from './collaborator.model';
 
 export class CollaboratorService extends BaseSequelizeService {
@@ -6,19 +6,15 @@ export class CollaboratorService extends BaseSequelizeService {
         return {
             route: 'collaborators',
             model: Collaborator,
-            id: 'memberId'
-        };
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
+            id: 'memberId',
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 }

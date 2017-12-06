@@ -5,19 +5,15 @@ export class OccupationService extends BaseSequelizeService {
     protected define() {
         return {
             route: 'occupations',
-            model: Occupation
-        };
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
+            model: Occupation,
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 }

@@ -1,7 +1,7 @@
 import * as lodash from 'lodash';
 import * as Errors from 'feathers-errors';
 
-import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
+import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { MinistryMember } from './ministryMember.model';
 
@@ -23,7 +23,15 @@ export class MemberMinistryService extends BaseCustomService implements IService
 
     protected define() {
         return {
-            route: 'members/:memberId/ministries'
+            route: 'members/:memberId/ministries',
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 
@@ -87,17 +95,5 @@ export class MemberMinistryService extends BaseCustomService implements IService
         }
 
         return this.MinistryMember.destroy({ where });
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
     }
 }

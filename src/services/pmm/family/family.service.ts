@@ -1,7 +1,7 @@
 import * as lodash from 'lodash';
 import * as Errors from 'feathers-errors';
 
-import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
+import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { Family } from './family.model';
 
@@ -23,7 +23,15 @@ export class FamilyService extends BaseCustomService implements IService {
 
     protected define() {
         return {
-            route: 'people/:personId/family'
+            route: 'people/:personId/family',
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 
@@ -92,17 +100,5 @@ export class FamilyService extends BaseCustomService implements IService {
 
             return this.Family.destroy({ where });
         });
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
     }
 }

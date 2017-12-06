@@ -23,7 +23,15 @@ export class UserRoleService extends BaseCustomService implements IService {
 
     protected define() {
         return {
-            route: 'users/:userId/roles'
+            route: 'users/:userId/roles',
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 
@@ -74,17 +82,5 @@ export class UserRoleService extends BaseCustomService implements IService {
         }
 
         return this.UserRole.destroy({ where });
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
     }
 }

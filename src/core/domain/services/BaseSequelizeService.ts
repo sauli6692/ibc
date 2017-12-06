@@ -1,7 +1,7 @@
 import { logger } from '../../utils/logger';
 import { BaseService } from './BaseService';
 import { BaseModel } from '../models/BaseModel';
-import { IServiceHooks } from './IService';
+import { IServiceHooks, ISchema } from './IService';
 import * as lodash from 'lodash';
 const sequelizeService = require('feathers-sequelize');
 
@@ -37,5 +37,15 @@ export abstract class BaseSequelizeService extends BaseService {
         logger.debug('Sequelize Service Created: ', this.servicePath);
     }
 
-    protected abstract define(): { route: string, hooks?: IServiceHooks, filters?: Function, model: any, id?: string };
+    protected abstract define(): {
+        route: string,
+        hooks?: IServiceHooks,
+        filters?: Function,
+        model: any,
+        id?: string,
+        schemas: {
+            create: ISchema,
+            update: ISchema
+        }
+    };
 }

@@ -9,19 +9,15 @@ export class UserService extends BaseSequelizeService {
             route: 'users',
             // hooks: hooks,
             filters,
-            model: User
-        };
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
+            model: User,
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 }

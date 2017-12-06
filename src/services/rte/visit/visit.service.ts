@@ -1,7 +1,7 @@
 import * as lodash from 'lodash';
 import * as Errors from 'feathers-errors';
 
-import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
+import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { Visit } from './visit.model';
 
@@ -27,7 +27,15 @@ export class VisitService extends BaseCustomService implements IService {
 
     protected define() {
         return {
-            route: 'collaborators/:collaboratorId/visits'
+            route: 'collaborators/:collaboratorId/visits',
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 
@@ -105,17 +113,5 @@ export class VisitService extends BaseCustomService implements IService {
         }
 
         return this.Visit.destroy({ where });
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
     }
 }

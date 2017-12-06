@@ -1,7 +1,7 @@
 import * as lodash from 'lodash';
 import * as Errors from 'feathers-errors';
 
-import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
+import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { PersonDiscipleship } from './personDiscipleship.model';
 
@@ -25,7 +25,15 @@ export class PersonDiscipleshipService extends BaseCustomService implements ISer
 
     protected define() {
         return {
-            route: 'people/:discipleId/discipleships'
+            route: 'people/:discipleId/discipleships',
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 
@@ -147,17 +155,5 @@ export class PersonDiscipleshipService extends BaseCustomService implements ISer
         }
 
         return this.PersonDiscipleship.destroy({ where });
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
     }
 }

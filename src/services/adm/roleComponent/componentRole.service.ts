@@ -23,7 +23,15 @@ export class ComponentRoleService extends BaseCustomService implements IService 
 
     protected define() {
         return {
-            route: 'components/:componentId/roles'
+            route: 'components/:componentId/roles',
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 
@@ -74,17 +82,5 @@ export class ComponentRoleService extends BaseCustomService implements IService 
         }
 
         return this.RoleComponent.destroy({ where });
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
     }
 }

@@ -1,7 +1,7 @@
 import * as lodash from 'lodash';
 import * as Errors from 'feathers-errors';
 
-import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
+import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { ComponentModel } from './componentModel.model';
 
@@ -23,7 +23,15 @@ export class ComponentModelService extends BaseCustomService implements IService
 
     protected define() {
         return {
-            route: 'components/:componentId/models'
+            route: 'components/:componentId/models',
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 
@@ -93,17 +101,5 @@ export class ComponentModelService extends BaseCustomService implements IService
         }
 
         return this.ComponentModel.destroy({ where });
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
     }
 }

@@ -7,19 +7,15 @@ export class PersonService extends BaseSequelizeService {
         return {
             route: 'people',
             model: Person,
-            hooks
-        };
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
+            hooks,
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 }

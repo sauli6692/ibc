@@ -25,7 +25,15 @@ export class MinistryLeaderService extends BaseCustomService implements IService
 
     protected define() {
         return {
-            route: 'ministries/:ministryId/leaders'
+            route: 'ministries/:ministryId/leaders',
+            schemas: {
+                create: {
+                    type: 'object'
+                },
+                update: {
+                    type: 'object'
+                }
+            }
         };
     }
 
@@ -85,17 +93,5 @@ export class MinistryLeaderService extends BaseCustomService implements IService
         }
 
         return this.MinistryLeader.destroy({ where });
-    }
-
-    protected defineCreateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
-    }
-
-    protected defineUpdateSchema(): ISchema {
-        return {
-            type: 'object'
-        };
     }
 }

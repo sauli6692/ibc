@@ -27,23 +27,19 @@ describe('BaseSequelizeService', () => {
 
     const serviceDefinition = {
         route: 'test',
-        model: Model
+        model: Model,
+        schemas: {
+            create: {
+                type: 'object'
+            },
+            update: {
+                type: 'object'
+            }
+        }
     };
     class TestService extends BaseSequelizeService {
         protected define() {
             return serviceDefinition;
-        }
-
-        protected defineCreateSchema() {
-            return {
-                type: 'object'
-            };
-        }
-
-        protected defineUpdateSchema() {
-            return {
-                type: 'object'
-            };
         }
     }
 

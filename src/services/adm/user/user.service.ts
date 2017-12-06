@@ -8,16 +8,9 @@ export class UserService extends BaseSequelizeService {
         return {
             route: 'users',
             // hooks: hooks,
+            filters,
             model: User
         };
-    }
-
-    // protected defineHooks() {
-    //     return hooks;
-    // }
-
-    protected defineFilters() {
-        return filters;
     }
 
     protected defineCreateSchema(): ISchema {

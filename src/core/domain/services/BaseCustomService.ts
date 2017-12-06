@@ -3,7 +3,7 @@ import * as lodash from 'lodash';
 const sequelizeService = require('feathers-sequelize');
 
 import { BaseService } from './BaseService';
-import { IServiceHooks, IHook } from './IService';
+import { IServiceHooks } from './IService';
 
 export abstract class BaseCustomService extends BaseService {
     constructor(component: string, app: any) {
@@ -26,5 +26,5 @@ export abstract class BaseCustomService extends BaseService {
         logger.debug('Custom Service Created: ', this.servicePath);
     }
 
-    protected abstract define(): { route: string };
+    protected abstract define(): { route: string, hooks?: IServiceHooks, filters?: Function };
 }

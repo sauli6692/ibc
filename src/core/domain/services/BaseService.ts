@@ -14,7 +14,7 @@ export abstract class BaseService {
 
 	constructor(component: string, app: any) {
 		this._app = app;
-		let { route, hooks } = this.define();
+		let { route, hooks, filters } = this.define();
 
 		this._component = component;
 		this._route = route;
@@ -24,7 +24,7 @@ export abstract class BaseService {
             update: this.defineUpdateSchema()
         };
 		this._hooks = this.getHooks(hooks);
-        this._filters = this.defineFilters();
+        this._filters = filters || null;
 	}
 
 	get component(): string {
@@ -102,13 +102,9 @@ export abstract class BaseService {
 
 	protected abstract defineService(): void;
 
-	protected abstract define(): { route: string, hooks?: IServiceHooks};
+	protected abstract define(): { route: string, hooks?: IServiceHooks, filters?: Function};
 
 	protected abstract defineCreateSchema(): ISchema;
 
 	protected abstract defineUpdateSchema(): ISchema;
-
-	protected defineFilters(): Function {
-		return null;
-	}
 }

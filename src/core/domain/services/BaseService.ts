@@ -14,7 +14,7 @@ export abstract class BaseService {
 
 	constructor(component: string, app: any) {
 		this._app = app;
-		let { route } = this.define();
+		let { route, hooks } = this.define();
 
 		this._component = component;
 		this._route = route;
@@ -23,7 +23,7 @@ export abstract class BaseService {
             create: this.defineCreateSchema(),
             update: this.defineUpdateSchema()
         };
-		this._hooks = this.getHooks();
+		this._hooks = this.getHooks(hooks);
         this._filters = this.defineFilters();
 	}
 
@@ -66,9 +66,9 @@ export abstract class BaseService {
 
 	public afterInit(): void { }
 
-    private getHooks(): IServiceHooks {
+    private getHooks(hooks: IServiceHooks): IServiceHooks {
 		let predefinedHooks = new PredefinedHooks(this).hooks;
-        let serviceHooks = this.defineHooks();
+        let serviceHooks = hooks || this.getDefaultHooks();
 
 		lodash.forOwn(predefinedHooks, (hook, type) => {
 			lodash.forOwn(hook, (value, key) => {
@@ -82,15 +82,7 @@ export abstract class BaseService {
         return predefinedHooks;
     }
 
-	protected abstract defineService(): void;
-
-	protected abstract define(): { route: string };
-
-	protected abstract defineCreateSchema(): ISchema;
-
-	protected abstract defineUpdateSchema(): ISchema;
-
-	protected defineHooks(): IServiceHooks {
+	private getDefaultHooks(): IServiceHooks {
 		let hook: IHook = {
 			all: [],
 			find: [],
@@ -107,6 +99,14 @@ export abstract class BaseService {
 			error: hook
 		};
 	}
+
+	protected abstract defineService(): void;
+
+	protected abstract define(): { route: string, hooks?: IServiceHooks};
+
+	protected abstract defineCreateSchema(): ISchema;
+
+	protected abstract defineUpdateSchema(): ISchema;
 
 	protected defineFilters(): Function {
 		return null;

@@ -6,12 +6,9 @@ export class HarvestService extends BaseSequelizeService {
     protected define() {
         return {
             route: 'harvests',
-            model: Harvest
+            model: Harvest,
+            hooks
         };
-    }
-
-    protected defineHooks() {
-        return hooks;
     }
 
     protected defineCreateSchema(): ISchema {

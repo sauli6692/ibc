@@ -6,12 +6,9 @@ export class PersonService extends BaseSequelizeService {
     protected define() {
         return {
             route: 'people',
-            model: Person
+            model: Person,
+            hooks
         };
-    }
-
-    protected defineHooks() {
-        return hooks;
     }
 
     protected defineCreateSchema(): ISchema {

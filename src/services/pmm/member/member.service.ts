@@ -7,12 +7,9 @@ export class MemberService extends BaseSequelizeService {
         return {
             route: 'members',
             model: Member,
+            hooks,
             id: 'personId'
         };
-    }
-
-    protected defineHooks() {
-        return hooks;
     }
 
     protected defineCreateSchema(): ISchema {

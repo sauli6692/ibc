@@ -1,9 +1,9 @@
 import * as lodash from 'lodash';
-const commonHooks = require('feathers-hooks-common');
-const Ajv = require('ajv');
 
-import { IServiceHooks, IHook, ISchema } from './IService';
-import { BaseService } from './BaseService';
+import { IServiceHooks, IHook } from '../IService';
+import { BaseService } from '../BaseService';
+
+import { validationHooks } from './validation.hook';
 
 export class PredefinedHooks {
 	private _service: BaseService;
@@ -34,7 +34,7 @@ export class PredefinedHooks {
 	private defineBeforeHooks(): IHook {
 		let beforeHooks = lodash.cloneDeep(this._hook);
 
-		this.validationHooks(beforeHooks);
+		validationHooks(this._service.schemas, beforeHooks);
 
 		return beforeHooks;
 	}
@@ -47,19 +47,5 @@ export class PredefinedHooks {
 	private defineErrorHooks(): IHook {
 		let errorHooks = lodash.cloneDeep(this._hook);
 		return errorHooks;
-	}
-
-	/*
-	* Schema Validations Hooks
-	*/
-	private validationHooks(beforeHooks: IHook): void {
-		let schemas = this._service.schemas;
-
-		beforeHooks.create.push(this.validateSchema(schemas.create));
-		beforeHooks.update.push(this.validateSchema(schemas.update));
-	}
-
-	private validateSchema(schema: ISchema): Function {
-		return commonHooks.validateSchema(schema, Ajv);
 	}
 }

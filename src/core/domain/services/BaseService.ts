@@ -1,6 +1,6 @@
 import { BaseModel } from '../models/BaseModel';
 import { IServiceHooks, IHook, ISchema } from './IService';
-import { PredefinedHooks } from './PredefinedHooks';
+import { PredefinedHooks } from './predefinedHooks';
 import * as lodash from 'lodash';
 
 export abstract class BaseService {

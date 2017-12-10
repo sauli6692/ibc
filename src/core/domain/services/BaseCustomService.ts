@@ -32,7 +32,7 @@ export abstract class BaseCustomService extends BaseService {
         filters?: Function,
         schemas: {
             create: ISchema,
-            update: ISchema
+            update?: ISchema
         }
     };
 }

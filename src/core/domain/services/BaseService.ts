@@ -10,7 +10,7 @@ export abstract class BaseService {
 	private _servicePath: any;
 	private _hooks: IServiceHooks;
 	private _filters: Function;
-	private _schemas: { create: ISchema, update: ISchema };
+	private _schemas: { create: ISchema, update?: ISchema };
 
 	constructor(component: string, app: any) {
 		this._app = app;
@@ -42,7 +42,7 @@ export abstract class BaseService {
 	get filters(): Function {
 		return this._filters;
 	}
-	get schemas(): { create: ISchema, update: ISchema } {
+	get schemas(): { create: ISchema, update?: ISchema } {
 		return this._schemas;
 	}
 
@@ -105,7 +105,7 @@ export abstract class BaseService {
         filters?: Function,
         schemas: {
             create: ISchema,
-            update: ISchema
+            update?: ISchema
         }
     };
 }

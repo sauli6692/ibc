@@ -3,20 +3,23 @@ import * as lodash from 'lodash';
 const commons = {
     type: 'object',
     properties: {
-        name: {
+        username: {
             type: 'string',
-            maxLength: 25
+            maxLength: 50
         },
-        description: {
+        password: {
             type: 'string',
-            maxLength: 255
+            maxLength: 64
+        },
+        memberId: {
+            type: 'integer'
         }
     },
     additionalProperties: false
 };
 
 const create = {
-    required: ['name']
+    required: ['username', 'password', 'memberId']
 };
 
 export const schemas = {

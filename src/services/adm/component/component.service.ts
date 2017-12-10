@@ -7,7 +7,7 @@ export class ComponentService extends BaseSequelizeService {
         return {
             route: 'components',
             model: Component,
-            schemas: schemas
+            schemas
         };
     }
 }

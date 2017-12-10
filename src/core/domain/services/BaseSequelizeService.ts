@@ -45,7 +45,7 @@ export abstract class BaseSequelizeService extends BaseService {
         id?: string,
         schemas: {
             create: ISchema,
-            update: ISchema
+            update?: ISchema
         }
     };
 }

@@ -4,6 +4,7 @@ import * as Errors from 'feathers-errors';
 import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { UserRole } from './userRole.model';
+import { schemas } from './userRole.schema';
 
 export class UserRoleService extends BaseCustomService implements IService {
     private UserRole: any;
@@ -24,14 +25,7 @@ export class UserRoleService extends BaseCustomService implements IService {
     protected define() {
         return {
             route: 'users/:userId/roles',
-            schemas: {
-                create: {
-                    type: 'object'
-                },
-                update: {
-                    type: 'object'
-                }
-            }
+            schemas
         };
     }
 

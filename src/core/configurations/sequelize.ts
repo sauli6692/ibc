@@ -27,7 +27,7 @@ export default function() {
 		});
 
 		// Sync to the database
-		sequelize.sync();
+		// sequelize.sync();
 
 		return result;
 	};

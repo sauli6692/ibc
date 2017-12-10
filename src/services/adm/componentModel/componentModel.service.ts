@@ -4,6 +4,7 @@ import * as Errors from 'feathers-errors';
 import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { ComponentModel } from './componentModel.model';
+import { schemas } from './componentModel.schema';
 
 export class ComponentModelService extends BaseCustomService implements IService {
     private ComponentModel: any;
@@ -24,14 +25,7 @@ export class ComponentModelService extends BaseCustomService implements IService
     protected define() {
         return {
             route: 'components/:componentId/models',
-            schemas: {
-                create: {
-                    type: 'object'
-                },
-                update: {
-                    type: 'object'
-                }
-            }
+            schemas
         };
     }
 

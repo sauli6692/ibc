@@ -1,11 +1,16 @@
+import * as lodash from 'lodash';
 const commonHooks = require('feathers-hooks-common');
 const Ajv = require('ajv');
 
 import { IServiceHooks, IHook, ISchema } from '../IService';
 
-export const validationHooks = (schemas: { create: ISchema, update: ISchema } , beforeHooks: IHook): void => {
+export const validationHooks = (schemas: { create: ISchema, update?: ISchema } , beforeHooks: IHook): void => {
     beforeHooks.create.push(validateSchema(schemas.create));
-    beforeHooks.update.push(validateSchema(schemas.update));
+
+    if (!lodash.isNil(schemas.update)) {
+        beforeHooks.update.push(validateSchema(schemas.update));
+        beforeHooks.patch.push(validateSchema(schemas.update));
+    }
 };
 
 const validateSchema = (schema: ISchema): Function => {

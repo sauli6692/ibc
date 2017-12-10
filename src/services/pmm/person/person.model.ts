@@ -51,7 +51,7 @@ export class Person extends BaseModel {
 				},
                 directionExtra: {
 					type: Sequelize.STRING(150)
-				},
+				}
 			}
 		};
 	}

@@ -4,6 +4,7 @@ import * as Errors from 'feathers-errors';
 import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { Family } from './family.model';
+import { schemas } from './family.schema';
 
 export class FamilyService extends BaseCustomService implements IService {
     private Family: any;
@@ -24,14 +25,7 @@ export class FamilyService extends BaseCustomService implements IService {
     protected define() {
         return {
             route: 'people/:personId/family',
-            schemas: {
-                create: {
-                    type: 'object'
-                },
-                update: {
-                    type: 'object'
-                }
-            }
+            schemas
         };
     }
 

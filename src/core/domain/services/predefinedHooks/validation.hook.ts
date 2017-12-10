@@ -11,6 +11,7 @@ export const validationHooks = (schemas: { create: ISchema, update: ISchema } , 
 const validateSchema = (schema: ISchema): Function => {
     return commonHooks.validateSchema(schema, Ajv, {
         allErrors: true,
+        format: 'full',
         addNewError: addNewError
     });
 };

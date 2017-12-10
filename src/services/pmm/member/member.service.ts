@@ -1,6 +1,7 @@
 import { BaseSequelizeService } from '../../../core/domain/services';
 import { Member } from './member.model';
 import { hooks } from './member.hooks';
+import { schemas } from './member.schema';
 
 export class MemberService extends BaseSequelizeService {
     protected define() {
@@ -9,14 +10,7 @@ export class MemberService extends BaseSequelizeService {
             model: Member,
             hooks,
             id: 'personId',
-            schemas: {
-                create: {
-                    type: 'object'
-                },
-                update: {
-                    type: 'object'
-                }
-            }
+            schemas
         };
     }
 }

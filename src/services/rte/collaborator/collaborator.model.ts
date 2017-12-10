@@ -19,7 +19,6 @@ export class Collaborator extends BaseModel {
 				},
 				routeLeader: {
 					type: Sequelize.BOOLEAN,
-                    allowNull: false,
 					defaultValue: 0
 				}
 			}

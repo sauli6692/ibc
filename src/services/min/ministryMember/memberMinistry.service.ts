@@ -4,6 +4,7 @@ import * as Errors from 'feathers-errors';
 import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { MinistryMember } from './ministryMember.model';
+import { schemas } from './ministryMember.schema';
 
 export class MemberMinistryService extends BaseCustomService implements IService {
     private MinistryMember: any;
@@ -24,14 +25,7 @@ export class MemberMinistryService extends BaseCustomService implements IService
     protected define() {
         return {
             route: 'members/:memberId/ministries',
-            schemas: {
-                create: {
-                    type: 'object'
-                },
-                update: {
-                    type: 'object'
-                }
-            }
+            schemas
         };
     }
 

@@ -4,6 +4,7 @@ import * as Errors from 'feathers-errors';
 import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { Visit } from './visit.model';
+import { schemas } from './visit.schema';
 
 export class VisitService extends BaseCustomService implements IService {
     private Visit: any;
@@ -28,14 +29,7 @@ export class VisitService extends BaseCustomService implements IService {
     protected define() {
         return {
             route: 'collaborators/:collaboratorId/visits',
-            schemas: {
-                create: {
-                    type: 'object'
-                },
-                update: {
-                    type: 'object'
-                }
-            }
+            schemas
         };
     }
 
@@ -101,6 +95,17 @@ export class VisitService extends BaseCustomService implements IService {
         data.collaboratorId = lodash.parseInt(params.collaboratorId);
 
         return this.Visit.build(data).save();
+    }
+
+    public patch(id: number, data: any, params: any): Promise<any> {
+        let where: any = {
+            collaboratorId: params.collaboratorId,
+            harvestId: id
+        };
+
+        return this.Visit.update({
+            date: data.date
+        }, { where });
     }
 
     public remove(id: number, params: any): Promise<any> {

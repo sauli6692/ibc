@@ -1,5 +1,6 @@
 import { BaseSequelizeService } from '../../../core/domain/services';
 import { Collaborator } from './collaborator.model';
+import { schemas } from './collaborator.schema';
 
 export class CollaboratorService extends BaseSequelizeService {
     protected define() {
@@ -7,14 +8,7 @@ export class CollaboratorService extends BaseSequelizeService {
             route: 'collaborators',
             model: Collaborator,
             id: 'memberId',
-            schemas: {
-                create: {
-                    type: 'object'
-                },
-                update: {
-                    type: 'object'
-                }
-            }
+            schemas
         };
     }
 }

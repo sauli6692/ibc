@@ -139,6 +139,17 @@ export class PersonDiscipleshipService extends BaseCustomService implements ISer
         return this.PersonDiscipleship.build(data).save();
     }
 
+    public patch(id: number, data: any, params: any): Promise<any> {
+        let where: any = {
+            discipleId: params.discipleId,
+            discipleshipId: id
+        };
+
+        return this.PersonDiscipleship.update({
+            relationship: data.relationship
+        }, { where });
+    }
+
     public remove(id: number, params: any): Promise<any> {
         let where: any = {
             discipleId: params.discipleId

@@ -8,6 +8,7 @@ export class HarvestService extends BaseSequelizeService {
         return {
             route: 'harvests',
             model: Harvest,
+            id: 'personId',
             hooks,
             schemas
         };

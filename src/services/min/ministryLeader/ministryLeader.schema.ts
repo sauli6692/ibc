@@ -3,6 +3,13 @@ import * as lodash from 'lodash';
 export const schemas = {
     create: {
         type: 'object',
-        additionalProperties: false
+        properties: {
+            leaderId: {
+                type: 'integer',
+                minimum: 1
+            }
+        },
+        additionalProperties: false,
+        required: ['leaderId']
     }
 };

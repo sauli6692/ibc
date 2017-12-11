@@ -3,10 +3,6 @@ import * as lodash from 'lodash';
 const commons = {
     type: 'object',
     properties: {
-        familyId: {
-            type: 'integer',
-            minimum: 1
-        },
         relationship: {
             type: 'integer',
             minimum: 1
@@ -16,10 +12,20 @@ const commons = {
 };
 
 const create = {
+    properties: {
+        familyId: {
+            type: 'integer',
+            minimum: 1
+        }
+    },
     required: ['familyId', 'relationship']
+};
+
+const update = {
+    required: ['relationship']
 };
 
 export const schemas = {
     create: lodash.merge(create, commons),
-    update: commons
+    update: lodash.merge(update, commons)
 };

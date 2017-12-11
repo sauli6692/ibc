@@ -2,10 +2,6 @@ import * as lodash from 'lodash';
 const commons = {
     type: 'object',
     properties: {
-        discipleshipId: {
-            type: 'integer',
-            minimum: 1
-        },
         teacherId: {
             type: 'integer',
             minimum: 1
@@ -29,6 +25,12 @@ const commons = {
 };
 
 const create = {
+    properties: {
+        discipleshipId: {
+            type: 'integer',
+            minimum: 1
+        }
+    },
     required: ['discipleshipId', 'teacherId']
 };
 

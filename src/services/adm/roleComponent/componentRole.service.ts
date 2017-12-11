@@ -4,7 +4,7 @@ import * as Errors from 'feathers-errors';
 import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { RoleComponent } from './roleComponent.model';
-import { schemas } from './roleComponent.schema';
+import { schemas } from './componentRole.schema';
 
 export class ComponentRoleService extends BaseCustomService implements IService {
     private RoleComponent: any;

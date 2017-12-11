@@ -24,7 +24,7 @@ const create = {
             minimum: 1
         }
     },
-    required: ['memberId', 'routeId']
+    required: ['personId', 'routeId']
 };
 
 export const schemas = {

@@ -25,7 +25,7 @@ const addNewError = (prev: any, ajvError: any, itemsLen: number, index: number):
     let property;
     let message;
     prev = prev || {};
-    console.log(ajvError);
+
     switch (ajvError.keyword) {
         case 'additionalProperties':
             property = ajvError.params.additionalProperty;

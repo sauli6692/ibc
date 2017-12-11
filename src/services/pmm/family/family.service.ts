@@ -76,6 +76,17 @@ export class FamilyService extends BaseCustomService implements IService {
         });
     }
 
+    public patch(id: number, data: any, params: any): Promise<any> {
+        let where: any = {
+            personId: params.personId,
+            familyId: id
+        };
+
+        return this.Family.update({
+            relationship: data.relationship
+        }, { where });
+    }
+
     public remove(id: number, params: any): Promise<any> {
         let where: any = {
             personId: params.personId

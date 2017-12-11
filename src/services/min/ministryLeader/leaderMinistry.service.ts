@@ -4,7 +4,7 @@ import * as Errors from 'feathers-errors';
 import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { MinistryLeader } from './ministryLeader.model';
-import { schemas } from './ministryLeader.schema';
+import { schemas } from './leaderMinistry.schema';
 
 export class LeaderMinistryService extends BaseCustomService implements IService {
     private MinistryLeader: any;

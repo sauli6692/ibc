@@ -4,12 +4,12 @@ export const schemas = {
     create: {
         type: 'object',
         properties: {
-            memberId: {
+            ministryId: {
                 type: 'integer',
                 minimum: 1
             }
         },
         additionalProperties: false,
-        required: ['memberId']
+        required: ['ministryId']
     }
 };

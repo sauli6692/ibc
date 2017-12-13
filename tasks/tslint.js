@@ -6,7 +6,9 @@ module.exports = (gulp, properties) => {
     const lint = (source, done) => {
         pump([
             gulp.src(source),
-            tslint({ configuration: 'tslint.json' }),
+            tslint({
+                configuration: 'tslint.json'
+            }),
             tslint.report()
         ], done);
     };

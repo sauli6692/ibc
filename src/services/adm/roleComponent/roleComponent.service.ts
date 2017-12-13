@@ -40,7 +40,13 @@ export class RoleComponentService extends BaseCustomService implements IService 
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Role not found.');
             }
-            return results[0].components;
+            return lodash.map(results[0].components, (component: any) => {
+                return {
+                    id: component.id,
+                    name: component.name,
+                    description: component.description
+                };
+            });
         });
     }
 
@@ -56,7 +62,13 @@ export class RoleComponentService extends BaseCustomService implements IService 
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Not foud.');
             }
-            return results[0].components[0];
+            let component = results[0].components[0];
+
+            return {
+                id: component.id,
+                name: component.name,
+                description: component.description
+            };
         });
     }
 

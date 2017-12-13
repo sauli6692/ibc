@@ -5,6 +5,7 @@ import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
 import { Family } from './family.model';
 import { schemas } from './family.schema';
+import { logger } from '../../../core/utils/logger';
 
 export class FamilyService extends BaseCustomService implements IService {
     private Family: any;
@@ -44,25 +45,32 @@ export class FamilyService extends BaseCustomService implements IService {
                 throw new Errors.NotFound('Person not found.');
             }
 
-            return results; // [0].family;
+            return lodash.map(results, (row: any) => {
+                let result = row.familyPerson.dataValues;
+                result.relationship = row.familyRelationship.value;
+                return result;
+            });
         });
     }
 
     public get(id: number, params: any): Promise<any> {
-        return this.Person.findAll({
-            where: {
-                id: params.personId
-            },
+        return this.Family.findAll({
+            where: { personId: params.personId },
             include: [{
                 model: this.Person,
-                as: 'family',
-                where: { id }
+                as: 'familyPerson'
+            }, {
+                model: this.FamilyRelationship,
+                as: 'familyRelationship'
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Not found.');
             }
-            return results[0].family[0];
+
+            let family = results[0].familyPerson.dataValues;
+            family.relationship = results[0].familyRelationship.value;
+            return family;
         });
     }
 

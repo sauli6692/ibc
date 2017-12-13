@@ -44,7 +44,13 @@ export class ComponentModelService extends BaseCustomService implements IService
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Component not found.');
             }
-            return results[0].models;
+            return lodash.map(results[0].models, (model: any) => {
+                return {
+                    id: model.id,
+                    name: model.name,
+                    privileges: model.privileges.privileges
+                };
+            });
         });
     }
 
@@ -64,7 +70,12 @@ export class ComponentModelService extends BaseCustomService implements IService
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Not found.');
             }
-            return results[0].models[0];
+            let model = results[0].models[0];
+            return {
+                id: model.id,
+                name: model.name,
+                privileges: model.privileges.privileges
+            };
         });
     }
 

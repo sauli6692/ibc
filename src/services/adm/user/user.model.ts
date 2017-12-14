@@ -17,11 +17,11 @@ export class User extends BaseModel {
                     unique: true
 				},
 				password: {
-					type: Sequelize.STRING(64),
+					type: Sequelize.STRING(128),
 					allowNull: false
 				},
                 salt: {
-                    type: Sequelize.STRING(64),
+                    type: Sequelize.STRING(32),
 					allowNull: false
                 },
                 memberId: {

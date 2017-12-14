@@ -19,7 +19,7 @@
       "property-declaration": "nospace",
       "variable-declaration": "nospace"
     }],
-    "only-arrow-functions": true,
+    "only-arrow-functions": false,
     "no-var-requires": false,
     "variable-name": [true, "ban-keywords"],
     "whitespace": [true,

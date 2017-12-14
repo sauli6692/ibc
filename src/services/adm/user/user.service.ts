@@ -8,7 +8,7 @@ export class UserService extends BaseSequelizeService {
     protected define() {
         return {
             route: 'users',
-            // hooks: hooks,
+            hooks: hooks,
             filters,
             model: User,
             schemas

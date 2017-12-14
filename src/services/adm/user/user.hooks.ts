@@ -2,15 +2,15 @@ const { authenticate } = require('feathers-authentication').hooks;
 const commonHooks = require('feathers-hooks-common');
 const { restrictToOwner } = require('feathers-authentication-hooks');
 
-const { hashPassword } = require('feathers-authentication-local').hooks;
-
 import { IServiceHooks } from '../../../core/domain/services/IService';
-const restrict = [
+import { hashPassword } from '../../../core/utils/cryptography';
+
+const restrict: any = [
 	authenticate('jwt'),
-	restrictToOwner({
-		idField: 'id',
-		ownerField: 'id'
-	})
+	// restrictToOwner({
+	// 	idField: 'id',
+	// 	ownerField: 'id'
+	// })
 ];
 
 export const hooks: IServiceHooks = {
@@ -18,9 +18,9 @@ export const hooks: IServiceHooks = {
 		all: [],
 		find: [authenticate('jwt')],
 		get: [...restrict],
-		create: [hashPassword()],
-		update: [...restrict, hashPassword()],
-		patch: [...restrict, hashPassword()],
+		create: [...restrict, hashPasswordHook],
+		update: [...restrict, hashPasswordHook],
+		patch: [...restrict, hashPasswordHook],
 		remove: [...restrict]
 	},
 
@@ -28,7 +28,8 @@ export const hooks: IServiceHooks = {
 		all: [
 			commonHooks.when(
 				(hook: any) => hook.params.provider,
-				commonHooks.discard('password')
+				commonHooks.discard('password'),
+				commonHooks.discard('salt')
 			)
 		],
 		find: [],
@@ -49,3 +50,12 @@ export const hooks: IServiceHooks = {
 		remove: []
 	}
 };
+
+function hashPasswordHook(hook: any) {
+    return hashPassword(hook.data.password)
+        .then((result: any) => {
+            hook.data.password = result.password;
+            hook.data.salt = result.salt;
+            return Promise.resolve(hook);
+        });
+}

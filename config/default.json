@@ -18,6 +18,7 @@
     ],
     "path": "/authentication",
     "service": "adm/users",
+    "iterations": 100000,
     "jwt": {
       "header": {
         "type": "access"
@@ -30,9 +31,10 @@
     },
     "local": {
       "entity": "user",
-      "usernameField": "username",
+      "service": "adm/users",
       "passwordField": "password"
-    }
+  },
+  "defaultStrategy": "local"
   },
   "db": {
     "dialect": "mysql",

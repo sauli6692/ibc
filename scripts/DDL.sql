@@ -5,8 +5,8 @@ USE ibc;
 CREATE TABLE ADM_USER(
     id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
-    password VARCHAR(64) NOT NULL,
-    salt VARCHAR(64) NOT NULL,
+    `password` VARCHAR(128) NOT NULL,
+    salt VARCHAR(32) NOT NULL,
     member_id INT NOT NULL,
     CONSTRAINT ADM_USER_PK PRIMARY KEY (id)
 );

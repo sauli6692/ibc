@@ -3,28 +3,28 @@ import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService } from '../../../core/domain/services';
 import { BaseModel } from '../../../core/domain/models';
-import { ComponentModel } from './componentModel.model';
-import { schemas } from './componentModel.schema';
+import { ComponentService } from './componentService.model';
+import { schemas } from './componentService.schema';
 
-export class ComponentModelService extends BaseCustomService implements IService {
-    private ComponentModel: any;
+export class ComponentServiceService extends BaseCustomService implements IService {
+    private ComponentService: any;
     private Component: any;
-    private Model: any;
+    private Service: any;
 
     constructor(component: string, app: any) {
         super(component, app);
-        let model = new ComponentModel(this.component, this.app);
-        this.ComponentModel = model.getSequelizeModel();
+        let model = new ComponentService(this.component, this.app);
+        this.ComponentService = model.getSequelizeModel();
     }
 
     public afterInit(): void {
         this.Component = this.app.getModel('Component');
-        this.Model = this.app.getModel('Model');
+        this.Service = this.app.getModel('Service');
     }
 
     protected define() {
         return {
-            route: 'components/:componentId/models',
+            route: 'components/:componentId/services',
             schemas,
             authenticate: false
         };
@@ -32,11 +32,12 @@ export class ComponentModelService extends BaseCustomService implements IService
 
     public find(params: any): Promise<any> {
         let property = isNaN(params.componentId) ? 'name' : 'id';
+
         return this.Component.findAll({
             where: { [property]: params.componentId },
             include: [{
-                model: this.Model,
-                as: 'models',
+                model: this.Service,
+                as: 'services',
                 through: {
                     as: 'privileges',
                     attributes: ['privileges']
@@ -46,39 +47,39 @@ export class ComponentModelService extends BaseCustomService implements IService
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Component not found.');
             }
-            return lodash.map(results[0].models, (model: any) => {
+            return lodash.map(results[0].services, (service: any) => {
                 return {
-                    id: model.id,
-                    name: model.name,
-                    privileges: model.privileges.privileges
+                    id: service.id,
+                    route: service.route,
+                    privileges: service.privileges.privileges
                 };
             });
         });
     }
 
     public get(id: any, params: any): Promise<any> {
-        let modelProperty = isNaN(id) ? 'name' : 'id';
+        let serviceProperty = isNaN(id) ? 'route' : 'id';
         let componentProperty = isNaN(params.componentId) ? 'name' : 'id';
         return this.Component.findAll({
             where: { [componentProperty]: params.componentId },
             include: [{
-                model: this.Model,
-                as: 'models',
+                model: this.Service,
+                as: 'services',
                 through: {
                     as: 'privileges',
                     attributes: ['privileges']
                 },
-                where: { [modelProperty]: id }
+                where: { [serviceProperty]: id }
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {
                 throw new Errors.NotFound('Not found.');
             }
-            let model = results[0].models[0];
+            let service = results[0].services[0];
             return {
-                id: model.id,
-                name: model.name,
-                privileges: model.privileges.privileges
+                id: service.id,
+                route: service.route,
+                privileges: service.privileges.privileges
             };
         });
     }
@@ -86,16 +87,16 @@ export class ComponentModelService extends BaseCustomService implements IService
     public create(data: any, params: any): Promise<any> {
         data.componentId = lodash.parseInt(params.componentId);
 
-        return this.ComponentModel.build(data).save();
+        return this.ComponentService.build(data).save();
     }
 
     public patch(id: number, data: any, params: any): Promise<any> {
         let where = {
             componentId: params.componentId,
-            modelId: id
+            serviceId: id
         };
 
-        return this.ComponentModel.update({
+        return this.ComponentService.update({
             privileges: data.privileges
         }, { where });
     }
@@ -106,9 +107,9 @@ export class ComponentModelService extends BaseCustomService implements IService
         };
 
         if (!lodash.isNil(id)) {
-            where.modelId = id;
+            where.serviceId = id;
         }
 
-        return this.ComponentModel.destroy({ where });
+        return this.ComponentService.destroy({ where });
     }
 }

@@ -1,13 +1,13 @@
 const commons = {
     type: 'object',
     properties: {
-        name: {
+        route: {
             type: 'string',
-            maxLength: 25
+            maxLength: 50
         }
     },
     additionalProperties: false,
-    required: ['name']
+    required: ['route']
 };
 
 export const schemas = {

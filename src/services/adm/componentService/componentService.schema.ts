@@ -14,12 +14,12 @@ const commons = {
 };
 const create = {
     properties: {
-        modelId: {
+        serviceId: {
             type: 'integer',
             minimum: 1
         }
     },
-    required: ['modelId', 'privileges']
+    required: ['serviceId', 'privileges']
 };
 
 const update = {

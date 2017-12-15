@@ -1,16 +1,16 @@
 const Sequelize = require('sequelize');
-import { BaseModel, IAssociation } from '../../../core/domain/models';
+import { BaseModel } from '../../../core/domain/models';
 
-export class ComponentModel extends BaseModel {
+export class ComponentService extends BaseModel {
 	protected define() {
 		return {
-			name: 'ComponentModel',
+			name: 'ComponentService',
 			fields: {
 				componentId: {
 					type: Sequelize.INTEGER,
 					primaryKey: true
 				},
-				modelId: {
+				serviceId: {
                     type: Sequelize.INTEGER,
 					primaryKey: true
 				},

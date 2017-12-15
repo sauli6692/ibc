@@ -1,18 +1,18 @@
 const Sequelize = require('sequelize');
 import { BaseModel, IAssociation } from '../../../core/domain/models';
 
-export class Model extends BaseModel {
+export class Service extends BaseModel {
 	protected define() {
 		return {
-			name: 'Model',
+			name: 'Service',
 			fields: {
                 id: {
                     type: Sequelize.INTEGER,
                     autoIncrement: true,
 					primaryKey: true
                 },
-				name: {
-					type: Sequelize.STRING(25),
+				route: {
+					type: Sequelize.STRING(50),
 					allowNull: false
 				}
 			}
@@ -24,7 +24,7 @@ export class Model extends BaseModel {
 			manyToMany: [{
 				model: 'Component',
 				as: 'components',
-                through: 'ComponentModel'
+                through: 'ComponentService'
             }]
 		};
 	}

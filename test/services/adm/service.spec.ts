@@ -3,64 +3,64 @@ const Sequelize = require('sequelize');
 
 import helpers from '../helpers';
 const app = require('../../../src/app');
-const serviceRoute = '/adm/models';
+const serviceRoute = '/adm/services';
 
-describe('Model Service', () => {
-    let modelService: any;
-    let models = [{
+describe('Service Service', () => {
+    let serviceService: any;
+    let services = [{
         id: 1,
-        name: 'Component'
+        route: 'component'
     }, {
         id: 2,
-        name: 'Model'
+        route: 'model'
     }, {
         id: 3,
-        name: 'User'
+        route: 'user'
     }];
-    const modelModel = app.getModel('Model');
+    const serviceModel = app.getModel('Service');
 
     beforeAll(() => {
-        modelService = app.service(serviceRoute);
-        helpers.setCRUDSpies(modelModel, models);
+        serviceService = app.service(serviceRoute);
+        helpers.setCRUDSpies(serviceModel, services);
     });
 
     it('should be defined', () => {
-        expect(modelService).toBeDefined();
-        expect(modelService).not.toBeNull();
+        expect(serviceService).toBeDefined();
+        expect(serviceService).not.toBeNull();
     });
 
     it('should return values when find is called', (done) => {
-        modelService.find()
+        serviceService.find()
             .then((result: any) => {
                 expect(result).toBeDefined();
-                expect(result.total).toBe(models.length);
-                expect(result.data).toEqual(models);
+                expect(result.total).toBe(services.length);
+                expect(result.data).toEqual(services);
                 done();
             });
     });
 
     it('should return a value when get is called', (done) => {
         let id = 3;
-        modelService.get(id)
+        serviceService.get(id)
             .then((result: any) => {
                 expect(result).toBeDefined();
-                expect(result).toEqual(helpers.getById(models, id));
+                expect(result).toEqual(helpers.getById(services, id));
                 done();
             });
     });
 
     it('should return a new instance when create is called', (done) => {
-        let prevLength = models.length;
+        let prevLength = services.length;
         let newValues = {
-            name: 'Person'
+            route: 'person'
         };
-        modelService.create(newValues).then((result: any) => {
+        serviceService.create(newValues).then((result: any) => {
                 expect(result).toBeDefined();
                 expect(result.id).toBeDefined();
                 expect(result.id).toBe(prevLength + 1);
-                expect(result.name).toBeDefined();
-                expect(result.name).toBe(newValues.name);
-                expect(models.length).toBe(prevLength + 1);
+                expect(result.route).toBeDefined();
+                expect(result.route).toBe(newValues.route);
+                expect(services.length).toBe(prevLength + 1);
                 done();
             });
     });
@@ -68,16 +68,16 @@ describe('Model Service', () => {
     it('should return an updated instance (not just the properties) when update is called', (done) => {
         let id = 2;
         let newValues = {
-            name: 'Model1'
+            route: 'service/1'
         };
-        modelService.update(id, newValues).then((result: any) => {
-                let updatedRow = helpers.getById(models, id);
+        serviceService.update(id, newValues).then((result: any) => {
+                let updatedRow = helpers.getById(services, id);
 
                 expect(result).toBeDefined();
                 expect(result.id).toBeDefined();
                 expect(result.id).toBe(updatedRow.id);
                 expect(result).toEqual(updatedRow);
-                expect(result.name).toBe(newValues.name);
+                expect(result.route).toBe(newValues.route);
                 done();
             });
     });
@@ -85,30 +85,30 @@ describe('Model Service', () => {
     it('should return an updated an instance with its updated properties when patch is called', (done) => {
         let id = 2;
         let newValues = {
-            name: 'Model2'
+            route: 'service/2'
         };
-        modelService.patch(id, newValues).then((result: any) => {
-                let updatedRow = helpers.getById(models, id);
+        serviceService.patch(id, newValues).then((result: any) => {
+                let updatedRow = helpers.getById(services, id);
 
                 expect(result).toBeDefined();
                 expect(result.id).toBeDefined();
                 expect(result.id).toBe(updatedRow.id);
                 expect(result).toEqual(updatedRow);
-                expect(result.name).toBeDefined();
-                expect(result.name).toBe(updatedRow.name);
-                expect(result.name).toBe(newValues.name);
+                expect(result.route).toBeDefined();
+                expect(result.route).toBe(updatedRow.route);
+                expect(result.route).toBe(newValues.route);
                 done();
             });
     });
 
     it('should return the removed instance by id when remove is called', (done) => {
         let id = 2;
-        let item = helpers.getById(models, id);
+        let item = helpers.getById(services, id);
 
-        modelService.remove(id).then((result: any) => {
+        serviceService.remove(id).then((result: any) => {
                 expect(result).toBeDefined();
                 expect(result).toEqual(item);
-                expect(helpers.getById(models, id)).toBeUndefined();
+                expect(helpers.getById(services, id)).toBeUndefined();
 
                 done();
             });

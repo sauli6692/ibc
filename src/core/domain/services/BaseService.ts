@@ -11,16 +11,18 @@ export abstract class BaseService {
 	private _hooks: IServiceHooks;
 	private _filters: Function;
 	private _schemas: { create: ISchema, update?: ISchema };
+	private _authenticate: boolean;
 
 	constructor(component: string, app: any) {
 		this._app = app;
-		let { route, hooks, filters, schemas } = this.define();
+		let { route, hooks, filters, schemas, authenticate } = this.define();
 
 		this._component = component;
 		this._route = route;
+		this._authenticate = lodash.isNil(authenticate) || authenticate;
 		this._servicePath = `/${this.component}/${this.route}`;
         this._schemas = schemas;
-		this._hooks = this.getHooks(hooks);
+        this._hooks = this.getHooks(hooks);
         this._filters = filters || null;
 	}
 
@@ -45,6 +47,9 @@ export abstract class BaseService {
 	get schemas(): { create: ISchema, update?: ISchema } {
 		return this._schemas;
 	}
+    get authenticate(): boolean {
+		return this._authenticate;
+	}
 
 	set route(route: string) {
 		this._route = route;
@@ -54,7 +59,7 @@ export abstract class BaseService {
 		this.defineService();
 		const service = this.app.service(this.servicePath);
 
-		service.hooks(this.hooks);
+        service.hooks(this.hooks);
 
 		if (!lodash.isNil(service.filter) && !lodash.isNil(this.filters)) {
 			service.filter(this.filters);
@@ -65,7 +70,7 @@ export abstract class BaseService {
 
     private getHooks(hooks: IServiceHooks): IServiceHooks {
 		let predefinedHooks = new PredefinedHooks(this).hooks;
-        let serviceHooks = hooks || this.getDefaultHooks();
+        let serviceHooks = hooks || {};
 
 		lodash.forOwn(predefinedHooks, (hook, type) => {
 			lodash.forOwn(hook, (value, key) => {
@@ -79,33 +84,16 @@ export abstract class BaseService {
         return predefinedHooks;
     }
 
-	private getDefaultHooks(): IServiceHooks {
-		let hook: IHook = {
-			all: [],
-			find: [],
-			get: [],
-			create: [],
-			update: [],
-			patch: [],
-			remove: []
-		};
-
-		return {
-			before: hook,
-			after: hook,
-			error: hook
-		};
-	}
-
 	protected abstract defineService(): void;
 
 	protected abstract define(): {
         route: string,
+		schemas: {
+			create: ISchema,
+			update?: ISchema
+		},
         hooks?: IServiceHooks,
-        filters?: Function,
-        schemas: {
-            create: ISchema,
-            update?: ISchema
-        }
+		authenticate?: boolean,
+        filters?: Function
     };
 }

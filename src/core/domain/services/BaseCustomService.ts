@@ -28,11 +28,12 @@ export abstract class BaseCustomService extends BaseService {
 
     protected abstract define(): {
         route: string,
-        hooks?: IServiceHooks,
-        filters?: Function,
         schemas: {
             create: ISchema,
             update?: ISchema
-        }
+        },
+        authenticate?: boolean,
+        hooks?: IServiceHooks,
+        filters?: Function
     };
 }

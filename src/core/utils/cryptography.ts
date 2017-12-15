@@ -1,5 +1,7 @@
 const crypto = require('crypto');
 
+const config = require('../../../config/default.json').authentication;
+
 export const hashPassword = (password: string) => {
     return new Promise((resolve, reject) => {
         crypto.randomBytes(16, (err: any, buf: any) => {
@@ -25,7 +27,7 @@ export const compareHash = (user: any, password: string) => {
 };
 
 function generateHash(password: string, salt: string) {
-    let iterations = 100000;
+    let iterations = config.iterations;
     return new Promise((resolve, reject) => {
         crypto.pbkdf2(password, salt, iterations, 64, 'sha512', (e: any, hash: any) => {
             if (e) reject(e);

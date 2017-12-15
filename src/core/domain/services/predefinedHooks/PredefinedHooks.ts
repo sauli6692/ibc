@@ -4,6 +4,7 @@ import { IServiceHooks, IHook } from '../IService';
 import { BaseService } from '../BaseService';
 
 import { validationHooks } from './validation.hook';
+import { authenticationHooks } from './authentication.hook';
 
 export class PredefinedHooks {
 	private _service: BaseService;
@@ -35,6 +36,10 @@ export class PredefinedHooks {
 		let beforeHooks = lodash.cloneDeep(this._hook);
 
 		validationHooks(this._service.schemas, beforeHooks);
+
+        if (this._service.authenticate && !this._service.app.get('authentication').bypass) {
+            authenticationHooks(this._service.component, this._service.route, beforeHooks);
+        }
 
 		return beforeHooks;
 	}

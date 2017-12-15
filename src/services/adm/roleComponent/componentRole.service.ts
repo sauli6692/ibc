@@ -5,6 +5,7 @@ import { BaseCustomService, IService, ISchema } from '../../../core/domain/servi
 import { BaseModel } from '../../../core/domain/models';
 import { RoleComponent } from './roleComponent.model';
 import { schemas } from './componentRole.schema';
+import { hooks } from './componentRole.hooks';
 
 export class ComponentRoleService extends BaseCustomService implements IService {
     private RoleComponent: any;
@@ -25,13 +26,15 @@ export class ComponentRoleService extends BaseCustomService implements IService 
     protected define() {
         return {
             route: 'components/:componentId/roles',
-            schemas
+            schemas,
+            hooks,
+            authenticate: false
         };
     }
 
     public find(params: any): Promise<any> {
         return this.Component.findAll({
-            where: { id: params.componentId },
+            where: { [params.property]: params.componentId },
             include: [{
                 model: this.Role,
                 as: 'roles'
@@ -52,7 +55,7 @@ export class ComponentRoleService extends BaseCustomService implements IService 
 
     public get(id: number, params: any): Promise<any> {
         return this.Component.findAll({
-            where: { id: params.componentId },
+            where: { [params.property]: params.componentId },
             include: [{
                 model: this.Role,
                 as: 'roles',
@@ -80,7 +83,7 @@ export class ComponentRoleService extends BaseCustomService implements IService 
 
     public remove(id: number, params: any): Promise<any> {
         let where: any = {
-            componentId: params.componentId
+            [params.property]: params.componentId
         };
 
         if (!lodash.isNil(id)) {

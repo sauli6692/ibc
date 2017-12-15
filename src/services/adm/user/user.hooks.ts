@@ -1,27 +1,19 @@
 const { authenticate } = require('feathers-authentication').hooks;
 const commonHooks = require('feathers-hooks-common');
-const { restrictToOwner } = require('feathers-authentication-hooks');
+const { restrictToRoles } = require('feathers-authentication-hooks');
 
 import { IServiceHooks } from '../../../core/domain/services/IService';
 import { hashPassword } from '../../../core/utils/cryptography';
 
-const restrict: any = [
-	authenticate('jwt'),
-	// restrictToOwner({
-	// 	idField: 'id',
-	// 	ownerField: 'id'
-	// })
-];
-
 export const hooks: IServiceHooks = {
 	before: {
-		all: [],
-		find: [authenticate('jwt')],
-		get: [...restrict],
-		create: [...restrict, hashPasswordHook],
-		update: [...restrict, hashPasswordHook],
-		patch: [...restrict, hashPasswordHook],
-		remove: [...restrict]
+	// 	all: [],
+	// 	find: [authenticate('jwt')],
+	// 	get: [],
+		create: [hashPasswordHook],
+		update: [hashPasswordHook],
+		patch: [hashPasswordHook],
+	// 	remove: []
 	},
 
 	after: {

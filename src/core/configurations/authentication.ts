@@ -12,20 +12,16 @@ export default function() {
 	const config = app.get('authentication');
 
     // Workarround to avoid feathers behaviour for usernameField
-    // https://github.com/feathersjs/authentication/issues/508
+    // Reference: https://github.com/feathersjs/authentication/issues/508
     config.local.usernameField = 'username';
 
-	// Set up authentication with the secret
 	app.configure(authentication(config));
 	app.configure(jwt());
 
 	app.configure(local(lodash.assign({
-        Verifier: CustomVerifier
+        Verifier: PBKDF2Verifier
     }, config.local)));
 
-	// The `authentication` service is used to create a JWT.
-	// The before `create` hook registers strategies that can be used
-	// to create a new valid JWT (e.g. local or oauth2)
 	app.service('authentication').hooks({
 		before: {
 			create: [
@@ -42,7 +38,7 @@ export default function() {
 	});
 }
 
-class CustomVerifier extends Verifier {
+class PBKDF2Verifier extends Verifier {
 	verify(req: any, username: string, password: string, done: any) {
 		this.app.service(this.options.service).find({
 			query: {
@@ -50,15 +46,27 @@ class CustomVerifier extends Verifier {
 			}
 		}).then((user: any) => {
 			if (lodash.isNil(user) || user.total === 0) {
-                return done(null, false);
+                done(null, false);
             }
             user = user.data[0];
 
             compareHash(user, password)
-                .then((isValid) => {
-                    done(null, isValid, {
-                        username: user.username
-                    });
+                .then(isValid => {
+                    if (isValid) {
+                        this.app.service(`${this.options.service}/:userId/roles`).find({
+							userId: user.id
+						}).then((roles: any) => {
+                            console.log(roles);
+                            let payload = {
+								id: user.id,
+								memberId: user.memberId,
+								roles: lodash.map(roles, (role: any) => role.id)
+                            };
+                            done(null, payload, payload);
+                        }).catch(done);
+                    } else {
+						done(null, isValid);
+					}
                 }).catch(done);
 		}).catch(done);
 	}

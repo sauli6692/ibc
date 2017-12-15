@@ -25,13 +25,15 @@ export class ComponentModelService extends BaseCustomService implements IService
     protected define() {
         return {
             route: 'components/:componentId/models',
-            schemas
+            schemas,
+            authenticate: false
         };
     }
 
     public find(params: any): Promise<any> {
+        let property = isNaN(params.componentId) ? 'name' : 'id';
         return this.Component.findAll({
-            where: { id: params.componentId },
+            where: { [property]: params.componentId },
             include: [{
                 model: this.Model,
                 as: 'models',
@@ -54,9 +56,11 @@ export class ComponentModelService extends BaseCustomService implements IService
         });
     }
 
-    public get(id: number, params: any): Promise<any> {
+    public get(id: any, params: any): Promise<any> {
+        let modelProperty = isNaN(id) ? 'name' : 'id';
+        let componentProperty = isNaN(params.componentId) ? 'name' : 'id';
         return this.Component.findAll({
-            where: { id: params.componentId },
+            where: { [componentProperty]: params.componentId },
             include: [{
                 model: this.Model,
                 as: 'models',
@@ -64,7 +68,7 @@ export class ComponentModelService extends BaseCustomService implements IService
                     as: 'privileges',
                     attributes: ['privileges']
                 },
-                where: { id }
+                where: { [modelProperty]: id }
             }]
         }).then((results: any) => {
             if (lodash.isEmpty(results)) {

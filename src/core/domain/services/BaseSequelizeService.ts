@@ -39,13 +39,14 @@ export abstract class BaseSequelizeService extends BaseService {
 
     protected abstract define(): {
         route: string,
-        hooks?: IServiceHooks,
-        filters?: Function,
         model: any,
-        id?: string,
         schemas: {
             create: ISchema,
             update?: ISchema
-        }
+        },
+        authenticate?: boolean,
+        hooks?: IServiceHooks,
+        filters?: Function,
+        id?: string
     };
 }

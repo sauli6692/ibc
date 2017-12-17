@@ -40,7 +40,7 @@ export abstract class BaseSequelizeService extends BaseService {
     protected abstract define(): {
         route: string,
         model: any,
-        schemas: {
+        schemas?: {
             create: ISchema,
             update?: ISchema
         },

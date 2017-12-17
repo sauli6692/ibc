@@ -28,7 +28,7 @@ export abstract class BaseCustomService extends BaseService {
 
     protected abstract define(): {
         route: string,
-        schemas: {
+        schemas?: {
             create: ISchema,
             update?: ISchema
         },

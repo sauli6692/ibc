@@ -6,6 +6,7 @@ import { ComponentServiceService } from './componentService/componentService.ser
 import { RoleComponentService } from './roleComponent/roleComponent.service';
 import { ComponentRoleService } from './roleComponent/componentRole.service';
 import { UserRoleService } from './userRole/userRole.service';
+import { InstallerService } from './installer/installer.service';
 
 export const adm = {
     name: 'adm',
@@ -17,6 +18,7 @@ export const adm = {
         componentService: ComponentServiceService,
         roleComponent: RoleComponentService,
         componentRole: ComponentRoleService,
-        userRole: UserRoleService
+        userRole: UserRoleService,
+        installerService: InstallerService
     }
 };

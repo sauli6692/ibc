@@ -88,7 +88,7 @@ export abstract class BaseService {
 
 	protected abstract define(): {
         route: string,
-		schemas: {
+		schemas?: {
 			create: ISchema,
 			update?: ISchema
 		},

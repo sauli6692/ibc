@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 const Sequelize = require('sequelize');
 
 import { IAssociation, IAssociationOption } from './IAssociation';
@@ -19,7 +19,7 @@ export abstract class BaseModel {
 
 		this._app = app;
 		this._component = component;
-		this._name = lodash.upperFirst(lodash.camelCase(definition.name));
+		this._name = _.upperFirst(_.camelCase(definition.name));
 		this._fields = definition.fields;
 		this.options = this.setOptions();
 		this._associations = this.setAssociations();
@@ -50,11 +50,11 @@ export abstract class BaseModel {
 		return this._associations;
 	}
 	get identity(): string {
-		return this.component.toUpperCase() + '_' + lodash.snakeCase(this.name).toUpperCase();
+		return this.component.toUpperCase() + '_' + _.snakeCase(this.name).toUpperCase();
 	}
 
 	set options(options: any) {
-		options.freezeTableName = lodash.isNil(options.freezeTableName) || options.freezeTableName;
+		options.freezeTableName = _.isNil(options.freezeTableName) || options.freezeTableName;
 		options.tableName = options.tableName || this.identity;
 		this._options = options;
 	}
@@ -74,8 +74,8 @@ export abstract class BaseModel {
 	}
 
     private createModel() {
-        lodash.forOwn(this.fields, (fieldDefinition: any, key: string) => {
-            fieldDefinition.field = lodash.snakeCase(key);
+        _.forOwn(this.fields, (fieldDefinition: any, key: string) => {
+            fieldDefinition.field = _.snakeCase(key);
         });
 
         this._model = this.sequelizeClient
@@ -88,35 +88,35 @@ export abstract class BaseModel {
         let setupHasAssociations = (functionName: string, models: any) => {
             return (options: IAssociationOption) => {
                 let modelName = options.model;
-                let isSource = !lodash.isNil(options.source) && options.source;
+                let isSource = !_.isNil(options.source) && options.source;
 				let model = models[modelName] || modelName;
                 delete options.model;
                 delete options.source;
 
 				if (isSource) {
-                    options.foreignKey = options.foreignKey || lodash.camelCase(this.name) + 'Id';
+                    options.foreignKey = options.foreignKey || _.camelCase(this.name) + 'Id';
 					this._model[functionName](model, options);
 				} else {
-                    options.foreignKey = options.foreignKey || lodash.camelCase(modelName) + 'Id';
+                    options.foreignKey = options.foreignKey || _.camelCase(modelName) + 'Id';
 					this._model.belongsTo(model, options);
 				}
             };
         };
 
 		return (models: any) => {
-			if (!lodash.isNil(this.associations.oneToOne)) {
-				lodash.forEach(this.associations.oneToOne, setupHasAssociations('hasOne', models));
+			if (!_.isNil(this.associations.oneToOne)) {
+				_.forEach(this.associations.oneToOne, setupHasAssociations('hasOne', models));
 			}
 
-			if (!lodash.isNil(this.associations.oneToMany)) {
-				lodash.forEach(this.associations.oneToMany, setupHasAssociations('hasMany', models));
+			if (!_.isNil(this.associations.oneToMany)) {
+				_.forEach(this.associations.oneToMany, setupHasAssociations('hasMany', models));
 			}
 
-			if (!lodash.isNil(this.associations.manyToMany)) {
-				lodash.forEach(this.associations.manyToMany, (options: IAssociationOption) => {
+			if (!_.isNil(this.associations.manyToMany)) {
+				_.forEach(this.associations.manyToMany, (options: IAssociationOption) => {
 					let model = options.model;
                     delete options.model;
-					options.foreignKey = options.foreignKey || lodash.camelCase(this.name) + 'Id';
+					options.foreignKey = options.foreignKey || _.camelCase(this.name) + 'Id';
 					this._model.belongsToMany(models[model], options);
 				});
 			}

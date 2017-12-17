@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 export const schemas = {
     create: {

@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService } from '../../../core/domain/services';
@@ -35,9 +35,9 @@ export class InstallerService extends BaseCustomService implements IService {
     private joinSeeders(): Array<any> {
         let result: Array<any> = [];
 
-        lodash.forOwn(seeders, (component, componentName) => {
-            lodash.forOwn(component, (seeder: any, model: string) => {
-                    result = lodash.concat(result, this.addSeeder(seeder, componentName, model));
+        _.forOwn(seeders, (component, componentName) => {
+            _.forOwn(component, (seeder: any, model: string) => {
+                    result = _.concat(result, this.addSeeder(seeder, componentName, model));
             });
         });
 
@@ -50,7 +50,7 @@ export class InstallerService extends BaseCustomService implements IService {
         if (!seeder.added) {
             try {
                 let dependencies = this.getDependencies(component, model, seeder.dependencies);
-                result = lodash.concat(result, dependencies);
+                result = _.concat(result, dependencies);
 
                 seeder.model = model;
                 seeder.added = true;
@@ -59,7 +59,7 @@ export class InstallerService extends BaseCustomService implements IService {
                 if (!seeder.dependencyError) {
                     let error = {};
                     if (e instanceof InvalidDependency) {
-                        error = lodash.assign({
+                        error = _.assign({
                             source: { component, model }
                         }, e.toJSON());
                     } else {
@@ -76,23 +76,23 @@ export class InstallerService extends BaseCustomService implements IService {
     }
 
     private getDependencies(component: string, sourceModel: string, dependencies: any): Array<any> {
-        if (lodash.isNil(dependencies)) return [];
+        if (_.isNil(dependencies)) return [];
 
-        return lodash.reduce(dependencies, (prev, dependency: any) => {
+        return _.reduce(dependencies, (prev, dependency: any) => {
             let componentName = dependency.component || component;
             let componentSeeder = seeders[componentName];
 
-            if (lodash.isNil(componentSeeder)) {
+            if (_.isNil(componentSeeder)) {
                 throw new InvalidDependency(dependency);
             }
 
             let seeder = componentSeeder[dependency.model];
 
-            if (lodash.isNil(seeder)) {
+            if (_.isNil(seeder)) {
                 throw new InvalidDependency(dependency);
             }
 
-            prev = lodash.concat(prev, this.addSeeder(seeder, componentName, dependency.model));
+            prev = _.concat(prev, this.addSeeder(seeder, componentName, dependency.model));
 
             return prev;
         }, []);

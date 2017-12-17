@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService } from '../../../core/domain/services';
@@ -44,10 +44,10 @@ export class ComponentServiceService extends BaseCustomService implements IServi
                 }
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Component not found.');
             }
-            return lodash.map(results[0].services, (service: any) => {
+            return _.map(results[0].services, (service: any) => {
                 return {
                     id: service.id,
                     route: service.route,
@@ -72,7 +72,7 @@ export class ComponentServiceService extends BaseCustomService implements IServi
                 where: { [serviceProperty]: id }
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Not found.');
             }
             let service = results[0].services[0];
@@ -85,7 +85,7 @@ export class ComponentServiceService extends BaseCustomService implements IServi
     }
 
     public create(data: any, params: any): Promise<any> {
-        data.componentId = lodash.parseInt(params.componentId);
+        data.componentId = _.parseInt(params.componentId);
 
         return this.ComponentService.build(data).save();
     }
@@ -106,7 +106,7 @@ export class ComponentServiceService extends BaseCustomService implements IServi
             componentId: params.componentId
         };
 
-        if (!lodash.isNil(id)) {
+        if (!_.isNil(id)) {
             where.serviceId = id;
         }
 

@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 const Sequelize = require('sequelize');
 
 import { BaseModel } from '../../../../src/core/domain/models';
@@ -70,7 +70,7 @@ describe('BaseModel', () => {
 
     it('should have an options property with default values', () => {
         let options = newModel.options;
-        let optionsProperties = lodash.keys(options);
+        let optionsProperties = _.keys(options);
 
         expect(options.freezeTableName).toBeDefined();
         expect(options.freezeTableName).toBe(true);

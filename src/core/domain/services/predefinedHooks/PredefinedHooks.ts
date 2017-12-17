@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 import { IServiceHooks, IHook } from '../IService';
 import { BaseService } from '../BaseService';
@@ -33,7 +33,7 @@ export class PredefinedHooks {
 	}
 
 	private defineBeforeHooks(): IHook {
-		let beforeHooks = lodash.cloneDeep(this._hook);
+		let beforeHooks = _.cloneDeep(this._hook);
 
 		validationHooks(this._service.schemas, beforeHooks);
 
@@ -45,12 +45,12 @@ export class PredefinedHooks {
 	}
 
 	private defineAfterHooks(): IHook {
-		let afterHooks = lodash.cloneDeep(this._hook);
+		let afterHooks = _.cloneDeep(this._hook);
 		return afterHooks;
 	}
 
 	private defineErrorHooks(): IHook {
-		let errorHooks = lodash.cloneDeep(this._hook);
+		let errorHooks = _.cloneDeep(this._hook);
 		return errorHooks;
 	}
 }

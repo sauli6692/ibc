@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 import { IServiceHooks } from '../../../core/domain/services';
 

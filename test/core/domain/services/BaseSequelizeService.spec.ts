@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 import { BaseSequelizeService } from '../../../../src/core/domain/services';
 import { PredefinedHooks } from '../../../../src/core/domain/services/PredefinedHooks';

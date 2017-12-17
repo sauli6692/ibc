@@ -1,8 +1,8 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import { IServiceHooks } from '../../../core/domain/services';
 
 let includeJoins = (hook: any) => {
-    if (!lodash.isNil(hook.params.query) && hook.params.query.fullDetails) {
+    if (!_.isNil(hook.params.query) && hook.params.query.fullDetails) {
         delete hook.params.query.fullDetails;
         hook.params.sequelize = {
             include: [{

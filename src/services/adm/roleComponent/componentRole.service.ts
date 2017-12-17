@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
@@ -40,10 +40,10 @@ export class ComponentRoleService extends BaseCustomService implements IService 
                 as: 'roles'
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Component not found.');
             }
-            return lodash.map(results[0].roles, (role: any) => {
+            return _.map(results[0].roles, (role: any) => {
                 return {
                     id: role.id,
                     name: role.name,
@@ -62,7 +62,7 @@ export class ComponentRoleService extends BaseCustomService implements IService 
                 where: { id }
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Not found.');
             }
 
@@ -76,7 +76,7 @@ export class ComponentRoleService extends BaseCustomService implements IService 
     }
 
     public create(data: any, params: any): Promise<any> {
-        data.componentId = lodash.parseInt(params.componentId);
+        data.componentId = _.parseInt(params.componentId);
 
         return this.RoleComponent.build(data).save();
     }
@@ -86,7 +86,7 @@ export class ComponentRoleService extends BaseCustomService implements IService 
             [params.property]: params.componentId
         };
 
-        if (!lodash.isNil(id)) {
+        if (!_.isNil(id)) {
             where.roleId = id;
         }
 

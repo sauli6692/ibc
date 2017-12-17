@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService } from '../../../core/domain/services';
@@ -45,15 +45,15 @@ export class VisitService extends BaseCustomService implements IService {
                 }]
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Collaborator not found.');
             }
 
-            return lodash.map(results[0].visits, (row: any) => {
+            return _.map(results[0].visits, (row: any) => {
                 return {
                     date: row.Visit.date,
                     route: row.routeId,
-                    harvest: lodash.merge({
+                    harvest: _.merge({
                         discarded: row.discarded,
                         discardedReason: row.discardedReason,
                     }, row.information.dataValues)
@@ -75,7 +75,7 @@ export class VisitService extends BaseCustomService implements IService {
                 where: { personId: id }
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Not found.');
             }
 
@@ -83,7 +83,7 @@ export class VisitService extends BaseCustomService implements IService {
             return {
                 date: row.Visit.date,
                 route: row.routeId,
-                harvest: lodash.merge({
+                harvest: _.merge({
                     discarded: row.discarded,
                     discardedReason: row.discardedReason,
                 }, row.information.dataValues)
@@ -92,7 +92,7 @@ export class VisitService extends BaseCustomService implements IService {
     }
 
     public create(data: any, params: any): Promise<any> {
-        data.collaboratorId = lodash.parseInt(params.collaboratorId);
+        data.collaboratorId = _.parseInt(params.collaboratorId);
 
         return this.Visit.build(data).save();
     }
@@ -113,7 +113,7 @@ export class VisitService extends BaseCustomService implements IService {
             collaboratorId: params.collaboratorId
         };
 
-        if (!lodash.isNil(id)) {
+        if (!_.isNil(id)) {
             where.harvestId = id;
         }
 

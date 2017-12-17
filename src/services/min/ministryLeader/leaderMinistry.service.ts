@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService } from '../../../core/domain/services';
@@ -37,11 +37,11 @@ export class LeaderMinistryService extends BaseCustomService implements IService
                 as: 'ministries'
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Leader not found.');
             }
 
-            return lodash.map(results[0].ministries, (ministry: any) => {
+            return _.map(results[0].ministries, (ministry: any) => {
                 return {
                     id: ministry.id,
                     name: ministry.name,
@@ -60,7 +60,7 @@ export class LeaderMinistryService extends BaseCustomService implements IService
                 where: { id }
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Not foud.');
             }
             let ministry = results[0].ministries[0];
@@ -74,7 +74,7 @@ export class LeaderMinistryService extends BaseCustomService implements IService
     }
 
     public create(data: any, params: any): Promise<any> {
-        data.leaderId = lodash.parseInt(params.leaderId);
+        data.leaderId = _.parseInt(params.leaderId);
 
         return this.MinistryLeader.build(data).save();
     }
@@ -84,7 +84,7 @@ export class LeaderMinistryService extends BaseCustomService implements IService
             leaderId: params.leaderId
         };
 
-        if (!lodash.isNil(id)) {
+        if (!_.isNil(id)) {
             where.ministryId = id;
         }
 

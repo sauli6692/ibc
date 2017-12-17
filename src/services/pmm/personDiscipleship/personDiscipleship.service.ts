@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService } from '../../../core/domain/services';
@@ -45,31 +45,31 @@ export class PersonDiscipleshipService extends BaseCustomService implements ISer
                 as: 'lesson'
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Person not found.');
             }
 
-            return lodash.map(results, (row: any) => {
+            return _.map(results, (row: any) => {
                 let result: any = {
                     startDate: row.startDate,
                     endDate: row.endDate
                 };
 
-                if (!lodash.isNil(row.discipleship)) {
+                if (!_.isNil(row.discipleship)) {
                     result.discipleship = {
                         id: row.discipleship.id,
                         name: row.discipleship.name
                     };
                 }
 
-                if (!lodash.isNil(row.teacher)) {
+                if (!_.isNil(row.teacher)) {
                     result.teacher = {
                         id: row.teacher.id,
                         name: `${row.teacher.firstname} ${row.teacher.lastname}`
                     };
                 }
 
-                if (!lodash.isNil(row.lesson)) {
+                if (!_.isNil(row.lesson)) {
                     result.lesson = {
                         id: row.lesson.id,
                         name: row.lesson.name
@@ -98,7 +98,7 @@ export class PersonDiscipleshipService extends BaseCustomService implements ISer
                 as: 'lesson'
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Not found.');
             }
 
@@ -108,21 +108,21 @@ export class PersonDiscipleshipService extends BaseCustomService implements ISer
                 endDate: row.endDate
             };
 
-            if (!lodash.isNil(row.discipleship)) {
+            if (!_.isNil(row.discipleship)) {
                 result.discipleship = {
                     id: row.discipleship.id,
                     name: row.discipleship.name
                 };
             }
 
-            if (!lodash.isNil(row.teacher)) {
+            if (!_.isNil(row.teacher)) {
                 result.teacher = {
                     id: row.teacher.id,
                     name: `${row.teacher.firstname} ${row.teacher.lastname}`
                 };
             }
 
-            if (!lodash.isNil(row.lesson)) {
+            if (!_.isNil(row.lesson)) {
                 result.lesson = {
                     id: row.lesson.id,
                     name: row.lesson.name
@@ -134,7 +134,7 @@ export class PersonDiscipleshipService extends BaseCustomService implements ISer
     }
 
     public create(data: any, params: any): Promise<any> {
-        data.discipleId = lodash.parseInt(params.discipleId);
+        data.discipleId = _.parseInt(params.discipleId);
 
         return this.PersonDiscipleship.build(data).save();
     }
@@ -155,7 +155,7 @@ export class PersonDiscipleshipService extends BaseCustomService implements ISer
             discipleId: params.discipleId
         };
 
-        if (!lodash.isNil(id)) {
+        if (!_.isNil(id)) {
             where.discipleshipId = id;
         }
 

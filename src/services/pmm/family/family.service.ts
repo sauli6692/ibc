@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService } from '../../../core/domain/services';
@@ -41,11 +41,11 @@ export class FamilyService extends BaseCustomService implements IService {
                 as: 'familyRelationship'
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Person not found.');
             }
 
-            return lodash.map(results, (row: any) => {
+            return _.map(results, (row: any) => {
                 let result = row.familyPerson.dataValues;
                 result.relationship = row.familyRelationship.value;
                 return result;
@@ -64,7 +64,7 @@ export class FamilyService extends BaseCustomService implements IService {
                 as: 'familyRelationship'
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Not found.');
             }
 
@@ -75,10 +75,10 @@ export class FamilyService extends BaseCustomService implements IService {
     }
 
     public create(data: any, params: any): Promise<any> {
-        data.personId = lodash.parseInt(params.personId);
+        data.personId = _.parseInt(params.personId);
         return this.Family.build(data).save().then(() => {
             data.personId = data.familyId;
-            data.familyId = lodash.parseInt(params.personId);
+            data.familyId = _.parseInt(params.personId);
 
             return this.Family.build(data).save();
         });
@@ -100,12 +100,12 @@ export class FamilyService extends BaseCustomService implements IService {
             personId: params.personId
         };
 
-        if (!lodash.isNil(id)) {
+        if (!_.isNil(id)) {
             where.familyId = id;
         }
 
         return this.Family.destroy({ where }).then(() => {
-            if (!lodash.isNil(where.familyId)) {
+            if (!_.isNil(where.familyId)) {
                 where.personId = where.familyId;
             }
 

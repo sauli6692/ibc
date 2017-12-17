@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 export class Exception extends Error {
     public toJSON(): any {
@@ -7,7 +7,7 @@ export class Exception extends Error {
             message: this.message
         };
 
-        lodash.forOwn(this, (property, key) => {
+        _.forOwn(this, (property, key) => {
             json[key] = property;
         });
         return json;

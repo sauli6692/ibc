@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
 import { BaseCustomService, IService, ISchema } from '../../../core/domain/services';
@@ -43,11 +43,11 @@ export class MinistryMemberService extends BaseCustomService implements IService
                 }]
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Ministry not found.');
             }
 
-            return lodash.map(results[0].members, (member: any) => member.information);
+            return _.map(results[0].members, (member: any) => member.information);
         });
     }
 
@@ -64,7 +64,7 @@ export class MinistryMemberService extends BaseCustomService implements IService
                 where: { personId: id }
             }]
         }).then((results: any) => {
-            if (lodash.isEmpty(results)) {
+            if (_.isEmpty(results)) {
                 throw new Errors.NotFound('Not found.');
             }
             return results[0].members[0].information;
@@ -72,7 +72,7 @@ export class MinistryMemberService extends BaseCustomService implements IService
     }
 
     public create(data: any, params: any): Promise<any> {
-        data.ministryId = lodash.parseInt(params.ministryId);
+        data.ministryId = _.parseInt(params.ministryId);
 
         return this.MinistryMember.build(data).save();
     }
@@ -82,7 +82,7 @@ export class MinistryMemberService extends BaseCustomService implements IService
             ministryId: params.ministryId
         };
 
-        if (!lodash.isNil(id)) {
+        if (!_.isNil(id)) {
             where.memberId = id;
         }
 

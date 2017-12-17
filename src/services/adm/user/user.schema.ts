@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 const commons = {
     type: 'object',
@@ -23,6 +23,6 @@ const create = {
 };
 
 export const schemas = {
-    create: lodash.merge(create, commons),
+    create: _.merge(create, commons),
     update: commons
 };

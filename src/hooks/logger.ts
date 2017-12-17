@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import { logger } from '../core/utils/logger';
 
 export const loggerHook = (hook: any) => {
@@ -13,7 +13,7 @@ export const loggerHook = (hook: any) => {
     logger.debug('hook.params', hook.params);
 
     if (hook.error) {
-        let error = lodash.cloneDeep(hook.error);
+        let error = _.cloneDeep(hook.error);
         delete error.hook;
         logger.error(error);
     }

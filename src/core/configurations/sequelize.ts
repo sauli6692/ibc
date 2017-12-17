@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import { logger } from '../utils/logger';
 const Sequelize = require('sequelize');
 
@@ -20,7 +20,7 @@ export default function() {
 
 		// Set up data relationships
 		const models = sequelize.models;
-		lodash.forOwn(models, (model: any) => {
+		_.forOwn(models, (model: any) => {
 			if ('associate' in model) {
 				model.associate(models);
 			}

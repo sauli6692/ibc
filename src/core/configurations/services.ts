@@ -1,17 +1,16 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import { services } from '../../services';
 import { logger } from '../utils/logger';
 
 export default function() {
     const app = this;
-	let servicesInstances = lodash.reduce(services, (prev: any, component: any) => {
-        let componentServices = lodash
-            .map(component.services, (Service: any) => new Service(component.name, app));
+	let servicesInstances = _.reduce(services, (prev: any, component: any) => {
+        let componentServices = _.map(component.services, (Service: any) => new Service(component.name, app));
 
-        return lodash.concat(prev, componentServices);
+        return _.concat(prev, componentServices);
     }, []);
 
-    lodash.forEach(servicesInstances, (service) => {
+    _.forEach(servicesInstances, (service) => {
         service.afterInit();
         service.createService();
     });

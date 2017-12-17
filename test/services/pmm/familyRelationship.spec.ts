@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 const Sequelize = require('sequelize');
 
 import helpers from '../helpers';

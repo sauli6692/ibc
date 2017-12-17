@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 const authentication = require('feathers-authentication');
 const jwt = require('feathers-authentication-jwt');
@@ -18,7 +18,7 @@ export default function() {
 	app.configure(authentication(config));
 	app.configure(jwt());
 
-	app.configure(local(lodash.assign({
+	app.configure(local(_.assign({
         Verifier: PBKDF2Verifier
     }, config.local)));
 
@@ -45,7 +45,7 @@ class PBKDF2Verifier extends Verifier {
 				username
 			}
 		}).then((user: any) => {
-			if (lodash.isNil(user) || user.total === 0) {
+			if (_.isNil(user) || user.total === 0) {
                 done(null, false);
             }
             user = user.data[0];
@@ -60,7 +60,7 @@ class PBKDF2Verifier extends Verifier {
                             let payload = {
 								id: user.id,
 								memberId: user.memberId,
-								roles: lodash.map(roles, (role: any) => role.id)
+								roles: _.map(roles, (role: any) => role.id)
                             };
                             done(null, payload, payload);
                         }).catch(done);

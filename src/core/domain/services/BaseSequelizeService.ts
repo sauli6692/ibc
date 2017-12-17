@@ -2,7 +2,7 @@ import { logger } from '../../utils/logger';
 import { BaseService } from './BaseService';
 import { BaseModel } from '../models/BaseModel';
 import { IServiceHooks, ISchema } from './IService';
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 const sequelizeService = require('feathers-sequelize');
 
 export abstract class BaseSequelizeService extends BaseService {

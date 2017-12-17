@@ -1,7 +1,7 @@
 import { BaseModel } from '../models/BaseModel';
 import { IServiceHooks, IHook, ISchema } from './IService';
 import { PredefinedHooks } from './predefinedHooks';
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 export abstract class BaseService {
 	private _app: any;
@@ -19,7 +19,7 @@ export abstract class BaseService {
 
 		this._component = component;
 		this._route = route;
-		this._authenticate = lodash.isNil(authenticate) || authenticate;
+		this._authenticate = _.isNil(authenticate) || authenticate;
 		this._servicePath = `/${this.component}/${this.route}`;
         this._schemas = schemas;
         this._hooks = this.getHooks(hooks);
@@ -61,7 +61,7 @@ export abstract class BaseService {
 
         service.hooks(this.hooks);
 
-		if (!lodash.isNil(service.filter) && !lodash.isNil(this.filters)) {
+		if (!_.isNil(service.filter) && !_.isNil(this.filters)) {
 			service.filter(this.filters);
 		}
 	}
@@ -72,12 +72,12 @@ export abstract class BaseService {
 		let predefinedHooks = new PredefinedHooks(this).hooks;
         let serviceHooks = hooks || {};
 
-		lodash.forOwn(predefinedHooks, (hook, type) => {
-			lodash.forOwn(hook, (value, key) => {
-                if (lodash.isNil(serviceHooks[type])) {
+		_.forOwn(predefinedHooks, (hook, type) => {
+			_.forOwn(hook, (value, key) => {
+                if (_.isNil(serviceHooks[type])) {
                     serviceHooks[type] = {};
                 }
-				hook[key] = lodash.concat(value, serviceHooks[type][key] || []);
+				hook[key] = _.concat(value, serviceHooks[type][key] || []);
 			});
 		});
 

@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import configurations from './core/configurations';
 import middleware from './middleware';
 import { appHooks } from './hooks';
@@ -36,7 +36,7 @@ app.configure(rest());
 app.configure(socketio());
 
 // Other Configurations
-lodash.forEach(configurations, configuration => app.configure(configuration));
+_.forEach(configurations, configuration => app.configure(configuration));
 app.configure(middleware);
 
 app.hooks(appHooks);

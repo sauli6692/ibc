@@ -1,5 +1,5 @@
 import { logger } from '../../utils/logger';
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 const sequelizeService = require('feathers-sequelize');
 
 import { BaseService } from './BaseService';
@@ -13,10 +13,10 @@ export abstract class BaseCustomService extends BaseService {
     protected defineService(): void {
         let methods: string[] = ['find', 'get', 'create', 'update', 'patch', 'remove', 'setup'];
 
-        let service = lodash.reduce(methods, (prev: any, methodName: string) => {
+        let service = _.reduce(methods, (prev: any, methodName: string) => {
             let method: Function = this[methodName];
 
-            if (!lodash.isNil(method)) {
+            if (!_.isNil(method)) {
                 prev[methodName] = method;
             }
             return prev;

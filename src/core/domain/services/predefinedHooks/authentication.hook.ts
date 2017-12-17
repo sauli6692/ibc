@@ -1,4 +1,4 @@
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
 const { authenticate } = require('feathers-authentication').hooks;
@@ -24,14 +24,14 @@ export const authenticationHooks = (component: string, service: string, beforeHo
         restrictToRolesHook
     ];
 
-    beforeHooks.all = lodash.concat(beforeHooks.all, restrict);
+    beforeHooks.all = _.concat(beforeHooks.all, restrict);
 };
 
 function addPrivilegesHook(component: string, service: string) {
     return (hook: any) => {
         return getServicePrivileges(hook.app, component, service)
             .then((privileges: any) => {
-                hook.params.privileges = lodash.toUpper(privileges);
+                hook.params.privileges = _.toUpper(privileges);
                 return hook;
             });
     };
@@ -49,7 +49,7 @@ function getServicePrivileges(app: any, component: string, service: string) {
 function addComponentRolesHook(component: string) {
     return (hook: any) => {
         let privilege = privilegeMethodsMap[hook.method];
-        if (lodash.indexOf(hook.params.privileges, privilege) === -1) {
+        if (_.indexOf(hook.params.privileges, privilege) === -1) {
             throw Forbidden();
         }
 
@@ -64,7 +64,7 @@ function addComponentRolesHook(component: string) {
 function getComponentRoles(app: any, component: string) {
     return app.service('adm/components/:componentId/roles')
         .find({ componentId: component })
-        .then((roles: any) => lodash.map(roles, (role: any) => role.id))
+        .then((roles: any) => _.map(roles, (role: any) => role.id))
         .catch((): any => []);
 }
 
@@ -78,7 +78,7 @@ function setLoggedUser(hook: any) {
 }
 
 function restrictToRolesHook(hook: any) {
-    if (lodash.isEmpty(hook.params.componentRoles)) {
+    if (_.isEmpty(hook.params.componentRoles)) {
         return Promise.resolve(hook);
     }
 

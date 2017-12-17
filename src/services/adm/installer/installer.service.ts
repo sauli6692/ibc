@@ -27,7 +27,6 @@ export class InstallerService extends BaseCustomService implements IService {
         return Promise.all(seedersExecutions)
             .then(responses => {
                 return {
-                    results: responses,
                     errors: this.errors
                 };
             }).catch(e => {

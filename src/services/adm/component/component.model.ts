@@ -18,6 +18,7 @@ export class Component extends BaseModel {
 				},
 				name: {
 					type: Sequelize.STRING(25),
+                    unique: true,
 					allowNull: false
 				},
 				description: {

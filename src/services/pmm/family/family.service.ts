@@ -19,8 +19,8 @@ export class FamilyService extends BaseCustomService implements IService {
     }
 
     public afterInit(): void {
-        this.Person = this.app.getModel('Person');
-        this.FamilyRelationship = this.app.getModel('FamilyRelationship');
+        this.Person = this.app.getModel('pmm', 'Person');
+        this.FamilyRelationship = this.app.getModel('pmm', 'FamilyRelationship');
     }
 
     protected define() {

@@ -17,7 +17,7 @@ describe('Integration Level Service', () => {
         id: 3,
         value: 'Not integrated'
     }];
-    const integrationLevelModel = app.getModel('IntegrationLevel');
+    const integrationLevelModel = app.getModel('pmm', 'IntegrationLevel');
 
     beforeAll(() => {
         integrationLevelService = app.service(serviceRoute);

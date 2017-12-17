@@ -20,7 +20,7 @@ describe('Role Service', () => {
         name: 'Guest',
         description: 'Guest user'
     }];
-    const roleModel = app.getModel('Role');
+    const roleModel = app.getModel('adm', 'Role');
 
     beforeAll(() => {
         roleService = app.service(serviceRoute);

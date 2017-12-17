@@ -79,7 +79,7 @@ describe('BaseModel', () => {
         expect(options.tableName).toBe(newModel.identity);
 
         expect(options.modelName).toBeDefined();
-        expect(options.modelName).toBe(newModel.name);
+        expect(options.modelName).toBe(component + newModel.name);
 
         expect(options.sequelize).toBeDefined();
         expect(options.sequelize instanceof Sequelize).toBe(true);

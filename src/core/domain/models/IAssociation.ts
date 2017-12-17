@@ -7,6 +7,7 @@ export interface IAssociation {
 export interface IAssociationOption {
     model: string;
     as: string;
+    component?: string;
     foreignKey?: string;
     sourceKey?: string;
     targetKey?: string;

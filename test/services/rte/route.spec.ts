@@ -26,7 +26,7 @@ describe('Route Service', () => {
         directionExtra: 'Extra',
         zoneMap: ''
     }];
-    const routeModel = app.getModel('Route');
+    const routeModel = app.getModel('rte', 'Route');
 
     beforeAll(() => {
         routeService = app.service(serviceRoute);

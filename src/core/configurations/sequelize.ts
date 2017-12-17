@@ -20,6 +20,7 @@ export default function() {
 
 		// Set up data relationships
 		const models = sequelize.models;
+
 		_.forOwn(models, (model: any) => {
 			if ('associate' in model) {
 				model.associate(models);

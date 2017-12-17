@@ -17,7 +17,7 @@ describe('Family Relationship Service', () => {
         id: 3,
         value: 'Son'
     }];
-    const familyRelationshipModel = app.getModel('FamilyRelationship');
+    const familyRelationshipModel = app.getModel('pmm', 'FamilyRelationship');
 
     beforeAll(() => {
         familyRelationshipService = app.service(serviceRoute);

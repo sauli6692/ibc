@@ -18,8 +18,8 @@ export class MemberMinistryService extends BaseCustomService implements IService
     }
 
     public afterInit(): void {
-        this.Member = this.app.getModel('Member');
-        this.Ministry = this.app.getModel('Ministry');
+        this.Member = this.app.getModel('pmm', 'Member');
+        this.Ministry = this.app.getModel('min', 'Ministry');
     }
 
     protected define() {

@@ -20,10 +20,10 @@ export class VisitService extends BaseCustomService implements IService {
     }
 
     public afterInit(): void {
-        this.Collaborator = this.app.getModel('Collaborator');
-        this.Harvest = this.app.getModel('Harvest');
-        this.Member = this.app.getModel('Member');
-        this.Person = this.app.getModel('Person');
+        this.Collaborator = this.app.getModel('rte', 'Collaborator');
+        this.Harvest = this.app.getModel('rte', 'Harvest');
+        this.Member = this.app.getModel('pmm', 'Member');
+        this.Person = this.app.getModel('pmm', 'Person');
     }
 
     protected define() {

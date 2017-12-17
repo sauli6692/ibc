@@ -16,7 +16,7 @@ describe('Discipleship Service', () => {
         name: 'Discipleship 2',
         description: 'Discipleship 2'
     }];
-    const discipleshipModel = app.getModel('Discipleship');
+    const discipleshipModel = app.getModel('pmm', 'Discipleship');
 
     beforeAll(() => {
         discipleshipService = app.service(serviceRoute);

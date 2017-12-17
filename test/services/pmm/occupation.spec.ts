@@ -17,7 +17,7 @@ describe('Occupation Service', () => {
         id: 3,
         value: 'Unemployee'
     }];
-    const occupationModel = app.getModel('Occupation');
+    const occupationModel = app.getModel('pmm', 'Occupation');
 
     beforeAll(() => {
         occupationService = app.service(serviceRoute);

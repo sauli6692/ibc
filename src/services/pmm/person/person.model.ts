@@ -63,6 +63,7 @@ export class Person extends BaseModel {
                 as: 'member',
                 source: true
             }, {
+                component: 'rte',
                 model: 'Harvest',
                 as: 'harvest',
                 source: true

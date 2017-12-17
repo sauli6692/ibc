@@ -18,8 +18,8 @@ export class UserRoleService extends BaseCustomService implements IService {
     }
 
     public afterInit(): void {
-        this.User = this.app.getModel('User');
-        this.Role = this.app.getModel('Role');
+        this.User = this.app.getModel('adm', 'User');
+        this.Role = this.app.getModel('adm', 'Role');
     }
 
     protected define() {

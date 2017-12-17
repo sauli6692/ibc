@@ -79,7 +79,7 @@ export abstract class BaseModel {
         });
 
         this._model = this.sequelizeClient
-            .define(this.name, this.fields, this.options);
+            .define(_.lowerCase(this._component) + this.name, this.fields, this.options);
 
         this._model.associate = this.getAssosiationsSetup();
     }
@@ -87,11 +87,13 @@ export abstract class BaseModel {
 	private getAssosiationsSetup(): Function {
         let setupHasAssociations = (functionName: string, models: any) => {
             return (options: IAssociationOption) => {
+                let component = _.lowerCase(options.component || this.component);
                 let modelName = options.model;
                 let isSource = !_.isNil(options.source) && options.source;
-				let model = models[modelName] || modelName;
+				let model = models[component + modelName] || component + modelName;
                 delete options.model;
                 delete options.source;
+                delete options.component;
 
 				if (isSource) {
                     options.foreignKey = options.foreignKey || _.camelCase(this.name) + 'Id';
@@ -114,8 +116,11 @@ export abstract class BaseModel {
 
 			if (!_.isNil(this.associations.manyToMany)) {
 				_.forEach(this.associations.manyToMany, (options: IAssociationOption) => {
-					let model = options.model;
+					let component = _.lowerCase(options.component || this.component);
+					let model = component + options.model;
+
                     delete options.model;
+                    delete options.component;
 					options.foreignKey = options.foreignKey || _.camelCase(this.name) + 'Id';
 					this._model.belongsToMany(models[model], options);
 				});

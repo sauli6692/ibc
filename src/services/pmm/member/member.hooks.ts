@@ -4,7 +4,7 @@ let includePersonInformation = (hook: any) => {
     hook.params.sequelize = {
         attributes: [['person_id', 'id']],
         include: [{
-            model: hook.app.getModel('Person'),
+            model: hook.app.getModel('pmm', 'Person'),
             as: 'information',
             attributes: { exclude: ['id'] }
         }],

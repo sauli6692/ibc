@@ -19,9 +19,9 @@ export class MinistryMemberService extends BaseCustomService implements IService
     }
 
     public afterInit(): void {
-        this.Ministry = this.app.getModel('Ministry');
-        this.Member = this.app.getModel('Member');
-        this.Person = this.app.getModel('Person');
+        this.Ministry = this.app.getModel('min', 'Ministry');
+        this.Member = this.app.getModel('pmm', 'Member');
+        this.Person = this.app.getModel('pmm', 'Person');
     }
 
     protected define() {

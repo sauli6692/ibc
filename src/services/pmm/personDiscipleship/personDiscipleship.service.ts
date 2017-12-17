@@ -19,9 +19,9 @@ export class PersonDiscipleshipService extends BaseCustomService implements ISer
     }
 
     public afterInit(): void {
-        this.Person = this.app.getModel('Person');
-        this.Discipleship = this.app.getModel('Discipleship');
-        this.Lesson = this.app.getModel('Lesson');
+        this.Person = this.app.getModel('pmm', 'Person');
+        this.Discipleship = this.app.getModel('pmm', 'Discipleship');
+        this.Lesson = this.app.getModel('pmm', 'Lesson');
     }
 
     protected define() {

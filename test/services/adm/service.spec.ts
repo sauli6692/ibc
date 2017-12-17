@@ -17,7 +17,7 @@ describe('Service Service', () => {
         id: 3,
         route: 'user'
     }];
-    const serviceModel = app.getModel('Service');
+    const serviceModel = app.getModel('adm', 'Service');
 
     beforeAll(() => {
         serviceService = app.service(serviceRoute);

@@ -31,6 +31,7 @@ export class Harvest extends BaseModel {
     protected setAssociations(): IAssociation {
 		return {
             oneToOne: [{
+                component: 'pmm',
                 model: 'Person',
                 as: 'information'
             }],

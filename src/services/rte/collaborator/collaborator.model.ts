@@ -28,9 +28,11 @@ export class Collaborator extends BaseModel {
 	protected setAssociations(): IAssociation {
 		return {
             oneToOne: [{
+                component: 'pmm',
                 model: 'Member',
                 as: 'memberInformation'
             }, {
+                component: 'min',
 				model: 'Ministry',
 				as: 'ministry'
 			}],

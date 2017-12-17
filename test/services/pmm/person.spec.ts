@@ -38,7 +38,7 @@ describe('Person Service', () => {
         directionMain: 'HN',
         directionExtra: 'TG'
     }];
-    const personModel = app.getModel('Person');
+    const personModel = app.getModel('pmm', 'Person');
 
     beforeAll(() => {
         personService = app.service(serviceRoute);

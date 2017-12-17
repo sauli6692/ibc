@@ -56,7 +56,6 @@ class PBKDF2Verifier extends Verifier {
                         this.app.service(`${this.options.service}/:userId/roles`).find({
 							userId: user.id
 						}).then((roles: any) => {
-                            console.log(roles);
                             let payload = {
 								id: user.id,
 								memberId: user.memberId,

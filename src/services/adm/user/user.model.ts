@@ -36,6 +36,7 @@ export class User extends BaseModel {
     protected setAssociations(): IAssociation {
 		return {
 			oneToOne: [{
+                component: 'pmm',
 				model: 'Member',
 				as: 'owner'
 			}],

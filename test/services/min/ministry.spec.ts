@@ -22,7 +22,7 @@ describe('Ministry Service', () => {
     }];
 
     beforeAll(() => {
-        const ministryModel = app.getModel('Ministry');
+        const ministryModel = app.getModel('min', 'Ministry');
 
         ministryService = app.service(serviceRoute);
         helpers.setCRUDSpies(ministryModel, ministries);

@@ -18,7 +18,7 @@ describe('Lesson Service', () => {
         description: 'Lesson 2',
         discipleshipId: 1
     }];
-    const lessonModel = app.getModel('Lesson');
+    const lessonModel = app.getModel('pmm', 'Lesson');
 
     beforeAll(() => {
         lessonService = app.service(serviceRoute);

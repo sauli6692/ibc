@@ -23,7 +23,7 @@ describe('Collaborators Service', () => {
         ministryId: 1,
         routeLeader: 1
     }];
-    const collaboratorModel = app.getModel('Collaborator');
+    const collaboratorModel = app.getModel('rte', 'Collaborator');
 
     beforeAll(() => {
         collaboratorService = app.service(serviceRoute);

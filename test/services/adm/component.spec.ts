@@ -20,7 +20,7 @@ describe('Component Service', () => {
         name: 'MIN',
         description: 'Ministries'
     }];
-    const componentModel = app.getModel('Component');
+    const componentModel = app.getModel('adm', 'Component');
 
     beforeAll(() => {
         componentService = app.service(serviceRoute);

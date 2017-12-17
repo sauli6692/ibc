@@ -6,13 +6,13 @@ let includeJoins = (hook: any) => {
         delete hook.params.query.fullDetails;
         hook.params.sequelize = {
             include: [{
-                model: hook.app.getModel('IntegrationLevel'),
+                model: hook.app.getModel('pmm', 'IntegrationLevel'),
                 as: 'personIntegrationLevel'
             }, {
-                model: hook.app.getModel('Occupation'),
+                model: hook.app.getModel('pmm', 'Occupation'),
                 as: 'personOccupation'
             }, {
-                model: hook.app.getModel('CivilStatus'),
+                model: hook.app.getModel('pmm', 'CivilStatus'),
                 as: 'personCivilStatus'
             }],
     		raw: false

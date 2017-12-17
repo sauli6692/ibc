@@ -21,20 +21,24 @@ export class Member extends BaseModel {
 				as: 'information',
 				foreignKey: 'personId'
 			}, {
+                component: 'adm',
 				model: 'User',
 				as: 'user',
                 source: true
 			}, {
+                component: 'rte',
                 model: 'Collaborator',
                 as: 'collaborator',
                 source: true
             }],
             manyToMany: [{
+                component: 'min',
                 model: 'Ministry',
                 as: 'ministries',
                 through: 'MinistryLeader',
                 foreignKey: 'leaderId'
             }, {
+                component: 'min',
                 model: 'Ministry',
                 as: 'memberMinistries',
                 through: 'MinistryMember',

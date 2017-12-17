@@ -26,6 +26,7 @@ export class Ministry extends BaseModel {
     protected setAssociations(): IAssociation {
         return {
             oneToOne: [{
+                component: 'rte',
                 model: 'Collaborator',
                 as: 'representative',
                 source: true
@@ -36,11 +37,13 @@ export class Ministry extends BaseModel {
                 source: true
 			}],
             manyToMany: [{
+                component: 'pmm',
                 model: 'Member',
                 as: 'leaders',
                 through: 'MinistryLeader',
                 foreignKey: 'ministryId'
             }, {
+                component: 'pmm',
                 model: 'Member',
                 as: 'members',
                 through: 'MinistryMember',

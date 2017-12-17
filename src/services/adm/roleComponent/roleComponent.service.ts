@@ -18,8 +18,8 @@ export class RoleComponentService extends BaseCustomService implements IService 
     }
 
     public afterInit(): void {
-        this.Role = this.app.getModel('Role');
-        this.Component = this.app.getModel('Component');
+        this.Role = this.app.getModel('adm', 'Role');
+        this.Component = this.app.getModel('adm', 'Component');
     }
 
     protected define() {

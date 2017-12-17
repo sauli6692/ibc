@@ -18,8 +18,8 @@ export class ComponentServiceService extends BaseCustomService implements IServi
     }
 
     public afterInit(): void {
-        this.Component = this.app.getModel('Component');
-        this.Service = this.app.getModel('Service');
+        this.Component = this.app.getModel('adm', 'Component');
+        this.Service = this.app.getModel('adm', 'Service');
     }
 
     protected define() {

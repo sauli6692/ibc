@@ -17,7 +17,7 @@ describe('Civil Status Service', () => {
         id: 3,
         value: 'Divorced'
     }];
-    const civilStatusModel = app.getModel('CivilStatus');
+    const civilStatusModel = app.getModel('pmm', 'CivilStatus');
 
     beforeAll(() => {
         civilStatusService = app.service(serviceRoute);

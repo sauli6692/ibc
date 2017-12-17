@@ -23,10 +23,18 @@ export class InstallerService extends BaseCustomService implements IService {
     public find(params: any): Promise<any> {
         let seedersList = this.joinSeeders();
         let seedersExecutions = this.generateExecutions(seedersList);
-        return Promise.resolve({
-            results: seedersList,
-            errors: this.errors
-        });
+
+        return Promise.all(seedersExecutions)
+            .then(responses => {
+                return {
+                    results: responses,
+                    errors: this.errors
+                };
+            }).catch(e => {
+                return {
+                    errors: e
+                };
+            });
     }
 
     private joinSeeders(): Array<any> {
@@ -50,6 +58,7 @@ export class InstallerService extends BaseCustomService implements IService {
                 result = _.concat(result, dependencies);
 
                 seeder.model = model;
+                seeder.component = component;
                 seeder.added = true;
                 result.push(seeder);
             } catch (e) {
@@ -96,6 +105,9 @@ export class InstallerService extends BaseCustomService implements IService {
     }
 
     private generateExecutions(seedersList: Array<any>): Array<any> {
-        return _.map(seedersList, (seeder) => seeder);
+        return _.map(seedersList, (seeder: any) => {
+            let Model = this.app.getModel(seeder.component, seeder.model);
+            return Model.bulkCreate(seeder.seed);
+        });
     }
 }

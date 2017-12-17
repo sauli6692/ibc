@@ -6,16 +6,11 @@ import { seeders } from '../../../core/seeders';
 import { InvalidDependency } from '../../../core/domain/exceptions';
 
 export class InstallerService extends BaseCustomService implements IService {
-    private models: Array<any>;
     private errors: Array<any>;
 
     constructor(component: string, app: any) {
         super(component, app);
         this.errors = [];
-    }
-
-    public afterInit(): void {
-        this.models = this.app.getModels();
     }
 
     protected define() {
@@ -26,8 +21,10 @@ export class InstallerService extends BaseCustomService implements IService {
     }
 
     public find(params: any): Promise<any> {
+        let seedersList = this.joinSeeders();
+        let seedersExecutions = this.generateExecutions(seedersList);
         return Promise.resolve({
-            results: this.joinSeeders(),
+            results: seedersList,
             errors: this.errors
         });
     }
@@ -96,5 +93,9 @@ export class InstallerService extends BaseCustomService implements IService {
 
             return prev;
         }, []);
+    }
+
+    private generateExecutions(seedersList: Array<any>): Array<any> {
+        return _.map(seedersList, (seeder) => seeder);
     }
 }

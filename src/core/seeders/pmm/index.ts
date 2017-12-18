@@ -4,6 +4,7 @@ import familyRelationship from './familyRelationship';
 import integrationLevel from './integrationLevel';
 import lesson from './lesson';
 import member from './member';
+import person from './person';
 import occupation from './occupation';
 
 export const pmm: any = {
@@ -23,9 +24,15 @@ export const pmm: any = {
         seed: lesson
     },
     Member: {
-        seed: member
+        seed: member,
+        dependencies: [{
+            model: 'Person'
+        }]
     },
     Occupation: {
         seed: occupation
+    },
+    Person: {
+        seed: person
     }
 };

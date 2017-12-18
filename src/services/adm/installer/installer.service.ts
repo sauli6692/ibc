@@ -106,7 +106,23 @@ export class InstallerService extends BaseCustomService implements IService {
     private generateExecutions(seedersList: Array<any>): Array<any> {
         return _.map(seedersList, (seeder: any) => {
             let Model = this.app.getModel(seeder.component, seeder.model);
-            return Model.bulkCreate(seeder.seed);
+            let options: any = {
+                logging: true
+            };
+            let fields = _.reduce(_.keys(seeder.seed[0]), (prev: any, key: string) => {
+                if (!Model.attributes[key].primaryKey) {
+                    prev.push(Model.attributes[key].field);
+                }
+                return prev;
+            }, []);
+
+            if (_.isEmpty(fields)) {
+                options.ignoreDuplicates = true;
+            } else {
+                options.updateOnDuplicate = fields;
+            }
+
+            return Model.bulkCreate(seeder.seed, options);
         });
     }
 }

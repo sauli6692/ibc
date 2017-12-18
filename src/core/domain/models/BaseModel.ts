@@ -25,6 +25,19 @@ export abstract class BaseModel {
 		this._associations = this.setAssociations();
 		this._sequelizeClient = this._app.get('sequelizeClient');
 
+        let models = this._app.get('models');
+        if (_.isNil(models)) {
+            models = {};
+            this._app.set('models', models);
+        }
+
+        if (_.isNil(models[this._component])) {
+            models[this._component] = {};
+        }
+        if (_.isNil(models[this._component][this._name])) {
+            models[this._component][this._name] = this;
+        }
+
 		this.createModel();
 	}
 
@@ -42,6 +55,9 @@ export abstract class BaseModel {
 	}
 	get fields(): any {
 		return this._fields;
+	}
+    get fieldsNames(): any {
+		return _.keys(this._fields);
 	}
 	get options(): any {
 		return this._options;

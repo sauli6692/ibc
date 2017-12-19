@@ -5,15 +5,36 @@ const { restrictToRoles } = require('feathers-authentication-hooks');
 import { IServiceHooks } from '../../../core/domain/services/IService';
 import { hashPassword } from '../../../core/utils/cryptography';
 
+let includePersonInformation = (hook: any) => {
+	let exclude = ['memberId'];
+	if (hook.method === 'find') {
+		exclude.push('salt');
+		exclude.push('password');
+	}
+
+    hook.params.sequelize = {
+        attributes: { exclude },
+        include: [{
+            model: hook.app.getModel('pmm', 'Member'),
+            as: 'owner',
+            attributes: [['person_id', 'id']],
+            include: [{
+                model: hook.app.getModel('pmm', 'Person'),
+                as: 'information',
+                attributes: [ 'firstname', 'lastname']
+            }]
+        }],
+		raw: false
+    };
+};
+
 export const hooks: IServiceHooks = {
 	before: {
-	// 	all: [],
-	// 	find: [authenticate('jwt')],
-	// 	get: [],
+		get: [includePersonInformation],
+		find: [includePersonInformation],
 		create: [hashPasswordHook],
 		update: [hashPasswordHook],
-		patch: [hashPasswordHook],
-	// 	remove: []
+		patch: [hashPasswordHook]
 	},
 
 	after: {

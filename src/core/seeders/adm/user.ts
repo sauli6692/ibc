@@ -1,7 +1,11 @@
+import { hashPasswordSync } from '../../utils/cryptography';
+
+let result = hashPasswordSync('root');
+
 export default [{
     id: 1,
     username: 'root',
-    password: 'asd.123',
-    salt: 'salt',
+    password: result.password,
+    salt: result.salt,
     memberId: 1
 }];

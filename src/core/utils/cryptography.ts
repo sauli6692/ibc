@@ -21,6 +21,15 @@ export const hashPassword = (password: string) => {
     });
 };
 
+export const hashPasswordSync = (password: string) => {
+    let buf = crypto.randomBytes(16);
+    let salt = buf.toString('hex');
+    return {
+        password: generateHashSync(password, salt),
+        salt
+    };
+};
+
 export const compareHash = (user: any, password: string) => {
     return generateHash(password, user.salt)
         .then(newHash => newHash === user.password);
@@ -34,4 +43,10 @@ function generateHash(password: string, salt: string) {
             resolve(hash.toString('hex'));
         });
     });
+}
+
+function generateHashSync(password: string, salt: string) {
+    let iterations = config.iterations;
+    let hash = crypto.pbkdf2Sync(password, salt, iterations, 64, 'sha512');
+    return hash.toString('hex');
 }

@@ -1,1 +1,88 @@
-export default [];
+export default [{
+    id: 1,
+    route: 'components'
+}, {
+    id: 2,
+    route: 'components/:componentId/services'
+}, {
+    id: 3,
+    route: 'install'
+}, {
+    id: 4,
+    route: 'roles'
+}, {
+    id: 5,
+    route: 'components/:componentId/roles'
+}, {
+    id: 6,
+    route: 'roles/:roleId/components'
+}, {
+    id: 7,
+    route: 'services'
+}, {
+    id: 8,
+    route: 'users'
+}, {
+    id: 9,
+    route: 'users/:userId/roles'
+}, {
+    id: 10,
+    route: 'ministries'
+}, {
+    id: 11,
+    route: 'ministries/:ministryId/leaders'
+}, {
+    id: 12,
+    route: 'leaders/:leaderId/ministries'
+}, {
+    id: 13,
+    route: 'ministries/:ministryId/members'
+}, {
+    id: 14,
+    route: 'members/:memberId/ministries'
+}, {
+    id: 15,
+    route: 'ministry-objectives'
+}, {
+    id: 16,
+    route: 'civil-statuses'
+}, {
+    id: 17,
+    route: 'discipleships'
+}, {
+    id: 18,
+    route: 'people/:personId/family'
+}, {
+    id: 19,
+    route: 'family-relationships'
+}, {
+    id: 20,
+    route: 'integration-levels'
+}, {
+    id: 21,
+    route: 'lessons'
+}, {
+    id: 22,
+    route: 'members'
+}, {
+    id: 23,
+    route: 'occupations'
+}, {
+    id: 24,
+    route: 'people'
+}, {
+    id: 25,
+    route: 'people/:discipleId/discipleships'
+}, {
+    id: 26,
+    route: 'collaborators'
+}, {
+    id: 27,
+    route: 'harvests'
+}, {
+    id: 28,
+    route: 'routes'
+}, {
+    id: 29,
+    route: 'collaborators/:collaboratorId/visits'
+}];

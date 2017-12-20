@@ -6,9 +6,12 @@ export class Lesson extends BaseModel {
 		return {
 			name: 'Lesson',
 			fields: {
+                discipleshipId: {
+                    type: Sequelize.INTEGER,
+                    primaryKey: true
+                },
 				id: {
 					type: Sequelize.INTEGER,
-					autoIncrement: true,
 					primaryKey: true
 				},
 				name: {
@@ -16,10 +19,6 @@ export class Lesson extends BaseModel {
 				},
 				description: {
 					type: Sequelize.STRING(150),
-				},
-				discipleshipId: {
-					type: Sequelize.INTEGER,
-					allowNull: false
 				}
 			}
 		};

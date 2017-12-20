@@ -3,6 +3,14 @@ import * as _ from 'lodash';
 const commons = {
     type: 'object',
     properties: {
+        discipleshipId: {
+            type: 'integer',
+            minimum: 1
+        },
+        id: {
+            type: 'integer',
+            minimum: 1
+        },
         name: {
             type: 'string',
             maxLength: 150
@@ -10,17 +18,13 @@ const commons = {
         description: {
             type: 'string',
             maxLength: 150
-        },
-        discipleshipId: {
-            type: 'integer',
-            minimum: 1
         }
     },
     additionalProperties: false
 };
 
 const create = {
-    required: ['name', 'discipleshipId']
+    required: ['id', 'discipleshipId', 'name']
 };
 
 export const schemas = {

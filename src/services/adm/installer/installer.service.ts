@@ -24,12 +24,21 @@ export class InstallerService extends BaseCustomService implements IService {
         let seedersList = this.joinSeeders();
         let seedersExecutions = this.generateExecutions(seedersList);
 
-        return Promise.all(seedersExecutions)
-            .then(responses => {
+        return _.reduce(seedersExecutions, (prev: any, seeder: any, i: any) =>
+            prev.then(seeder).catch((e: any) => {
+                let error = _.isNil(e.toJSON) ? {
+                    name: e.name,
+                    message: e.message
+                } : e.toJSON();
+                this.errors.push(error);
+            })
+        , Promise.resolve())
+            .then(() => {
                 return {
                     errors: this.errors
                 };
-            }).catch(e => {
+            })
+            .catch((e: any) => {
                 return {
                     errors: e
                 };
@@ -122,7 +131,7 @@ export class InstallerService extends BaseCustomService implements IService {
                 options.updateOnDuplicate = fields;
             }
 
-            return Model.bulkCreate(seeder.seed, options);
+            return () => Model.bulkCreate(seeder.seed, options);
         });
     }
 }

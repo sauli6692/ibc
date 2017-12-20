@@ -24,7 +24,7 @@ export class Service extends BaseModel {
 			manyToMany: [{
 				model: 'Component',
 				as: 'components',
-                through: 'ComponentService'
+                through: 'admComponentService'
             }]
 		};
 	}

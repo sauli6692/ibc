@@ -17,8 +17,8 @@ const privilegeMethodsMap = {
 
 export const authenticationHooks = (component: string, service: string, beforeHooks: IHook): void => {
     let restrict = [
-        addComponentRolesHook(component),
         addPrivilegesHook(component, service),
+        addComponentRolesHook(component),
         authenticate('jwt'),
         setLoggedUser,
         restrictToRolesHook
@@ -38,7 +38,7 @@ function addPrivilegesHook(component: string, service: string) {
 }
 
 function getServicePrivileges(app: any, component: string, service: string) {
-    return app.service('adm/components/:componentId/models')
+    return app.service('adm/components/:componentId/services')
         .get(service, { componentId: component })
         .then((componentModel: any) => componentModel.privileges)
         .catch(() => {
@@ -69,11 +69,13 @@ function getComponentRoles(app: any, component: string) {
 }
 
 function setLoggedUser(hook: any) {
-    hook.params.user = {
-        id: hook.params.payload.id,
-        memberId: hook.params.payload.memberId,
-        roles: hook.params.payload.roles
-    };
+    if (hook.params.payload) {
+        hook.params.user = {
+            id: hook.params.payload.id,
+            memberId: hook.params.payload.memberId,
+            roles: hook.params.payload.roles
+        };
+    }
     return Promise.resolve(hook);
 }
 

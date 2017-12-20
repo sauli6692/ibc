@@ -34,11 +34,11 @@ export class Component extends BaseModel {
 			manyToMany: [{
 				model: 'Service',
 				as: 'services',
-                through: 'ComponentService'
+                through: 'admComponentService'
 			}, {
                 model: 'Role',
                 as: 'roles',
-                through: 'RoleComponent'
+                through: 'admRoleComponent'
             }]
 		};
 	}

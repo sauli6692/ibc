@@ -42,7 +42,7 @@ export class Harvest extends BaseModel {
             manyToMany: [{
                 model: 'Collaborator',
                 as: 'visits',
-                through: 'Visit'
+                through: 'rteVisit'
             }]
 		};
 	}

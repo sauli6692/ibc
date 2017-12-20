@@ -43,7 +43,7 @@ export class User extends BaseModel {
             manyToMany: [{
                 model: 'Role',
                 as: 'roles',
-                through: 'UserRole'
+                through: 'admUserRole'
             }]
 		};
 	}

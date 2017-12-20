@@ -113,12 +113,12 @@ export class Person extends BaseModel {
             manyToMany: [{
                 model: 'Person',
                 as: 'relative',
-                through: 'Family',
+                through: 'pmmFamily',
                 foreignKey: 'personId'
             }, {
                 model: 'Person',
                 as: 'family',
-                through: 'Family',
+                through: 'pmmFamily',
                 foreignKey: 'familyId'
             }]
         };

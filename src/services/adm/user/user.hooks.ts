@@ -30,7 +30,9 @@ let includePersonInformation = (hook: any) => {
 
 export const hooks: IServiceHooks = {
 	before: {
-		get: [includePersonInformation],
+		get: [(hook: any) => {
+            hook.service.id = isNaN(hook.id) ? 'username' : 'id';
+        }, includePersonInformation],
 		find: [includePersonInformation],
 		create: [hashPasswordHook],
 		update: [hashPasswordHook],

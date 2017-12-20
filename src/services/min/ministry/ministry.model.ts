@@ -40,13 +40,13 @@ export class Ministry extends BaseModel {
                 component: 'pmm',
                 model: 'Member',
                 as: 'leaders',
-                through: 'MinistryLeader',
+                through: 'minMinistryLeader',
                 foreignKey: 'ministryId'
             }, {
                 component: 'pmm',
                 model: 'Member',
                 as: 'members',
-                through: 'MinistryMember',
+                through: 'minMinistryMember',
                 foreignKey: 'ministryId'
             }]
 		};

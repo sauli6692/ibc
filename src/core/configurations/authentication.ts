@@ -40,15 +40,11 @@ export default function() {
 
 class PBKDF2Verifier extends Verifier {
 	verify(req: any, username: string, password: string, done: any) {
-		this.app.service(this.options.service).find({
-			query: {
-				username
-			}
-		}).then((user: any) => {
-			if (_.isNil(user) || user.total === 0) {
-                done(null, false);
+
+		this.app.service(this.options.service).get(username).then((user: any) => {
+			if (_.isNil(user)) {
+                return done(null, false);
             }
-            user = user.data[0];
 
             compareHash(user, password)
                 .then(isValid => {

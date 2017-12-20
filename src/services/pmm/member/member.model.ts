@@ -35,13 +35,13 @@ export class Member extends BaseModel {
                 component: 'min',
                 model: 'Ministry',
                 as: 'ministries',
-                through: 'MinistryLeader',
+                through: 'minMinistryLeader',
                 foreignKey: 'leaderId'
             }, {
                 component: 'min',
                 model: 'Ministry',
                 as: 'memberMinistries',
-                through: 'MinistryMember',
+                through: 'minMinistryMember',
                 foreignKey: 'memberId'
             }]
 		};

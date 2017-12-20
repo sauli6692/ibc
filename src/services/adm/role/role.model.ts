@@ -28,11 +28,11 @@ export class Role extends BaseModel {
 			manyToMany: [{
                 model: 'Component',
                 as: 'components',
-                through: 'RoleComponent'
+                through: 'admRoleComponent'
             }, {
                 model: 'User',
                 as: 'users',
-                through: 'UserRole'
+                through: 'admUserRole'
             }]
 		};
 	}

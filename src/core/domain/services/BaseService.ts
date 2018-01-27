@@ -55,6 +55,10 @@ export abstract class BaseService {
 		this._route = route;
 	}
 
+    set hooks(hooks: any) {
+		this._hooks = hooks;
+	}
+
 	public createService(): void {
 		this.defineService();
 		const service = this.app.service(this.servicePath);

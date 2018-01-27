@@ -1,6 +1,5 @@
 import { logger } from '../../utils/logger';
 import * as _ from 'lodash';
-const sequelizeService = require('feathers-sequelize');
 
 import { BaseService } from './BaseService';
 import { IServiceHooks, ISchema } from './IService';
@@ -22,7 +21,7 @@ export abstract class BaseCustomService extends BaseService {
             return prev;
         }, this);
 
-        this.app.service(this.servicePath, service);
+        this.app.use(this.servicePath, service);
         logger.debug('Custom Service Created: ', this.servicePath);
     }
 

@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 
-const authentication = require('feathers-authentication');
-const jwt = require('feathers-authentication-jwt');
-const local = require('feathers-authentication-local');
-const Verifier = require('feathers-authentication-local').Verifier;
+const authentication = require('@feathersjs/authentication');
+const jwt = require('@feathersjs/authentication-jwt');
+const local = require('@feathersjs/authentication-local');
+const Verifier = require('@feathersjs/authentication-local').Verifier;
 
 import { compareHash } from '../utils/cryptography';
 

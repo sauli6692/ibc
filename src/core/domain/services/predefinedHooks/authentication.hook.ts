@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as Errors from 'feathers-errors';
 
-const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const { restrictToRoles } = require('feathers-authentication-hooks');
 
 import { IServiceHooks, IHook } from '../IService';

@@ -55,13 +55,18 @@ class User(AbstractBaseUser, PermissionsMixin, LogFieldsMixin):
         null=False
     )
 
+    @property
+    def is_staff(self):
+        """Needed to acces to admin."""
+        return self.is_superuser
+
     def __str__(self):
         return self.username
 
     def get_full_name(self):
         """Get member full name."""
-        return '{0} {1}'.format(self.owner.first_name, self.owner.last_name).strip()
+        return '{0} {1}'.format(self.owner.information.first_name, self.owner.information.last_name).strip()
 
     def get_short_name(self):
         """Get member first name."""
-        return self.owner.first_name
+        return self.owner.information.first_name

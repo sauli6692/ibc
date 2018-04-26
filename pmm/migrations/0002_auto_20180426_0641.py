@@ -17,7 +17,7 @@ def forwards_func(apps, schema_editor):
     member = Member(information=person)
     member.save()
 
-    user = User(username='admin', password=make_password('qwerty123'), owner=member)
+    user = User(username='admin', password=make_password('qwerty123'), owner=member, is_superuser=True)
     user.save()
 
 def reverse_func(apps, schema_editor):

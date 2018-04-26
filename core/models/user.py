@@ -22,13 +22,20 @@ class User(AbstractBaseUser, PermissionsMixin, LogFieldsMixin):
         verbose_name = _('Usuario')
         verbose_name_plural = _('Usuarios')
 
+    owner = models.OneToOneField(
+        'pmm.Member',
+        verbose_name=_('Dueño'),
+        on_delete=models.CASCADE,
+        null=False
+    )
+
     def __str__(self):
         return self.username
 
     def get_full_name(self):
         """Get member full name."""
-        return '{0} {1}'.format('self.member.first_name', 'self.member.last_name').strip()
+        return '{0} {1}'.format(self.owner.first_name, self.owner.last_name).strip()
 
     def get_short_name(self):
         """Get member first name."""
-        return 'self.member.first_name'
+        return self.owner.first_name

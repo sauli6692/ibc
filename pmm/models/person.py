@@ -2,9 +2,10 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from core.models.custom_fields import FixedCharField
+from core.models.mixins import DirectionMixin
 
 
-class Person(models.Model):
+class Person(DirectionMixin):
     class Meta:
         verbose_name = _('Persona')
         verbose_name_plural = _('Personas')
@@ -19,8 +20,6 @@ class Person(models.Model):
     birthday = models.DateField(_('Cumpleaños'), null=True)
     new_birthday = models.DateField(_('Nuevo Nacimiento'), null=True)
     gender = FixedCharField(_('Género'), max_length=1, choices=gender_choices, default='M')
-    direction_main = models.CharField(_('Dirección principal'), max_length=255, null=True)
-    direction_extra = models.CharField(_('Dirección extra'), max_length=255, null=True)
     baptized = models.BooleanField(_('Bautizado'))
     last_visit = models.DateField(_('Ultima Visita'), null=True)
     integration_level = models.ForeignKey(

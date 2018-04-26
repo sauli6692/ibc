@@ -20,7 +20,7 @@ class Person(DirectionMixin):
     birthday = models.DateField(_('Cumpleaños'), null=True)
     new_birthday = models.DateField(_('Nuevo Nacimiento'), null=True)
     gender = FixedCharField(_('Género'), max_length=1, choices=gender_choices, default='M')
-    baptized = models.BooleanField(_('Bautizado'))
+    baptized = models.BooleanField(_('Bautizado'), default=False)
     last_visit = models.DateField(_('Ultima Visita'), null=True)
     integration_level = models.ForeignKey(
         'pmm.IntegrationLevel',

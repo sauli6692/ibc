@@ -17,34 +17,38 @@ class Person(DirectionMixin):
 
     first_name = models.CharField(_('Nombre'), max_length=50)
     last_name = models.CharField(_('Apellido'), max_length=50)
-    birthday = models.DateField(_('Cumpleaños'), null=True)
-    new_birthday = models.DateField(_('Nuevo Nacimiento'), null=True)
+    birthday = models.DateField(_('Cumpleaños'), null=True, blank=True,)
+    new_birthday = models.DateField(_('Nuevo Nacimiento'), null=True, blank=True,)
     gender = FixedCharField(_('Género'), max_length=1, choices=gender_choices, default='M')
     baptized = models.BooleanField(_('Bautizado'), default=False)
-    last_visit = models.DateField(_('Ultima Visita'), null=True)
+    last_visit = models.DateField(_('Ultima Visita'), null=True, blank=True,)
     integration_level = models.ForeignKey(
         'pmm.IntegrationLevel',
         on_delete=models.CASCADE,
         verbose_name=_('Nivel de Integración'),
-        null=True
+        null=True,
+        blank=True,
     )
     occupation = models.ForeignKey(
         'pmm.Occupation',
         on_delete=models.CASCADE,
         verbose_name=_('Ocupación'),
-        null=True
+        null=True,
+        blank=True,
     )
     civil_status = models.ForeignKey(
         'pmm.CivilStatus',
         on_delete=models.CASCADE,
         verbose_name=_('Estado Civil'),
-        null=True
+        null=True,
+        blank=True,
     )
     invited_by = models.ForeignKey(
         'self',
         on_delete=models.CASCADE,
         verbose_name=_('Invitado por'),
         null=True,
+        blank=True,
         related_name='invites',
     )
     discipleships = models.ManyToManyField(
@@ -60,3 +64,6 @@ class Person(DirectionMixin):
         verbose_name=_('Familares'),
         symmetrical=False,
     )
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name

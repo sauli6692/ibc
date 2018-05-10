@@ -10,3 +10,6 @@ class LookupTableMixin(models.Model):
         abstract = True
 
     value = models.CharField(_('Valor'), max_length=50)
+
+    def __str__(self):
+        return self.value

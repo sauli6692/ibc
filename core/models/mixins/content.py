@@ -10,4 +10,7 @@ class ContentMixin(models.Model):
         abstract = True
 
     name = models.CharField(_('Nombre'), max_length=150)
-    description = models.CharField(_('Descripción'), max_length=255)
+    description = models.CharField(_('Descripción'), max_length=255, blank=True,)
+
+    def __str__(self):
+        return self.name

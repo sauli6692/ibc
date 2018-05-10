@@ -12,10 +12,12 @@ class DirectionMixin(models.Model):
     direction_main = models.CharField(
         _('Dirección principal'),
         max_length=255,
+        blank=True,
     )
 
     direction_extra = models.CharField(
         _('Dirección extra'),
         max_length=255,
         null=True,
+        blank=True,
     )

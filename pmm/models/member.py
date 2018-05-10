@@ -14,3 +14,6 @@ class Member(models.Model):
         db_column='person_id',
         primary_key=True,
     )
+
+    def __str__(self):
+        return str(self.information)

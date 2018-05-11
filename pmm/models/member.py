@@ -1,11 +1,14 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 
 class Member(models.Model):
     class Meta:
         verbose_name = _('Miembro Pleno')
         verbose_name_plural = _('Miembros Plenos')
+        permissions = (
+            ('read_member', 'Can read ' + ugettext('Miembro Pleno')),
+        )
 
     information = models.OneToOneField(
         'pmm.Person',

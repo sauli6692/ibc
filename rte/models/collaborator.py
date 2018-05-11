@@ -1,11 +1,14 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 
 class Collaborator(models.Model):
     class Meta:
         verbose_name = _('Colaborador')
         verbose_name_plural = _('Colaboradores')
+        permissions = (
+            ('read_collaborator', 'Can read ' + ugettext('Colaborador')),
+        )
 
     member_information = models.OneToOneField(
         'pmm.Member',

@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 from rest_framework import serializers
 
 from .mixins.log_fields import LogFieldsMixin
@@ -42,6 +42,9 @@ class User(AbstractBaseUser, PermissionsMixin, LogFieldsMixin):
     class Meta:
         verbose_name = _('Usuario')
         verbose_name_plural = _('Usuarios')
+        permissions = (
+            ('read_user', 'Can read ' + ugettext('Usuario')),
+        )
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []

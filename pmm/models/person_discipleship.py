@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 
 class PersonDiscipleship(models.Model):
@@ -7,6 +7,9 @@ class PersonDiscipleship(models.Model):
         verbose_name = _('Persona en Discipulado')
         verbose_name_plural = _('Personas en Discipulados')
         unique_together = ('disciple', 'discipleship')
+        permissions = (
+            ('read_persondiscipleship', 'Can read ' + ugettext('Persona en Discipulado')),
+        )
 
     disciple = models.ForeignKey(
         'pmm.Person',

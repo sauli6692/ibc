@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 from rest_framework import serializers
 
 from core.models.mixins import ContentMixin
@@ -11,6 +11,9 @@ class Lesson(ContentMixin):
         verbose_name_plural = _('Lecciones de Discipulado')
         unique_together = ('lesson_number', 'discipleship',)
         ordering = ['lesson_number']
+        permissions = (
+            ('read_lesson', 'Can read ' + ugettext('Lección de Discipulado')),
+        )
 
     lesson_number = models.SmallIntegerField(_('Identificador de Lección'))
 

@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from core.models.custom_fields import FixedCharField
 from core.models.mixins import DirectionMixin
@@ -9,6 +9,9 @@ class Person(DirectionMixin):
     class Meta:
         verbose_name = _('Persona')
         verbose_name_plural = _('Personas')
+        permissions = (
+            ('read_person', 'Can read ' + ugettext('Persona')),
+        )
 
     gender_choices = (
         ('M', _('Masculino')),

@@ -1,11 +1,14 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 
 class Harvest(models.Model):
     class Meta:
         verbose_name = _('Mies')
         verbose_name_plural = _('Mies')
+        permissions = (
+            ('read_harvest', 'Can read ' + ugettext('Mies')),
+        )
 
     information = models.OneToOneField(
         'pmm.Person',

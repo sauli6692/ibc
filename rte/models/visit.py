@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 from django.utils.timezone import now
 
 
@@ -8,6 +8,9 @@ class Visit(models.Model):
         verbose_name = _('Visita Realizada')
         verbose_name_plural = _('Visitas Realizadas')
         unique_together = ('collaborator', 'harvest')
+        permissions = (
+            ('read_visit', 'Can read ' + ugettext('Visita Realizada')),
+        )
 
     collaborator = models.ForeignKey(
         'rte.Collaborator',

@@ -1,0 +1,22 @@
+[{
+  "model": "pmm.Person",
+  "pk": 1,
+  "fields": {
+    "first_name": "Admin",
+    "last_name": "Admin"
+  }
+}, {
+  "model": "pmm.Member",
+  "fields": {
+    "information": 1
+  }
+}, {
+  "model": "core.User",
+  "pk": 1,
+  "fields": {
+    "owner_id": 1,
+    "username": "admin",
+    "password": "pbkdf2_sha256$36000$I7nBbFehprG7$dsLG1AfgvLZT5+H3WbT6/inMX8mqXB6aPjOwoCygQXc=",
+    "is_superuser": true
+  }
+}]

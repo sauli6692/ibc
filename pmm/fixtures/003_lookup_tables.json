@@ -1,0 +1,145 @@
+[{
+  "model": "pmm.CivilStatus",
+  "pk": 1,
+  "fields": {
+    "value": "Soltero(a)"
+  }
+}, {
+  "model": "pmm.CivilStatus",
+  "pk": 2,
+  "fields": {
+    "value": "Casado(a)"
+  }
+}, {
+  "model": "pmm.CivilStatus",
+  "pk": 3,
+  "fields": {
+    "value": "Divorciado(a)"
+  }
+}, {
+  "model": "pmm.CivilStatus",
+  "pk": 4,
+  "fields": {
+    "value": "Viudo(a)"
+  }
+}, {
+  "model": "pmm.CivilStatus",
+  "pk": 5,
+  "fields": {
+    "value": "Unión Libre"
+  }
+}, {
+  "model": "pmm.FamilyRelationship",
+  "pk": 1,
+  "fields": {
+    "value": "Esposo(a)"
+  }
+}, {
+  "model": "pmm.FamilyRelationship",
+  "pk": 2,
+  "fields": {
+    "value": "Hijo(a)"
+  }
+}, {
+  "model": "pmm.FamilyRelationship",
+  "pk": 3,
+  "fields": {
+    "value": "Mamá"
+  }
+}, {
+  "model": "pmm.FamilyRelationship",
+  "pk": 4,
+  "fields": {
+    "value": "Papá"
+  }
+}, {
+  "model": "pmm.FamilyRelationship",
+  "pk": 5,
+  "fields": {
+    "value": "Abuelo(a)"
+  }
+}, {
+  "model": "pmm.FamilyRelationship",
+  "pk": 6,
+  "fields": {
+    "value": "Nieto(a)"
+  }
+}, {
+  "model": "pmm.FamilyRelationship",
+  "pk": 7,
+  "fields": {
+    "value": "Tío(a)"
+  }
+}, {
+  "model": "pmm.FamilyRelationship",
+  "pk": 8,
+  "fields": {
+    "value": "Primo(a)"
+  }
+}, {
+  "model": "pmm.FamilyRelationship",
+  "pk": 9,
+  "fields": {
+    "value": "Otro"
+  }
+}, {
+  "model": "pmm.IntegrationLevel",
+  "pk": 1,
+  "fields": {
+    "value": "Unido Recientemente"
+  }
+}, {
+  "model": "pmm.IntegrationLevel",
+  "pk": 1,
+  "fields": {
+    "value": "Integrado"
+  }
+}, {
+  "model": "pmm.IntegrationLevel",
+  "pk": 1,
+  "fields": {
+    "value": "Inconstante"
+  }
+}, {
+  "model": "pmm.IntegrationLevel",
+  "pk": 1,
+  "fields": {
+    "value": "Retirado"
+  }
+}, {
+  "model": "pmm.Occupation",
+  "pk": 1,
+  "fields": {
+    "value": "Estudiante Primaria"
+  }
+}, {
+  "model": "pmm.Occupation",
+  "pk": 1,
+  "fields": {
+    "value": "Estudiante Secundaria"
+  }
+}, {
+  "model": "pmm.Occupation",
+  "pk": 1,
+  "fields": {
+    "value": "Estudiante Universitario"
+  }
+}, {
+  "model": "pmm.Occupation",
+  "pk": 1,
+  "fields": {
+    "value": "Empleado"
+  }
+}, {
+  "model": "pmm.Occupation",
+  "pk": 1,
+  "fields": {
+    "value": "En Busca de Empleo"
+  }
+}, {
+  "model": "pmm.Occupation",
+  "pk": 1,
+  "fields": {
+    "value": "Otros"
+  }
+}]

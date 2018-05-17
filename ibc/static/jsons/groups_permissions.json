@@ -1,0 +1,64 @@
+{
+  "permissions_map": {
+    "a": "add",
+    "c": "change",
+    "d": "delete",
+    "r": "read"
+  },
+  "groups": {
+    "pmm_lookup_tables_reader": {
+      "civilstatus": ["r"],
+      "familyrelationship": ["r"],
+      "integrationlevel": ["r"],
+      "occupation": ["r"]
+    },
+    "member_reader": {
+      "person": ["r"],
+      "member": ["r"],
+      "family": ["r"]
+    },
+    "discipleship_reader": {
+      "discipleship": ["r"],
+      "lesson": ["r"]
+    },
+    "admin": {
+      "user": ["a", "c", "d", "r"],
+      "civilstatus": ["a", "c", "d", "r"],
+      "discipleship": ["a", "c", "d", "r"],
+      "family": ["a", "c", "d", "r"],
+      "familyrelationship": ["a", "c", "d", "r"],
+      "integrationlevel": ["a", "c", "d", "r"],
+      "lesson": ["a", "c", "d", "r"],
+      "occupation": ["a", "c", "d", "r"],
+      "person": ["a", "c", "d", "r"],
+      "persondiscipleship": ["a", "c", "d", "r"],
+      "member": ["a", "c", "d", "r"],
+      "ministry": ["a", "c", "d", "r"],
+      "ministryobjectives": ["a", "c", "d", "r"],
+      "collaborator": ["a", "c", "d", "r"],
+      "harvest": ["a", "c", "d", "r"],
+      "route": ["a", "c", "d", "r"],
+      "visit": ["a", "c", "d", "r"]
+    },
+    "ministry_manager": {
+      "route": ["r"],
+      "collaborator": ["r"],
+      "ministry": ["c", "r"],
+      "ministryobjectives": ["a", "c", "d", "r"]
+    },
+    "routes_manager": {
+      "ministry": ["r"],
+      "collaborator": ["a", "c", "d", "r"],
+      "harvest": ["a", "c", "d", "r"],
+      "route": ["a", "c", "d", "r"],
+      "visit": ["a", "c", "d", "r"]
+    },
+    "people_manager": {
+      "harvest": ["r"],
+      "person": ["a", "c", "d", "r"],
+      "member": ["a", "c", "d", "r"],
+      "family": ["a", "c", "d", "r"],
+      "persondiscipleship": ["a", "c", "d", "r"]
+    }
+  }
+}

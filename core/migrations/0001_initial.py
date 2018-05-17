@@ -39,7 +39,6 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Usuario',
                 'verbose_name_plural': 'Usuarios',
-                'permissions': (('read_user', 'Can read Usuario'),),
             },
             managers=[
                 ('objects', core.models.user.UserManager()),

@@ -11,5 +11,6 @@ router.register(r'integration-levels', views.IntegrationLevelViewSet)
 router.register(r'occupations', views.OccupationViewSet)
 router.register(r'civil-status', views.CivilStatusViewSet)
 router.register(r'family-relationships', views.FamilyRelationshipViewSet)
+router.register(r'people', views.PersonViewSet)
 
 urlpatterns = router.urls

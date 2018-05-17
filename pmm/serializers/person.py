@@ -9,9 +9,10 @@ from ..models import Person
 
 
 class PersonSerializer(serializers.ModelSerializer):
-    integration_level = IntegrationLevelSerializer(read_only=True)
-    occupation = OccupationSerializer(read_only=True)
-    civil_status = CivilStatusSerializer(read_only=True)
+    integration_level = IntegrationLevelSerializer()
+    occupation = OccupationSerializer()
+    civil_status = CivilStatusSerializer()
+    gender = serializers.CharField(source='get_gender_display')
 
     class Meta:
         model = Person

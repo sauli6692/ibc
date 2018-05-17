@@ -20,9 +20,11 @@ class Command(BaseCommand):
             for group_name, permissions in data['groups'].items():
                 group = Group(name=group_name)
                 group.save()
-                group.permissions.add(*self.get_permissions(permissions, data['permissions_map']))
+                group.permissions.add(*self.__get_permissions(permissions, data['permissions_map']))
 
-    def get_permissions(self, permissions, permissions_map):
+        self.stdout.write('Groups permissions created.')
+
+    def __get_permissions(self, permissions, permissions_map):
         codenames = []
         for model, _permissions in permissions.items():
             for perm in _permissions:

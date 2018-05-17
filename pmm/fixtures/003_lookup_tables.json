@@ -90,19 +90,19 @@
   }
 }, {
   "model": "pmm.IntegrationLevel",
-  "pk": 1,
+  "pk": 2,
   "fields": {
     "value": "Integrado"
   }
 }, {
   "model": "pmm.IntegrationLevel",
-  "pk": 1,
+  "pk": 3,
   "fields": {
     "value": "Inconstante"
   }
 }, {
   "model": "pmm.IntegrationLevel",
-  "pk": 1,
+  "pk": 4,
   "fields": {
     "value": "Retirado"
   }
@@ -114,31 +114,31 @@
   }
 }, {
   "model": "pmm.Occupation",
-  "pk": 1,
+  "pk": 2,
   "fields": {
     "value": "Estudiante Secundaria"
   }
 }, {
   "model": "pmm.Occupation",
-  "pk": 1,
+  "pk": 3,
   "fields": {
     "value": "Estudiante Universitario"
   }
 }, {
   "model": "pmm.Occupation",
-  "pk": 1,
+  "pk": 4,
   "fields": {
     "value": "Empleado"
   }
 }, {
   "model": "pmm.Occupation",
-  "pk": 1,
+  "pk": 5,
   "fields": {
     "value": "En Busca de Empleo"
   }
 }, {
   "model": "pmm.Occupation",
-  "pk": 1,
+  "pk": 6,
   "fields": {
     "value": "Otros"
   }

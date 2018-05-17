@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 
-from pmm.models import Discipleship, DiscipleshipSerializer
+from pmm.models import Discipleship
+from pmm.serializers import DiscipleshipSerializer
 from core.views.mixins import CreateListMixin
 
 

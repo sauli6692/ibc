@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 
-from pmm.models import Lesson, LessonSerializer
+from pmm.models import Lesson
+from pmm.serializers import LessonSerializer
 from core.views.mixins import CreateListMixin
 
 

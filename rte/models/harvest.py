@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+from pmm.models import Person
 
-class Harvest(models.Model):
+
+class Harvest(Person):
     class Meta:
         verbose_name = _('Mies')
         verbose_name_plural = _('Mies')
@@ -10,12 +12,12 @@ class Harvest(models.Model):
             ('read_harvest', 'Can read ' + ugettext('Mies')),
         )
 
-    information = models.OneToOneField(
+    person_id = models.OneToOneField(
         'pmm.Person',
         on_delete=models.CASCADE,
-        verbose_name=_('Información'),
+        verbose_name=_('Id persona'),
         db_column='person_id',
-        primary_key=True,
+        parent_link=True,
     )
 
     route = models.ForeignKey(

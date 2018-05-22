@@ -8,7 +8,7 @@
 }, {
   "model": "pmm.Member",
   "fields": {
-    "information": 1
+    "person_id": 1
   }
 }, {
   "model": "core.User",

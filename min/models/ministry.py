@@ -21,4 +21,5 @@ class Ministry(ContentMixin):
     members = models.ManyToManyField(
         'pmm.Member',
         verbose_name=_('Miembros'),
+        related_name='ministries'
     )

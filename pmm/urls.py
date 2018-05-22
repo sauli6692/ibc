@@ -1,6 +1,6 @@
 from rest_framework import routers
 
-from pmm.views import rest as views
+from pmm import views
 
 app_name = 'pmm'
 
@@ -12,5 +12,6 @@ router.register(r'occupations', views.OccupationViewSet)
 router.register(r'civil-status', views.CivilStatusViewSet)
 router.register(r'family-relationships', views.FamilyRelationshipViewSet)
 router.register(r'people', views.PersonViewSet)
+router.register(r'members', views.MemberViewSet)
 
 urlpatterns = router.urls

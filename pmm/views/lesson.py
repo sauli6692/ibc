@@ -8,5 +8,5 @@ from core.views.mixins import CreateListMixin
 class LessonViewSet(CreateListMixin, viewsets.ModelViewSet):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    filter_fields = ('name', 'discipleship__name', 'discipleship__description',)
-    search_fields = ('name', 'discipleship__name', 'discipleship__description',)
+    filter_fields = ('name', 'discipleship__name',)
+    search_fields = ('name', 'discipleship__name',)

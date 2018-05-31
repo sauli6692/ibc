@@ -13,5 +13,6 @@ router.register(r'civil-status', views.CivilStatusViewSet)
 router.register(r'family-relationships', views.FamilyRelationshipViewSet)
 router.register(r'people', views.PersonViewSet)
 router.register(r'members', views.MemberViewSet)
+router.register(r'families', views.FamilyViewSet)
 
 urlpatterns = router.urls

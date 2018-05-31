@@ -9,4 +9,9 @@ class DiscipleshipSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Discipleship
-        fields = '__all__'
+        fields = (
+            'pk',
+            'name',
+            'description',
+            'lessons',
+        )

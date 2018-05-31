@@ -12,8 +12,17 @@ class DiscipleshipField(serializers.RelatedField):
 
 
 class LessonSerializer(serializers.ModelSerializer):
-    discipleship = DiscipleshipField(read_only=True)
+    discipleship_value = serializers.StringRelatedField(source='discipleship')
 
     class Meta:
         model = Lesson
-        fields = '__all__'
+        fields = (
+            'pk',
+            'name',
+            'description',
+            'discipleship',
+            'discipleship_value',
+        )
+        extra_kwargs = {
+            'discipleship': {'write_only': True},
+        }

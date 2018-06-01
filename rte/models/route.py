@@ -12,7 +12,7 @@ class Route(ContentMixin, DirectionMixin):
             ('read_route', 'Can read ' + ugettext('Ruta')),
         )
 
-    zoneMap = models.ImageField(
+    zone_map = models.ImageField(
         upload_to='images/route/',
         verbose_name=_('Miembros'),
         max_length=255,

@@ -33,3 +33,14 @@ class PersonDiscipleshipViewSet(CreateListMixin, viewsets.ModelViewSet):
     def create(self, request, disciple):
         request.data['disciple'] = disciple
         return super().create(request)
+
+
+class DiscipleshipPersonViewSet(PersonDiscipleshipViewSet):
+    lookup_field = 'disciple'
+
+    def get_queryset(self):
+        return PersonDiscipleship.objects.filter(discipleship_id=self.kwargs['discipleship'])
+
+    def create(self, request, discipleship):
+        request.data['discipleship'] = discipleship
+        return super().create(request)

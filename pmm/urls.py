@@ -19,5 +19,10 @@ router.register(
     views.PersonDiscipleshipViewSet,
     base_name='person-discipleship'
 )
+router.register(
+    r'discipleships/(?P<discipleship>\d+)/people',
+    views.DiscipleshipPersonViewSet,
+    base_name='discipleship-person'
+)
 
 urlpatterns = router.urls

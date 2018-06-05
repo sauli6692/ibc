@@ -12,14 +12,7 @@ from .models import (
     Person,
     PersonDiscipleship,
 )
-
-
-class LookupTableAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'value',)
-    list_filter = ('value',)
-    list_display_links = ['pk', 'value']
-    ordering = ('pk', 'value',)
-    search_fields = ('value',)
+from core.admin import LookupTableAdmin, ContentAdmin
 
 
 @admin.register(CivilStatus)
@@ -43,12 +36,8 @@ class OccupationAdmin(LookupTableAdmin):
 
 
 @admin.register(Discipleship)
-class DiscipleshipAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'description',)
-    list_filter = ('name', 'description',)
-    list_display_links = ['pk', 'name']
-    ordering = ('pk', 'name', 'description',)
-    search_fields = ('name', 'description',)
+class DiscipleshipAdmin(ContentAdmin):
+    pass
 
 
 @admin.register(Lesson)

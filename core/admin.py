@@ -24,3 +24,19 @@ class UserAdmin(auth_admin.UserAdmin):
         }),
         (_('Permissions'), {'fields': ('is_active', 'is_superuser', 'groups',)}),
     )
+
+
+class LookupTableAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'value',)
+    list_filter = ('value',)
+    list_display_links = ['pk', 'value']
+    ordering = ('pk', 'value',)
+    search_fields = ('value',)
+
+
+class ContentAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'name', 'description',)
+    list_filter = ('name', 'description',)
+    list_display_links = ['pk', 'name']
+    ordering = ('pk', 'name', 'description',)
+    search_fields = ('name', 'description',)

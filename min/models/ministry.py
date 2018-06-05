@@ -6,38 +6,38 @@ from core.models.mixins import ContentMixin
 
 class Ministry(ContentMixin):
     class Meta:
-        verbose_name = _('Ministerio')
-        verbose_name_plural = _('Ministerios')
+        verbose_name = _('Ministry')
+        verbose_name_plural = _('Ministries')
         permissions = (
-            ('read_ministry', 'Can read ' + ugettext('Ministerios')),
+            ('read_ministry', 'Can read ' + ugettext('Ministries')),
         )
 
     leaders = models.ManyToManyField(
         'pmm.Member',
-        verbose_name=_('Lideres'),
+        verbose_name=_('Leaders'),
         related_name='leading_ministries'
     )
 
     members = models.ManyToManyField(
         'pmm.Member',
-        verbose_name=_('Miembros'),
+        verbose_name=_('Members'),
         related_name='ministries'
     )
 
 
 class MinistryObjective(models.Model):
     class Meta:
-        verbose_name = _('Objetivo del Ministerio')
-        verbose_name_plural = _('Objetivos del Ministerio')
+        verbose_name = _('Ministry Objective')
+        verbose_name_plural = _('Ministry Objectives')
         permissions = (
-            ('read_ministryobjective', 'Can read ' + ugettext('Objetivo del Ministerio')),
+            ('read_ministryobjective', 'Can read ' + ugettext('Ministry Objective')),
         )
 
-    objective = models.CharField(_('Objetivo'), max_length=255)
+    objective = models.CharField(_('Objective'), max_length=255)
 
     ministry = models.ForeignKey(
         'min.Ministry',
         on_delete=models.CASCADE,
-        verbose_name=_('Ministerio'),
+        verbose_name=_('Ministry'),
         null=True,
     )

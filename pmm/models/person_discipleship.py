@@ -4,40 +4,40 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 class PersonDiscipleship(models.Model):
     class Meta:
-        verbose_name = _('Persona en Discipulado')
-        verbose_name_plural = _('Personas en Discipulados')
+        verbose_name = _('Person in Discipleship')
+        verbose_name_plural = _('People in Discipleship')
         unique_together = ('disciple', 'discipleship')
         permissions = (
-            ('read_persondiscipleship', 'Can read ' + ugettext('Persona en Discipulado')),
+            ('read_persondiscipleship', 'Can read ' + ugettext('Person in Discipleship')),
         )
 
     disciple = models.ForeignKey(
         'pmm.Person',
         on_delete=models.CASCADE,
-        verbose_name=_('Discipulo'),
+        verbose_name=_('Disciple'),
         related_name='my_disciples',
     )
 
     discipleship = models.ForeignKey(
         'pmm.Discipleship',
         on_delete=models.CASCADE,
-        verbose_name=_('Discipulado'),
+        verbose_name=_('Discipleship'),
         related_name='my_discipleships',
     )
 
     teacher = models.ForeignKey(
         'pmm.Person',
         on_delete=models.CASCADE,
-        verbose_name=_('Discipulador'),
+        verbose_name=_('Teacher'),
         related_name='my_teachers'
     )
 
     last_lesson = models.ForeignKey(
         'pmm.Lesson',
         on_delete=models.CASCADE,
-        verbose_name=_('Última Lección'),
+        verbose_name=_('Last Lesson'),
     )
 
-    start_date = models.DateField(_('Fecha de Inicio de Discipulado'), null=True)
+    start_date = models.DateField(_('Discipleship Start Date'), null=True)
 
-    end_date = models.DateField(_('Fecha de Fin de Discipulado'), null=True)
+    end_date = models.DateField(_('Discipleship End Date'), null=True)

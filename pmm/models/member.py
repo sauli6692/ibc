@@ -9,13 +9,13 @@ class Member(Person):
         Person,
         on_delete=models.CASCADE,
         parent_link=True,
-        verbose_name=_('Id de persona'),
+        verbose_name=_('Person reference'),
         db_column='person_id',
     )
 
     class Meta:
-        verbose_name = _('Miembro Pleno')
-        verbose_name_plural = _('Miembros Plenos')
+        verbose_name = _('Member')
+        verbose_name_plural = _('Members')
         permissions = (
-            ('read_member', 'Can read ' + ugettext('Miembro Pleno')),
+            ('read_member', 'Can read ' + ugettext('Member')),
         )

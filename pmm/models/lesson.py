@@ -6,20 +6,20 @@ from core.models.mixins import ContentMixin
 
 class Lesson(ContentMixin):
     class Meta:
-        verbose_name = _('Lección de Discipulado')
-        verbose_name_plural = _('Lecciones de Discipulado')
+        verbose_name = _('Discipleship Lesson')
+        verbose_name_plural = _('Discipleship Lessons')
         unique_together = ('lesson_number', 'discipleship',)
         ordering = ['lesson_number']
         permissions = (
-            ('read_lesson', 'Can read ' + ugettext('Lección de Discipulado')),
+            ('read_lesson', 'Can read ' + ugettext('Discipleship Lesson')),
         )
 
-    lesson_number = models.SmallIntegerField(_('Identificador de Lección'))
+    lesson_number = models.SmallIntegerField(_('Lesson Number'))
 
     discipleship = models.ForeignKey(
         'pmm.Discipleship',
         on_delete=models.CASCADE,
-        verbose_name=_('Discipulado'),
+        verbose_name=_('Discipleship'),
         related_name='lessons'
     )
 

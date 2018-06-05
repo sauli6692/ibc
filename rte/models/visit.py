@@ -5,26 +5,26 @@ from django.utils.timezone import now
 
 class Visit(models.Model):
     class Meta:
-        verbose_name = _('Visita Realizada')
-        verbose_name_plural = _('Visitas Realizadas')
+        verbose_name = _('Visit')
+        verbose_name_plural = _('Visits')
         unique_together = ('collaborator', 'harvest')
         permissions = (
-            ('read_visit', 'Can read ' + ugettext('Visita Realizada')),
+            ('read_visit', 'Can read ' + ugettext('Visit')),
         )
 
     collaborator = models.ForeignKey(
         'rte.Collaborator',
         on_delete=models.CASCADE,
-        verbose_name=_('Colaborador'),
+        verbose_name=_('Collaborator'),
     )
 
     harvest = models.ForeignKey(
         'rte.Harvest',
         on_delete=models.CASCADE,
-        verbose_name=_('Mies'),
+        verbose_name=_('Harvest'),
     )
 
     date = models.DateField(
-        _('Fecha de Visita'),
+        _('Visit date'),
         default=now
     )

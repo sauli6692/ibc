@@ -6,16 +6,16 @@ from pmm.models import Member
 
 class Collaborator(Member):
     class Meta:
-        verbose_name = _('Colaborador')
-        verbose_name_plural = _('Colaboradores')
+        verbose_name = _('Collaborator')
+        verbose_name_plural = _('Collaborators')
         permissions = (
-            ('read_collaborator', 'Can read ' + ugettext('Colaborador')),
+            ('read_collaborator', 'Can read ' + ugettext('Collaborator')),
         )
 
     member_id = models.OneToOneField(
         'pmm.Member',
         on_delete=models.CASCADE,
-        verbose_name=_('Id de miembro'),
+        verbose_name=_('Member reference'),
         db_column='member_id',
         parent_link=True,
     )
@@ -23,14 +23,14 @@ class Collaborator(Member):
     route = models.ForeignKey(
         'rte.Route',
         on_delete=models.CASCADE,
-        verbose_name=_('Ruta'),
+        verbose_name=_('Route'),
     )
 
     ministry = models.OneToOneField(
         'min.Ministry',
         on_delete=models.CASCADE,
-        verbose_name=_('Ministerio'),
+        verbose_name=_('Ministry'),
         null=True
     )
 
-    route_captain = models.BooleanField(_('Es Capitan'), default=False)
+    route_captain = models.BooleanField(_('Is captain'), default=False)

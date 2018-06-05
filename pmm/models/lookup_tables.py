@@ -5,35 +5,35 @@ from core.models.mixins import LookupTableMixin
 
 class IntegrationLevel(LookupTableMixin):
     class Meta:
-        verbose_name = _('Nivel de integración')
-        verbose_name_plural = _('Niveles de integración')
+        verbose_name = _('Integration Level')
+        verbose_name_plural = _('Integration Levels')
         permissions = (
-            ('read_integrationlevel', 'Can read ' + ugettext('Nivel de integración')),
+            ('read_integrationlevel', 'Can read ' + ugettext('Integration Level')),
         )
 
 
 class Occupation(LookupTableMixin):
     class Meta:
-        verbose_name = _('Ocupación')
-        verbose_name_plural = _('Ocupaciones')
+        verbose_name = _('Occupation')
+        verbose_name_plural = _('Occupations')
         permissions = (
-            ('read_occupation', 'Can read ' + ugettext('Ocupación')),
+            ('read_occupation', 'Can read ' + ugettext('Occupation')),
         )
 
 
 class CivilStatus(LookupTableMixin):
     class Meta:
-        verbose_name = _('Estado Civil')
-        verbose_name_plural = _('Estados Civiles')
+        verbose_name = _('Civil Status')
+        verbose_name_plural = _('Civil Status')
         permissions = (
-            ('read_civilstatus', 'Can read ' + ugettext('Estado Civil')),
+            ('read_civilstatus', 'Can read ' + ugettext('Civil Status')),
         )
 
 
 class FamilyRelationship(LookupTableMixin):
     class Meta:
-        verbose_name = _('Relación familiar')
-        verbose_name_plural = _('Relaciones familiares')
+        verbose_name = _('Family Relationship')
+        verbose_name_plural = _('Family Relationships')
         permissions = (
-            ('read_familyrelationship', 'Can read ' + ugettext('Relación familiar')),
+            ('read_familyrelationship', 'Can read ' + ugettext('Family Relationship')),
         )

@@ -40,18 +40,18 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin, LogFieldsMixin):
     class Meta:
-        verbose_name = _('Usuario')
-        verbose_name_plural = _('Usuarios')
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
     objects = UserManager()
 
-    username = models.CharField(_('Usuario'), max_length=50, unique=True)
-    is_active = models.BooleanField(_('Activo'), default=True,)
+    username = models.CharField(_('User'), max_length=50, unique=True)
+    is_active = models.BooleanField(_('Active'), default=True,)
     owner = models.OneToOneField(
         'pmm.Member',
-        verbose_name=_('Dueño'),
+        verbose_name=_('Owner'),
         on_delete=models.CASCADE,
         null=False
     )
@@ -104,6 +104,6 @@ class UserSerializer(serializers.ModelSerializer):
         if data['password']:
             if data['password'] != data['confirm_password']:
                 raise serializers.ValidationError(
-                    _('Contraseña de confirmación errada')
+                    _('Incorrect Confirmation Password')
                 )
         return data

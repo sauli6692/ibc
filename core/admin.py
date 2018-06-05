@@ -7,7 +7,7 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
-    list_display = ('id', 'username', 'is_active', 'owner',)
+    list_display = ('pk', 'username', 'is_active', 'owner',)
     list_filter = ('username', 'is_active', 'owner',)
     ordering = ('username',)
     readonly_fields = ('last_login',)

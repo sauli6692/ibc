@@ -8,5 +8,5 @@ from core.views.mixins import CreateListMixin
 class DiscipleshipViewSet(CreateListMixin, viewsets.ModelViewSet):
     queryset = Discipleship.objects.all()
     serializer_class = DiscipleshipSerializer
-    filter_fields = ('name', 'description', 'lessons__name', 'lessons__description',)
+    filter_fields = ('name', 'description', 'lessons',)
     search_fields = ('name', 'description', 'lessons__name', 'lessons__description',)

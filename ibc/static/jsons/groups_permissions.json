@@ -34,7 +34,7 @@
       "persondiscipleship": ["a", "c", "d", "r"],
       "member": ["a", "c", "d", "r"],
       "ministry": ["a", "c", "d", "r"],
-      "ministryobjectives": ["a", "c", "d", "r"],
+      "ministryobjective": ["a", "c", "d", "r"],
       "collaborator": ["a", "c", "d", "r"],
       "harvest": ["a", "c", "d", "r"],
       "route": ["a", "c", "d", "r"],
@@ -44,7 +44,7 @@
       "route": ["r"],
       "collaborator": ["r"],
       "ministry": ["c", "r"],
-      "ministryobjectives": ["a", "c", "d", "r"]
+      "ministryobjective": ["a", "c", "d", "r"]
     },
     "routes_manager": {
       "ministry": ["r"],

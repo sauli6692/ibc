@@ -15,9 +15,9 @@ class PersonFilter(filters.FilterSet):
             'last_name',
             'gender',
             'baptized',
-            'integration_level__value',
-            'occupation__value',
-            'civil_status__value',
+            'integration_level',
+            'occupation',
+            'civil_status',
         )
         filter_overrides = {
              FixedCharField: {

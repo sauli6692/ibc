@@ -11,11 +11,9 @@ class PersonDiscipleshipViewSet(CreateListMixin, viewsets.ModelViewSet):
     filter_fields = (
         'start_date',
         'end_date',
-        'teacher__first_name',
-        'teacher__last_name',
-        'last_lesson__name',
-        'last_lesson__description',
-        'discipleship__name',
+        'teacher',
+        'last_lesson',
+        'discipleship',
     )
     search_fields = (
         'start_date',
@@ -31,7 +29,12 @@ class PersonDiscipleshipViewSet(CreateListMixin, viewsets.ModelViewSet):
         return PersonDiscipleship.objects.filter(disciple_id=self.kwargs['disciple'])
 
     def create(self, request, disciple):
-        request.data['disciple'] = disciple
+        if isinstance(request.data, list):
+            for row in request.data:
+                row['disciple'] = disciple
+        else:
+            request.data['disciple'] = disciple
+
         return super().create(request)
 
 
@@ -42,5 +45,10 @@ class DiscipleshipPersonViewSet(PersonDiscipleshipViewSet):
         return PersonDiscipleship.objects.filter(discipleship_id=self.kwargs['discipleship'])
 
     def create(self, request, discipleship):
-        request.data['discipleship'] = discipleship
+        if isinstance(request.data, list):
+            for row in request.data:
+                row['discipleship'] = discipleship
+        else:
+            request.data['discipleship'] = discipleship
+
         return super().create(request)

@@ -19,6 +19,3 @@ class Member(Person):
         permissions = (
             ('read_member', 'Can read ' + ugettext('Miembro Pleno')),
         )
-
-    def __str__(self):
-        return self.first_name + self.last_name

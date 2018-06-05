@@ -20,5 +20,6 @@ urlpatterns = [
     url('', include('core.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^(?i)pmm/', include('pmm.urls')),
+    url(r'^(?i)min/', include('min.urls')),
     url(r'^(?i)rte/', include('rte.urls')),
 ]

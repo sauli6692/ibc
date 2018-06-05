@@ -9,11 +9,9 @@ class FamilyViewSet(CreateListMixin, viewsets.ModelViewSet):
     queryset = Family.objects.all()
     serializer_class = FamilySerializer
     filter_fields = (
-        'person__first_name',
-        'person__last_name',
-        'family__first_name',
-        'family__last_name',
-        'relationship__value',
+        'person',
+        'family',
+        'relationship',
     )
     search_fields = (
         'person__first_name',

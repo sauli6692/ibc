@@ -1,0 +1,7 @@
+-r common.txt
+
+flake8==3.5.0
+Faker==0.8.7
+pytest==3.3.1
+pytest-django==3.1.2
+factory-boy==2.9.2

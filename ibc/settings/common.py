@@ -77,6 +77,7 @@ AUTH_USER_MODEL = 'core.User'
 
 # Default JWT preferences
 JWT_AUTH = {
+    'JWT_PAYLOAD_HANDLER': 'core.serializers.token.jwt_payload_handler',
     'JWT_VERIFY': True,
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=5*1800),

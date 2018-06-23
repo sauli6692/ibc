@@ -1,0 +1,208 @@
+[{
+  "model": "pmm.Lesson",
+  "pk": 1,
+  "fields": {
+    "lesson_number": 1,
+    "name": "Primera visita",
+    "description": "",
+    "discipleship_id": 1
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 2,
+  "fields": {
+    "lesson_number": 2,
+    "name": "Segunda visita",
+    "description": "",
+    "discipleship_id": 1
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 3,
+  "fields": {
+    "lesson_number": 3,
+    "name": "Tercera visita",
+    "description": "",
+    "discipleship_id": 1
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 4,
+  "fields": {
+    "lesson_number": 4,
+    "name": "Cuarta visita",
+    "description": "",
+    "discipleship_id": 1
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 5,
+  "fields": {
+    "lesson_number": 1,
+    "name": "Grada 1",
+    "description": "Esté seguro de su Salvación",
+    "discipleship_id": 2
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 6,
+  "fields": {
+    "lesson_number": 2,
+    "name": "Grada 2",
+    "description": "Declare su fe públicamente",
+    "discipleship_id": 2
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 7,
+  "fields": {
+    "lesson_number": 3,
+    "name": "Grada 3",
+    "description": "Comparta a JESÚS con otros",
+    "discipleship_id": 2
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 8,
+  "fields": {
+    "lesson_number": 4,
+    "name": "Grada 4",
+    "description": "Estudie su Biblia",
+    "discipleship_id": 2
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 9,
+  "fields": {
+    "lesson_number": 5,
+    "name": "Grada 5",
+    "description": "Aprenda a Orar",
+    "discipleship_id": 2
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 10,
+  "fields": {
+    "lesson_number": 6,
+    "name": "Grada 6",
+    "description": "Sea fiel a una iglesia",
+    "discipleship_id": 2
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 11,
+  "fields": {
+    "lesson_number": 7,
+    "name": "Grada 7",
+    "description": "Permita que JESÚS controle su vida",
+    "discipleship_id": 2
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 12,
+  "fields": {
+    "lesson_number": 1,
+    "name": "Lección 1",
+    "description": "La Salvación",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 13,
+  "fields": {
+    "lesson_number": 2,
+    "name": "Lección 2",
+    "description": "La Seguridad de la Salvación",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 14,
+  "fields": {
+    "lesson_number": 3,
+    "name": "Lección 3",
+    "description": "El Bautismo",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 15,
+  "fields": {
+    "lesson_number": 4,
+    "name": "Lección 4",
+    "description": "EL ESPÍRITU SANTO",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 16,
+  "fields": {
+    "lesson_number": 5,
+    "name": "Lección 5",
+    "description": "La Comunión con DIOS",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 17,
+  "fields": {
+    "lesson_number": 6,
+    "name": "Lección 6",
+    "description": "El Evangelismo Personal",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 18,
+  "fields": {
+    "lesson_number": 7,
+    "name": "Lección 7",
+    "description": "Nuestra Nueva Familia",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 19,
+  "fields": {
+    "lesson_number": 8,
+    "name": "Lección 8",
+    "description": "Buenos Administradores",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 20,
+  "fields": {
+    "lesson_number": 9,
+    "name": "Lección 9",
+    "description": "Las Relaciones Personales",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 21,
+  "fields": {
+    "lesson_number": 10,
+    "name": "Lección 10",
+    "description": "Mi Testimonio",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 22,
+  "fields": {
+    "lesson_number": 11,
+    "name": "Lección 11",
+    "description": "La voluntad de DIOS",
+    "discipleship_id": 3
+  }
+}, {
+  "model": "pmm.Lesson",
+  "pk": 23,
+  "fields": {
+    "lesson_number": 12,
+    "name": "Lección 12",
+    "description": "El Tribunal de CRISTO",
+    "discipleship_id": 3
+  }
+}]

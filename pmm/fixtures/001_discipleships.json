@@ -1,0 +1,22 @@
+[{
+  "model": "pmm.Discipleship",
+  "pk": 1,
+  "fields": {
+    "name": "4 visitas",
+    "description": "Enseñanza previa a discipulado para una persona recien convertida."
+  }
+}, {
+  "model": "pmm.Discipleship",
+  "pk": 2,
+  "fields": {
+    "name": "Mi Nuevo Caminar",
+    "description": "Primer discipulado, brindado a nuevos miembros de la congregación."
+  }
+}, {
+  "model": "pmm.Discipleship",
+  "pk": 3,
+  "fields": {
+    "name": "12 Lecciones",
+    "description": "Segundo discipulado, presenta los principales fundamentos de nuestra doctrina."
+  }
+}]

@@ -4,7 +4,7 @@ from .common import * # noqa
 DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {

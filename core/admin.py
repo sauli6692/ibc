@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import User
+from .models import User, UIRoute
 
 
 @admin.register(User)
@@ -24,6 +24,15 @@ class UserAdmin(auth_admin.UserAdmin):
         }),
         (_('Permissions'), {'fields': ('is_active', 'is_superuser', 'groups',)}),
     )
+
+
+@admin.register(UIRoute)
+class UIRouteAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'slug',)
+    list_display_links = ['pk', 'slug']
+    list_filter = ('slug',)
+    ordering = ('pk', 'slug',)
+    search_fields = ('slug',)
 
 
 class LookupTableAdmin(admin.ModelAdmin):

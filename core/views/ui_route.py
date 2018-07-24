@@ -3,15 +3,11 @@ from rest_framework.response import Response
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import status
 
-
 from ..models import UIRoute
-from ..serializers import UIRouteSerializer
 
 
 class UIRouteView(RetrieveAPIView):
     permission_classes = ()
-    queryset = UIRoute.objects.all()
-    serializer_class = UIRouteSerializer
 
     def retrieve(self, request, *args, **kwargs):
         if not request.query_params.get('slug', None):
@@ -26,8 +22,11 @@ class UIRouteView(RetrieveAPIView):
         slugs = self.__get_slugs(slug)
 
         groups = Group.objects.filter(uiroutes__slug__in=slugs).distinct()
-
-        return [group.pk for group in groups]
+        menu = self.__get_menu_item(slug)
+        return {
+            'roles': groups.values_list('id', flat=True),
+            'menu': menu
+        }
 
     def __get_slugs(self, slug):
         sections = slug.split('/')
@@ -38,3 +37,19 @@ class UIRouteView(RetrieveAPIView):
             slugs.append(prev)
 
         return slugs
+
+    def __get_menu_item(self, slug):
+        query = UIRoute.objects.filter(parent=slug).values('slug', 'label', 'groups')
+        menu = []
+        item_groups = {}
+        for item in query:
+            if item['slug'] not in item_groups:
+                item_groups[item['slug']] = []
+                menu.append({
+                    'slug': item['slug'],
+                    'label': item['label'],
+                    'roles': item_groups[item['slug']]
+                })
+            item_groups[item['slug']].append(item['groups'])
+
+        return menu

@@ -28,11 +28,11 @@ class UserAdmin(auth_admin.UserAdmin):
 
 @admin.register(UIRoute)
 class UIRouteAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'slug',)
+    list_display = ('pk', 'slug', 'label', 'parent',)
     list_display_links = ['pk', 'slug']
-    list_filter = ('slug',)
-    ordering = ('pk', 'slug',)
-    search_fields = ('slug',)
+    list_filter = ('slug', 'parent',)
+    ordering = ('pk',)
+    search_fields = ('slug', 'label',)
 
 
 class LookupTableAdmin(admin.ModelAdmin):

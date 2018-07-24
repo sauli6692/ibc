@@ -9,6 +9,8 @@ class UIRoute(models.Model):
         verbose_name_plural = _('UI Routes')
 
     slug = models.CharField(_('Route'), max_length=50)
+    label = models.CharField(_('Human Readable Label'), max_length=50, blank=True)
+    parent = models.CharField(_('Parent Route'), max_length=50, blank=True)
     groups = models.ManyToManyField(
         Group,
         related_name='uiroutes',
